@@ -1,0 +1,79 @@
+import React from 'react'
+
+export const Login = () => {
+
+  return (
+
+    <>
+      <Navbar />
+      <main class="py-5 px-4">
+        <div class="container mt-5">
+          <div class="col-md-4 offset-md-4">
+            <div class="card">
+              <div class="card-header text-center">
+                <h4>Iniciar Sesión</h4>
+              </div>
+              <div class="card-body">
+                <form>
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input name="email" id="email" class="form-control" type="email" />
+                  </div>
+                  <div class="form-group">
+                    <div class="row">
+                      <div class="col-3">
+                        <label for="password">Contraseña</label>
+                      </div>
+                    </div>
+                    <input name="password" id="password" class="form-control" type="password" />
+                  </div>
+                  <div class="form-group mt-4 text-center">
+                    <button class="btn btn-primary btn-block">Ingresar</button>
+                  </div>
+                </form>
+                {/* <p class="text-center">O</p> */}
+                <div class="form-group mt-4 text-center">
+                  <a href="#" class="btn btn-success btn-block">Registrarse</a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </main>
+
+      {/* <footer class="bd-footer py-4 py-md-5 mt-5 bg-light">
+        <div class="container-fluid text-center text-md-left bg-image-footer">
+          <div class="row justify-content-center">
+
+            <div class="col-lg-5 col-md-12 col-sm-12">
+              <div class="card mt-3 mb-3">
+                <div class="card-body text-center ">
+                  <img src="" width="60%" height="60%" alt="" />
+                </div>
+                <div class="card-footer text-center ">
+                  <div class="btn-group">
+                    <a href=" ">
+                      <button type="button" class="btn btn-dark text-white ">Pagina Principal</button>
+                    </a>
+                    <a href=" ">
+                      <button type="button" class="btn btn-dark text-white mx-4">Contacto</button>
+                    </a>
+                    <a href="">
+                      <button type="button" class="btn btn-dark text-white ">Sobre nosotros</button>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </footer> */}
+
+    </>
+
+
+
+  )
+
+}
