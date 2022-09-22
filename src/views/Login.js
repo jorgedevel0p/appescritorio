@@ -28,7 +28,8 @@ export const Login = () => {
       password: password
     }
 
-    makeHttpRequest({ 
+    makeHttpRequest({
+      operation: '/token',
       data: data, 
       method: 'POST', 
       callback: (respuestaApi) => {

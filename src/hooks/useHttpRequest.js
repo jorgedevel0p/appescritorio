@@ -1,23 +1,29 @@
 import { useState } from 'react'
 
-const API_SIGLO_XXI_URL = 'http://localhost:8000/api/token'
+const API_SIGLO_XXI_URL = 'http://localhost:8000/api'
 
 export const useHttpRequest = () => {
   const [isLoading, setIsLoading] = useState(false)
   const [error, setError] = useState(null)
 
-  const makeHttpRequest = ({ data, method, callback }) => {
+  const makeHttpRequest = ({ operation, data, method, callback }) => {
     
-    const options = {
-      method: method,
-      body: JSON.stringify(data),
+    let options = {
+      method: method,      
       headers: { 'Content-Type': 'application/json'}
     }
+
+    if(data){ options.body = JSON.stringify(data) }
 
     setIsLoading(true)
     setError(null)
     
-    fetch(API_SIGLO_XXI_URL, options)
+    // const endpointUrl = `${API_SIGLO_XXI_URL}${operation}` // <--- es lo mismo que: API_SIGLO_XXI_URL + operation (contatenar strings)
+    const FINAL_URL = API_SIGLO_XXI_URL + operation
+
+    console.log(FINAL_URL, 'FINAL_URL') // http://localhost:8000/api//token
+
+    fetch(API_SIGLO_XXI_URL + operation, options)
       .then(res => res.json())
       .then(respuesta => {
         
