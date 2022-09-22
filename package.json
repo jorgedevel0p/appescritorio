@@ -1,0 +1,43 @@
+{
+  "name": "electron-react-template",
+  "version": "0.1.0",
+  "private": true,
+  "main": "public/electron.js",
+  "homepage": "./",
+  "author": {
+    "name": "Chris Villarroel",
+    "email": "chrisdeveloper3001@gmail.com"
+  },
+  "dependencies": {
+    "electron-is-dev": "^2.0.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "dev": "concurrently -k \"npm start\" \"npm:electron\"",
+    "electron": "wait-on tcp:3000 && electron .",
+    "generate-win": "npm run build && cd .. && npx electron-packager ./electron-react-template myTestApp3 --platform=win32 --arch=x64 && cd electron-react-template"
+  },
+  "devDependencies": {
+    "concurrently": "^7.3.0",
+    "electron": "^20.1.0",
+    "electron-packager": "^16.0.0",
+    "wait-on": "^6.0.1"
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  }
+}
