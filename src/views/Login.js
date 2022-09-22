@@ -1,15 +1,14 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom"
-
 import { Navbar } from '../components/Navbar'
+import { useHttpRequest } from '../hooks/useHttpRequest'
 
 export const Login = () => {
   const navigate = useNavigate()
+  const { isLoading, error, makeHttpRequest } = useHttpRequest()
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
-
-  const [isLoading, setIsLoading] = useState(false)
 
   const handleUsername = (evento) => {
     const value = evento.target.value
@@ -24,39 +23,19 @@ export const Login = () => {
   const handleSubmit = (evento) => {
     evento.preventDefault()
 
-    setIsLoading(true)
-
-    
-    /* if(!username || !password){
-      return
-    } */
-
-    const options = {
-      method: 'POST'
+    const data = {
+      username: username,
+      password: password
     }
 
-    fetch('http://localhost:8000/api/token', options)
-      .then(res => res.json())
-      .then(respuesta => {
-        // Pasó todo OK
-
-        console.log('Aquí está la respuesta')
-        console.log(respuesta)
-
-        
+    makeHttpRequest({ 
+      data: data, 
+      method: 'POST', 
+      callback: (respuestaApi) => {
+        localStorage.setItem('token', respuestaApi.access)
         navigate("/home")
-
-      })
-      .catch(error =>{
-        console.log('ha ocurrido un error, revisa que pasa en la consola')
-        console.log(error)
-      })
-      .finally(() => {
-        setIsLoading(false)
-      })
-
-
-    
+      }
+    })
   }
 
   return (
@@ -84,12 +63,6 @@ export const Login = () => {
                     <input name="password" id="password" class="form-control" type="password" value={password} onChange={handlePassword} />
                   </div>
                   <div class="form-group mt-4 text-center">
-
-                    {/* {isLoading && (
-                      (<div class="spinner-border" role="status">
-                        <span class="visually-hidden">Loading...</span>
-                      </div>)
-                    )} */}
 
                     {
                       isLoading 
