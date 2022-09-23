@@ -9,17 +9,17 @@ export const Footer = () => {
                     <div class="col-lg-5 col-md-12 col-sm-12">
                         <div class="card mt-3 mb-3">
                             <div class="card-body text-center ">
-                                <img src="" width="60%" height="60%" alt="" />
+                                <a src="" width="60%" height="60%" alt="">Restaurante Siglo XXI</a>
                             </div>
                             <div class="card-footer text-center ">
                                 <div class="btn-group">
-                                    <a href=" ">
+                                    <a href="/">
                                         <button type="button" class="btn btn-dark text-white ">Pagina Principal</button>
                                     </a>
-                                    <a href=" ">
+                                    <a href="/">
                                         <button type="button" class="btn btn-dark text-white mx-4">Contacto</button>
                                     </a>
-                                    <a href="">
+                                    <a href="/">
                                         <button type="button" class="btn btn-dark text-white ">Sobre nosotros</button>
                                     </a>
                                 </div>

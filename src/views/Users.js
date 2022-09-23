@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useHttpRequest } from '../hooks/useHttpRequest'
+import { Navbar } from '../components/Navbar'
+import { Footer } from '../components/Footer'
 
 const DEFAULT_STATE = {
   id: '',
@@ -97,10 +99,15 @@ export const Users = () => {
 
   return (
     <>
-    
-      <div>Users</div>
-
-      <form className='container'>
+    <Navbar/>
+    <h1 class="text-center">Mantenedor Usuarios</h1>
+      
+      <div class="card my-5 mx-5 justify-center">
+        <div class="card-header">
+        <h2 class="text-center">Usuario</h2>
+        </div>
+        <div class="card-body">
+        <form className='container'>
         <input 
           type='text' 
           className='form-control mb-2' 
@@ -114,11 +121,13 @@ export const Users = () => {
         <input type='text' className='form-control mb-2' value={form.email} name='email' placeholder='email' onChange={handleChange} />
         <select name="type" className='form-select mb-2' id="cars" value={form.type} placeholder='type' onChange={handleChange}>
           <option value="Admin">Admin</option>
-          <option value="Normal">Normal</option>
+          <option value="Finanzas">Finanzas</option>
+          <option value="Cocina">Cocina</option>
+          <option value="Bodega">Bodega</option>
+          <option value="Cliente">Cliente</option>
         </select>
       
         <input type='text' className='form-control mb-2' value={form.password} name='password' placeholder='new password' onChange={handleChange} />
-       
 
         {
           !form.id
@@ -130,19 +139,37 @@ export const Users = () => {
         <button type='button' className='btn btn-light' onClick={resetForm}>Limpiar form</button>
 
       </form>
+        </div>
+      </div>
+
+      
 
       <hr className='mt-5'></hr>
 
+        <div  class="card mx-5 justify-center">
+          <div class="card-header text-center">
+            <h2>Usuarios</h2>
 
-      {usuarios.map(usuario => (
+          </div>
+          <div class="card-body">
+          {usuarios.map(usuario => (
         <li>
           {usuario.username} . {usuario.name} . {usuario.email} ---- 
           <button type='button' className='btn btn-warning btn-xs' onClick={() => setUserDataIntoForm(usuario)}>E</button> 
           <button type='button' className='btn btn-danger btn-xs' onClick={() => deleteUser(usuario.id)}>X</button> 
         </li>
       ))}
+          </div>
+        
+        </div>
+      <div class="container-fluid text-center mt-3">
+        <Link to='/home' class="btn btn-success right">Volver al home</Link>
+      </div>
 
-      <Link to='/home'>Volver al home</Link>
+
+      <Footer/>
     </>
+
+    
   )
 }

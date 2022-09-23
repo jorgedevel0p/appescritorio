@@ -3,7 +3,7 @@ import React from 'react'
 export const Navbar = () => {
 
   return (
-    <nav class="navbar navbar-expand-sm navbar-light back">
+    <nav class="navbar navbar-expand-sm navbar-light back bg-light">
       <div class="container-fluid">
         <a class="navbar-brand" href="./index.html">
           <img src="https://cdn-icons-png.flaticon.com/512/886/886280.png" width="40"

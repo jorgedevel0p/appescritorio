@@ -8,35 +8,27 @@ export const Home = () => {
   return (
     <>
       <Navbar />
-      <div>
-        <div class="container-fluid align-center">
-          <div class="row">
-            <div class="col-4">
-              <button class="btn btn-primary" type="button" > Mantenedor Usuario</button>
-            </div>
-            <div class="col-4">
-              <button class="btn btn-primary" type="button">Mantenedor Mesas </button>
-            </div>
-
-            <div class="col-4">
-              <button class="btn btn-primary" type="button" >Mantenedor Productos</button>
-            </div>
-          </div>
-        </div>
-        <main class="py-5 px-4">
+      <h1 class="text-center mt-3">
+        Modulo Administrador
+      </h1>
+      <div class="my-5 text-center">
+        <div class="container-fluid justify-center">
           <div class="row">
             <div class="col-12">
-              <div class="card" >
-                <div class="card-header text-center"  >
-                  <div>Hello from Home!</div>
-                  <Link to='/users'>Ir a CRUD usuarios</Link>
-                  <br></br>
-                  <Link to='/'>Logout</Link>
-                </div>
-              </div>
+              <Link to='/Users' class="btn btn-primary">Mantenedor Usuarios</Link>
             </div>
+            <div class="col-12 my-4">
+              <Link to='/Mesas' class="btn btn-primary">Mantenedor Mesas</Link>
+            </div>
+
+            <div class="col-12">
+              <Link to='/Productos' class="btn btn-primary">Mantenedor Productos</Link>
+            </div>
+
           </div>
-        </main>
+
+        </div>
+
       </div>
       <Footer />
     </>
