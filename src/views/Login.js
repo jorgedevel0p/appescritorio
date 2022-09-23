@@ -12,9 +12,9 @@ export const Login = () => {
     Cliente: '/clientes',
     Admin: '/home',
     Bodega: '/bodegas',
-    Normal: '/home',
+    Finanzas: '/finanzas',
+    Cocina: '/cocinas',
   }
-
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
@@ -44,8 +44,10 @@ export const Login = () => {
       callback: (respuestaApi) => {
         localStorage.setItem('type_user', respuestaApi.type)
         localStorage.setItem('token', respuestaApi.access)
+        console.log(respuestaApi.type)
 
         const routeToNavigate = ROUTES_DEPEND_ON_TYPE[respuestaApi.type]
+        console.log(routeToNavigate)
         navigate(routeToNavigate)
       }
     })

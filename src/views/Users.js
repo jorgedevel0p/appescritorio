@@ -100,6 +100,9 @@ export const Users = () => {
   return (
     <>
       <Navbar />
+      <div class="container-fluid my-3">
+        <Link to='/home' class="btn btn-secondary  right">Volver al home</Link>
+      </div>
       <h1 class="text-center">Mantenedor Usuarios</h1>
 
       <div class="card my-5 mx-5 justify-center">
@@ -162,9 +165,7 @@ export const Users = () => {
         </div>
 
       </div>
-      <div class="container-fluid text-center mt-3">
-        <Link to='/home' class="btn btn-success right">Volver al home</Link>
-      </div>
+      
       <Footer />
     </>
 

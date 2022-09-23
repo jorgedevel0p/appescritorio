@@ -8,6 +8,8 @@ export const Home = () => {
   return (
     <>
       <Navbar />
+      <div class="container">
+      {/* <Link to='/home' class="btn btn-secondary right my-3">Volver al home</Link> */}
       <h1 class="text-center mt-3">
         Modulo Administrador
       </h1>
@@ -29,6 +31,7 @@ export const Home = () => {
 
         </div>
 
+      </div>
       </div>
       <Footer />
     </>

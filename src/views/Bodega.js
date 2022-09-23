@@ -9,7 +9,9 @@ export const Bodegas = () => {
     return (
         <>
             <Navbar />
+        
             <h1 class="text-center">Modulo Bodega</h1>
+            
             <div class="my-5 text-center container-fluid">
                 <div class="container-fluid justify-center">
                     <div class="row">

@@ -9,6 +9,7 @@ export const Clientes = () => {
     return (
         <>
             <Navbar />
+            {/* <Link to='/home' class="btn btn-secondary right my-3 ml-5">Volver al home</Link> */}
             <h1 class="text-center">Mi Cuenta</h1>
             <div class="my-5 text-center">
                 <div class="container-fluid justify-center">

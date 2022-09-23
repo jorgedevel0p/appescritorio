@@ -9,6 +9,7 @@ export const Finanzas = () => {
     return (
         <>
             <Navbar />
+            
             <h1 class="text-center">Modulo Finanzas</h1>
             <div class="my-5 text-center">
                 <div class="container-fluid justify-center">

@@ -109,10 +109,17 @@ export const Productos = () => {
   return (
     <>
       <Navbar />
+      <div class="container">
+        
     
       <div className='container'>
-        <Link to='/home' class="btn btn-link right">Volver al home</Link>
-
+        <Link to='/home' class="btn btn-secondary right my-3">Volver al home</Link>
+        <h1 class="text-center">Mantenedor Productos</h1>
+        <div class="card">
+        <div class="card-header text-center">
+          <h2>Productos</h2>
+        </div>
+        
         <div class="card-body">
           <form>
 
@@ -128,10 +135,10 @@ export const Productos = () => {
               </label>
             </div>
 
-            <input type='text' name='name' className='form-control mb-2' value={producto.name} placeholder='name' onChange={handleChange} />
-            <input type='number' name='stock' className='form-control mb-2' value={producto.stock} placeholder='stock' onChange={handleChange} />
-            <input type='date' className='form-control mb-2' value={producto.expiration_date} name='expiration_date' placeholder='expiration_date' onChange={handleChange} />
-            <input type='text' name='measure_unit' className='form-control mb-2' value={producto.measure_unit} placeholder='measure_unit' onChange={handleChange} />
+            <input type='text' name='name' className='form-control mb-2' value={producto.name} placeholder='Nombre' onChange={handleChange} />
+            <input type='number' name='stock' className='form-control mb-2' value={producto.stock} placeholder='Stock' onChange={handleChange} />
+            <input type='date' className='form-control mb-2' value={producto.expiration_date} name='expiration_date' placeholder='Fecha de Expiración' onChange={handleChange} />
+            <input type='text' name='measure_unit' className='form-control mb-2' value={producto.measure_unit} placeholder='Unidad de Medida' onChange={handleChange} />
             
             <select name="category_product" className='form-select mb-5' value={producto.category_product} placeholder='Categoría producto' onChange={handleChange}>
               <option value="Bebestibles">Bebestibles</option>
@@ -147,23 +154,31 @@ export const Productos = () => {
 
             }
 
-            <button type='button' className='btn btn-light' onClick={resetForm}>Limpiar form</button>
+            <button type='button' className='btn btn-light' onClick={resetForm}>Limpiar</button>
 
           </form>
         </div>
+        </div>
+        </div>
 
-
-        <table class="table">
+        <hr className='mt-5'></hr>
+<div class="card">
+<div class="card-header text-center">
+<h2>Productos</h2>
+</div>
+<div class="card-body">
+<table class="table">
           <thead>
             <tr>
-              <th scope="col">id</th>
-              <th scope="col">state</th>
-              <th scope="col">name</th>
-              <th scope="col">stock</th>
-              <th scope="col">expiration_date</th>
-              <th scope="col">measure_unit</th>
-              <th scope="col">category_product</th>
-              <th scope="col">Acciones</th>
+              <th scope="col">ID</th>
+              <th scope="col">Habilitado</th>
+              <th scope="col">Nombre</th>
+              <th scope="col">Stock</th>
+              <th scope="col">Fecha de Expiración</th>
+              <th scope="col">Unidad de Medida</th>
+              <th scope="col">Categoría</th>
+              <th scope="col">Editar</th>
+              <th scope="col">Eliminar</th>
             </tr>
           </thead>
           <tbody class="table-group-divider">
@@ -178,6 +193,8 @@ export const Productos = () => {
                 <td>{prod.category_product}</td>
                 <td>
                   <button type='button' className='btn btn-warning btn-xs' onClick={() => setProductDataIntoForm(prod)}>Editar</button>
+                  </td>
+                <td>
                   <button type='button' className='btn btn-danger btn-xs' onClick={() => deleteProduct(prod.id)}>Eliminar</button>
                 </td>
               </tr>
@@ -186,6 +203,10 @@ export const Productos = () => {
           </tbody>
         </table>
 
+</div>
+
+</div>
+        
       </div>
 
       
