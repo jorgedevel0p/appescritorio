@@ -8,6 +8,14 @@ export const Login = () => {
   const navigate = useNavigate()
   const { isLoading, error, makeHttpRequest } = useHttpRequest()
 
+  const ROUTES_DEPEND_ON_TYPE = {
+    Cliente: '/clientes',
+    Admin: '/home',
+    Bodega: '/bodegas',
+    Normal: '/home',
+  }
+
+
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
 
@@ -34,8 +42,11 @@ export const Login = () => {
       data: data,
       method: 'POST',
       callback: (respuestaApi) => {
+        localStorage.setItem('type_user', respuestaApi.type)
         localStorage.setItem('token', respuestaApi.access)
-        navigate("/home")
+
+        const routeToNavigate = ROUTES_DEPEND_ON_TYPE[respuestaApi.type]
+        navigate(routeToNavigate)
       }
     })
   }
