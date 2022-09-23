@@ -13,9 +13,9 @@ export const useHttpRequest = () => {
       'Content-Type': 'application/json'
     }
 
-    /* if(savedToken && operation !== '/token'){
-      headers.Authentication = savedToken
-    } */
+    if(savedToken && operation !== '/token'){
+      headers.Authorization = `Bearer ${savedToken}`
+    }
 
     let options = {
       method: method,      
@@ -27,12 +27,9 @@ export const useHttpRequest = () => {
     setIsLoading(true)
     setError(null)
     
-    // const endpointUrl = `${API_SIGLO_XXI_URL}${operation}` // <--- es lo mismo que: API_SIGLO_XXI_URL + operation (contatenar strings)
-    const FINAL_URL = API_SIGLO_XXI_URL + operation
+    const endpointUrl = `${API_SIGLO_XXI_URL}${operation}` // <--- es lo mismo que: API_SIGLO_XXI_URL + operation (contatenar strings)
 
-    console.log(FINAL_URL, 'FINAL_URL') // http://localhost:8000/api//token
-
-    fetch(API_SIGLO_XXI_URL + operation, options)
+    fetch(endpointUrl, options)
       .then(res => res.json())
       .then(respuesta => {
         
