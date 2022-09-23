@@ -7,10 +7,19 @@ export const useHttpRequest = () => {
   const [error, setError] = useState(null)
 
   const makeHttpRequest = ({ operation, data, method, callback }) => {
-    
+    const savedToken = localStorage.getItem('token')
+
+    let headers = { 
+      'Content-Type': 'application/json'
+    }
+
+    /* if(savedToken && operation !== '/token'){
+      headers.Authentication = savedToken
+    } */
+
     let options = {
       method: method,      
-      headers: { 'Content-Type': 'application/json'}
+      headers,
     }
 
     if(data){ options.body = JSON.stringify(data) }
