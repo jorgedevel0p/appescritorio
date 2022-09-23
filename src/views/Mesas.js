@@ -5,6 +5,13 @@ import { Navbar } from '../components/Navbar'
 import { Footer } from '../components/Footer'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 
+const DEFAULT_STATE = {
+    id: '',
+    number_name: '',
+    available: '',
+    capacity: '',
+}
+
 export const Mesas = () => {
     return (
         <>

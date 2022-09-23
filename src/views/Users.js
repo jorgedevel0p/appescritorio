@@ -165,8 +165,6 @@ export const Users = () => {
       <div class="container-fluid text-center mt-3">
         <Link to='/home' class="btn btn-success right">Volver al home</Link>
       </div>
-
-
       <Footer/>
     </>
 
