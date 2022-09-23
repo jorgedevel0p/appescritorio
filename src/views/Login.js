@@ -1,6 +1,7 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom"
 import { Navbar } from '../components/Navbar'
+import { Footer } from '../components/Footer'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 
 export const Login = () => {
@@ -30,8 +31,8 @@ export const Login = () => {
 
     makeHttpRequest({
       operation: '/token',
-      data: data, 
-      method: 'POST', 
+      data: data,
+      method: 'POST',
       callback: (respuestaApi) => {
         localStorage.setItem('token', respuestaApi.access)
         navigate("/home")
@@ -51,10 +52,12 @@ export const Login = () => {
               </div>
               <div class="card-body">
                 <form>
+
                   <div class="form-group">
-                    <label for="email">Email</label>
-                    <input name="email" id="email" class="form-control" type="email" value={username} onChange={handleUsername} />
+                    <label for="user">Usuario</label>
+                    <input name="user" id="user" class="form-control" type="string" value={username} onChange={handleUsername} />
                   </div>
+
                   <div class="form-group">
                     <div class="row">
                       <div class="col-3">
@@ -63,60 +66,32 @@ export const Login = () => {
                     </div>
                     <input name="password" id="password" class="form-control" type="password" value={password} onChange={handlePassword} />
                   </div>
-                  <div class="form-group mt-4 text-center">
 
+                  <div class="form-group mt-4 text-center">
                     {
-                      isLoading 
-                      ? 
+                      isLoading
+                        ?
                         (<div class="spinner-border" role="status">
                           <span class="visually-hidden">Loading...</span>
                         </div>)
-                      : (<button class="btn btn-primary btn-block" onClick={handleSubmit} /* disabled={!username || !password} */>Ingresar</button>)
+                        : (<button class="btn btn-primary btn-block" onClick={handleSubmit} /* disabled={!username || !password} */>Ingresar</button>)
                     }
-
-
-                    
                   </div>
+
                 </form>
+
                 {/* <p class="text-center">O</p> */}
+
                 <div class="form-group mt-4 text-center">
                   <a href="#" class="btn btn-success btn-block">Registrarse</a>
                 </div>
+
               </div>
             </div>
           </div>
         </div>
       </main>
-
-      {/* <footer class="bd-footer py-4 py-md-5 mt-5 bg-light">
-        <div class="container-fluid text-center text-md-left bg-image-footer">
-          <div class="row justify-content-center">
-
-            <div class="col-lg-5 col-md-12 col-sm-12">
-              <div class="card mt-3 mb-3">
-                <div class="card-body text-center ">
-                  <img src="" width="60%" height="60%" alt="" />
-                </div>
-                <div class="card-footer text-center ">
-                  <div class="btn-group">
-                    <a href=" ">
-                      <button type="button" class="btn btn-dark text-white ">Pagina Principal</button>
-                    </a>
-                    <a href=" ">
-                      <button type="button" class="btn btn-dark text-white mx-4">Contacto</button>
-                    </a>
-                    <a href="">
-                      <button type="button" class="btn btn-dark text-white ">Sobre nosotros</button>
-                    </a>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </div>
-      </footer> */}
-
+      <Footer />
     </>
 
 

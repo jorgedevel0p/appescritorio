@@ -11,7 +11,10 @@ export const Navbar = () => {
         </a>
         <a class="navbar-brand" href="./index.html">
           <img src="https://icons.veryicon.com/png/o/miscellaneous/two-color-icon-library/user-286.png" width="40"
-            class="d-inline-block align-center" alt="" />
+            class="d-inline-block align-right" alt="" />
+        </a>
+        <a class="navbar-brand" href='/'>
+          Logout
         </a>
       </div>
     </nav>
