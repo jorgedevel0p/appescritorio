@@ -42,11 +42,16 @@ export const Login = () => {
       data: data,
       method: 'POST',
       callback: (respuestaApi) => {
-        localStorage.setItem('type_user', respuestaApi.type)
-        localStorage.setItem('token', respuestaApi.access)
-        console.log(respuestaApi.type)
+        const { ok, data } = respuestaApi
+        if(!ok) {
+          alert(JSON.stringify(data))
+          return
+        }
+        localStorage.setItem('type_user', data.type)
+        localStorage.setItem('token', data.access)
+        console.log(data.type)
 
-        const routeToNavigate = ROUTES_DEPEND_ON_TYPE[respuestaApi.type]
+        const routeToNavigate = ROUTES_DEPEND_ON_TYPE[data.type]
         console.log(routeToNavigate)
         navigate(routeToNavigate)
       }

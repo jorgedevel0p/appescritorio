@@ -32,7 +32,8 @@ export const Users = () => {
       data: null,
       method: 'GET',
       callback: (responseApi) => {
-        setUsuarios(responseApi)
+        const { data } = responseApi
+        setUsuarios(data)
       }
     })
   }
@@ -43,8 +44,11 @@ export const Users = () => {
       operation: '/user/',
       data: form,
       method: 'POST',
-      callback: (responseApi) => {
-        console.log(responseApi, 'ha guardado el usuario correctamente')
+      callback: ({ok, data}) => {
+        if(!ok){
+          alert(JSON.stringify(data))
+          return
+        }
         getUsers()
         resetForm()
       }
@@ -56,8 +60,12 @@ export const Users = () => {
       operation: `/user/${id}`,
       data: form,
       method: 'PUT',
-      callback: (responseApi) => {
-        console.log(responseApi, 'ha actualizado el usuario correctamente')
+      callback: ({ok, data}) => {
+        if(!ok){
+          alert(JSON.stringify(data))
+          return
+        }
+        getUsers()
         resetForm()
       }
     })
@@ -72,7 +80,6 @@ export const Users = () => {
       last_name,
       email,
       type,
-      /* password */
     })
   }
 
@@ -81,8 +88,11 @@ export const Users = () => {
       operation: `/user/${id}`,
       data: null,
       method: 'DELETE',
-      callback: (responseApi) => {
-        console.log(responseApi, 'ha eliminado el usuario correctamente')
+      callback: ({ok, data}) => {
+        if(!ok){
+          alert(JSON.stringify(data))
+          return
+        }
         getUsers()
       }
     })
@@ -93,7 +103,6 @@ export const Users = () => {
   ]
 
   useEffect(() => {
-    console.log('se ha iniciado el componente', isLoading)
     getUsers()
   }, [])
 

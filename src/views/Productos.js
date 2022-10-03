@@ -41,22 +41,26 @@ export const Productos = () => {
       operation: '/producto/',
       data: null,
       method: 'GET',
-      callback: (responseApi) => {
-        console.log(responseApi, 'productos recibidos')
-        setProductos(responseApi)
+      callback: ({ok, data}) => {
+        if(!ok){
+          alert(JSON.stringify(data))
+          return
+        }
+        setProductos(data)
       }
     })
   }
 
   const saveProduct = () => {
-    let productoToSave = {...producto}
-
     makeHttpRequest({
       operation: '/producto/',
       data: producto,
       method: 'POST',
-      callback: (responseApi) => {
-        console.log(responseApi, 'ha guardado el producto correctamente')      
+      callback: ({ok, data}) => {
+        if(!ok){
+          alert(JSON.stringify(data))
+          return
+        }   
        resetForm()
        getProducts()
       }
@@ -72,8 +76,11 @@ export const Productos = () => {
       operation: `/producto/${id}`,
       data: producto,
       method: 'PUT',
-      callback: (responseApi) => {
-        console.log(responseApi, 'ha actualizado el producto correctamente')
+      callback: ({ok, data}) => {
+        if(!ok){
+          alert(JSON.stringify(data))
+          return
+        }
         getProducts()
         resetForm()
       }
@@ -89,8 +96,11 @@ export const Productos = () => {
       operation: `/producto/${id}`,
       data: null,
       method: 'DELETE',
-      callback: (responseApi) => {
-        console.log(responseApi, 'ha eliminado el producto correctamente')
+      callback: ({ok, data}) => {
+        if(!ok){
+          alert(JSON.stringify(data))
+          return
+        }
         getProducts()
       }
     })
@@ -99,12 +109,6 @@ export const Productos = () => {
   useEffect(()=>{
     getProducts()
   },[])
-
-/*   // revisar que cambia el state
-  useEffect(()=>{
-    console.log(producto, 'memoria...')
-  },[producto]) */
-
 
   return (
     <>
