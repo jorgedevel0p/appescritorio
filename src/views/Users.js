@@ -108,6 +108,7 @@ export const Users = () => {
 
   return (
     <>
+    
       <Navbar />
       <div class="container-fluid my-3">
         <Link to='/home' class="btn btn-secondary  right">Volver al home</Link>
@@ -164,17 +165,56 @@ export const Users = () => {
 
         </div>
         <div class="card-body">
-          {usuarios.map(usuario => (
-            <li>
-              {usuario.username} . {usuario.name} . {usuario.email} ----
-              <button type='button' className='btn btn-warning btn-xs' onClick={() => setUserDataIntoForm(usuario)}>E</button>
-              <button type='button' className='btn btn-danger btn-xs' onClick={() => deleteUser(usuario.id)}>X</button>
-            </li>
-          ))}
+
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">ID</th>
+                <th scope="col">username</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">email</th>
+                <th scope="col">tipo</th>
+                <th scope="col">Acciones</th>
+              </tr>
+            </thead>
+            <tbody class="table-group-divider">
+              {usuarios.map(usuario => (
+                <tr>
+                  <td>{usuario.id}</td>
+                  <td>{usuario.username}</td>
+                  <td>{usuario.name}</td>
+                  <td>{usuario.email}</td>
+                  <td>{usuario.type}</td>
+
+
+                  <td>
+                    <button
+                      type='button'
+                      className='btn btn-warning btn-xs m-1'
+                      onClick={() => setUserDataIntoForm(usuario)}
+                    >
+                      <i className="fa-solid fa-pen-to-square" style={{ color: '#ffffff' }}></i>
+                    </button>
+                    <button
+                      type='button'
+                      className='btn btn-danger btn-xs'
+                      onClick={() => deleteUser(usuario.id)}
+                    >
+                      <i class="fa-solid fa-trash"></i>
+                    </button>
+                  </td>
+                  
+                </tr>
+              ))}
+
+            </tbody>
+          </table>
+
+
         </div>
 
       </div>
-      
+
       <Footer />
     </>
 
