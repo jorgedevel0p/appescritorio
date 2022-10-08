@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useHttpRequest } from '../hooks/useHttpRequest'
-import { Navbar } from '../components/Navbar'
-import { Footer } from '../components/Footer'
+import { Layout } from '../components/index'
 
 const DEFAULT_STATE = {
   id: '',
@@ -44,8 +43,8 @@ export const Users = () => {
       operation: '/user/',
       data: form,
       method: 'POST',
-      callback: ({ok, data}) => {
-        if(!ok){
+      callback: ({ ok, data }) => {
+        if (!ok) {
           alert(JSON.stringify(data))
           return
         }
@@ -60,8 +59,8 @@ export const Users = () => {
       operation: `/user/${id}`,
       data: form,
       method: 'PUT',
-      callback: ({ok, data}) => {
-        if(!ok){
+      callback: ({ ok, data }) => {
+        if (!ok) {
           alert(JSON.stringify(data))
           return
         }
@@ -88,8 +87,8 @@ export const Users = () => {
       operation: `/user/${id}`,
       data: null,
       method: 'DELETE',
-      callback: ({ok, data}) => {
-        if(!ok){
+      callback: ({ ok, data }) => {
+        if (!ok) {
           alert(JSON.stringify(data))
           return
         }
@@ -107,14 +106,8 @@ export const Users = () => {
   }, [])
 
   return (
-    <>
-    
-      <Navbar />
-      <div class="container-fluid my-3">
-        <Link to='/home' class="btn btn-secondary  right">Volver al home</Link>
-      </div>
+    <Layout>
       <h1 class="text-center">Mantenedor Usuarios</h1>
-
       <div class="card my-5 mx-5 justify-center">
         <div class="card-header">
           <h2 class="text-center">Usuario</h2>
@@ -154,11 +147,7 @@ export const Users = () => {
           </form>
         </div>
       </div>
-
-
-
       <hr className='mt-5'></hr>
-
       <div class="card mx-5 justify-center">
         <div class="card-header text-center">
           <h2>Usuarios</h2>
@@ -203,7 +192,7 @@ export const Users = () => {
                       <i class="fa-solid fa-trash"></i>
                     </button>
                   </td>
-                  
+
                 </tr>
               ))}
 
@@ -214,10 +203,6 @@ export const Users = () => {
         </div>
 
       </div>
-
-      <Footer />
-    </>
-
-
+    </Layout>
   )
 }

@@ -1,8 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { useNavigate } from "react-router-dom"
-import { Navbar } from '../components/Navbar'
-import { Footer } from '../components/Footer'
+import { Layout, Navbar, Footer } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 
 const DEFAULT_STATE = {
@@ -38,7 +36,7 @@ export const Mesas = () => {
       operation: '/mesa/',
       data: null,
       method: 'GET',
-      callback: ({ok, data}) => {
+      callback: ({ ok, data }) => {
         console.log(data, 'mesas recibidos')
         setMesas(data)
       }
@@ -100,18 +98,14 @@ export const Mesas = () => {
 
   return (
     <>
-      <Navbar />
-      <div className='container'>
-        <div class="container-fluid my-3">
-          <Link to='/home' class="btn btn-secondary  right">Volver al home</Link>
-        </div>
+      <Layout>
         <h1 class="text-center">Mantenedor Mesas</h1>
         <div class="card">
           <div class="card-header text-center">
             <h2>Mesas</h2>
           </div>
           <div class="card-body">
-            <form>            
+            <form>
               <input type='number' name='capacity' className='form-control mb-2' value={mesa.capacity} placeholder='Capacidad' onChange={handleChange} />
               <input type='text' name='number_name' className='form-control mb-2' value={mesa.number_name} placeholder='N° Mesa' onChange={handleChange} />
               <div class="form-check">
@@ -132,16 +126,10 @@ export const Mesas = () => {
                     : <button type='button' className='btn btn-dark' onClick={() => updateMesa(mesa.id)}>Actualizar mesa</button>
 
                 }
-
                 <button type='button' className='btn btn-light' onClick={resetForm}>Limpiar</button>
               </div>
-
-
             </form>
           </div>
-
-
-
         </div>
         <hr className='my-5'></hr>
         <div class="card text-center">
@@ -180,19 +168,9 @@ export const Mesas = () => {
 
               </tbody>
             </table>
-
-
           </div>
-
         </div>
-
-
-      </div>
-
-
-
-
-      <Footer />
+      </Layout>
     </>
 
 

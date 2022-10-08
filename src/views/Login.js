@@ -60,7 +60,7 @@ export const Login = () => {
 
   return (
     <>
-      <Navbar />
+    
       <main class="py-5 px-4">
         <div class="container mt-5">
           <div class="col-md-4 offset-md-4">
