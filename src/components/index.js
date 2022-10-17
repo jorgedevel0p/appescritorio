@@ -1,4 +1,4 @@
 export * from './Footer'
-export * from './Navbar'
+export * from './Navbar_Admin'
 export * from './Layout'
 

@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
-import { Layout } from '../components/index'
+import { Layout_Admin } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
+import Fondo1080 from "../assets/img/720x120.jpg"
 
 const DEFAULT_STATE = {
   id: '',
@@ -108,10 +109,13 @@ export const Productos = () => {
   }, [])
 
   return (
-    <Layout>
-      <div class="card">
-        <div class="card-header text-center">
-          <h2>Productos</h2>
+    <Layout_Admin>
+      <div>
+        <img src={Fondo1080} class="card-img" height={140} />
+      </div>
+      <div class="card my-3 mx-4 justify-center">
+          <div class="card-header">
+          <h2>Registro de Productos</h2>
         </div>
 
         <div class="card-body">
@@ -125,7 +129,7 @@ export const Productos = () => {
                 onChange={handleCheck}
               />
               <label class="form-check-label" for="flexCheckDefault">
-                Habilitado?
+                Activo
               </label>
             </div>
 
@@ -153,10 +157,10 @@ export const Productos = () => {
           </form>
         </div>
       </div>
-      <hr className='mt-5'></hr>
-      <div class="card">
-        <div class="card-header text-center">
-          <h2>Productos</h2>
+      <hr className='mt-4 m-4'></hr>
+        <div class="card my-3 mx-4 justify-center">
+          <div class="card-header text-center">
+          <h2>Lista de Productos</h2>
         </div>
         <div class="card-body">
           <table class="table">
@@ -197,7 +201,7 @@ export const Productos = () => {
 
         </div>
       </div>
-    </Layout>
+    </Layout_Admin>
   )
 
 }

@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useNavigate } from "react-router-dom"
-import { Navbar } from '../components/Navbar'
+import { Navbar } from '../components/Navbar_Admin'
 import { Footer } from '../components/Footer'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 
@@ -60,11 +60,11 @@ export const Login = () => {
 
   return (
     <>
-    
+          
       <main class="py-5 px-4">
         <div class="container mt-5">
           <div class="col-md-4 offset-md-4">
-            <div class="card">
+            <div class="card">              
               <div class="card-header text-center">
                 <h4>Iniciar Sesión</h4>
               </div>

@@ -1,14 +1,14 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom"
-import { Navbar } from '../components/Navbar'
 import { Footer } from '../components/Footer'
 import { useHttpRequest } from '../hooks/useHttpRequest'
+import { Layout_Finanzas } from '../components'
 
 export const Finanzas = () => {
     return (
         <>
-            <Navbar />
+            <Layout_Finanzas>
             
             <h1 class="text-center">Modulo Finanzas</h1>
             <div class="my-5 text-center">
@@ -27,7 +27,7 @@ export const Finanzas = () => {
                     </div>
                 </div>
             </div>
-            <Footer />
+            </Layout_Finanzas>
         </>
     )
 

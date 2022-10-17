@@ -1,18 +1,18 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom"
-import { Navbar } from '../components/Navbar'
 import { Footer } from '../components/Footer'
 import { useHttpRequest } from '../hooks/useHttpRequest'
+import { Layout_Bodega } from '../components'
 
 export const Bodegas = () => {
     return (
         <>
-            <Navbar />
+            <Layout_Bodega>
         
             <h1 class="text-center">Modulo Bodega</h1>
             
-            <div class="my-5 text-center container-fluid">
+            {/* <div class="my-5 text-center container-fluid">
                 <div class="container-fluid justify-center">
                     <div class="row">
                         <div class="col-6 ">
@@ -23,7 +23,8 @@ export const Bodegas = () => {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */} 
+            </Layout_Bodega>
             <Footer />
         </>
     )

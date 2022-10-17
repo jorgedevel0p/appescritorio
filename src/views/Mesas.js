@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react'
 import { Link } from 'react-router-dom'
-import { Layout, Navbar, Footer } from '../components/index'
+import { Layout_Admin, Navbar, Footer } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
+import Fondo1080 from "../assets/img/720x120.jpg"
 
 const DEFAULT_STATE = {
   id: '',
@@ -98,11 +99,13 @@ export const Mesas = () => {
 
   return (
     <>
-      <Layout>
-        <h1 class="text-center">Mantenedor Mesas</h1>
-        <div class="card">
-          <div class="card-header text-center">
-            <h2>Mesas</h2>
+      <Layout_Admin>
+        <div>
+          <img src={Fondo1080} class="card-img" height={140} />
+        </div>
+        <div class="card my-3 mx-4 justify-center">
+          <div class="card-header">
+            <h2 className='text-center'>Mesas</h2>
           </div>
           <div class="card-body">
             <form>
@@ -116,7 +119,7 @@ export const Mesas = () => {
                   onChange={handleCheck}
                 />
                 <label class="form-check-label" for="flexCheckDefault">
-                  Disponible?
+                  Activa
                 </label>
               </div>
               <div class="container my-3">
@@ -131,9 +134,9 @@ export const Mesas = () => {
             </form>
           </div>
         </div>
-        <hr className='my-5'></hr>
-        <div class="card text-center">
-          <div class="card-header">
+        <hr className='mt-4 m-4'></hr>
+        <div class="card my-3 mx-4 justify-center">
+          <div class="card-header text-center">
             <h2>
               Mesas
             </h2>
@@ -142,7 +145,7 @@ export const Mesas = () => {
             <table class="table">
               <thead>
                 <tr>
-                  <th scope="col">id</th>
+                  <th scope="col">ID</th>
                   <th scope="col">Capacidad</th>
                   <th scope="col">N° Mesa</th>
                   <th scope="col">Disponibilidad</th>
@@ -170,11 +173,8 @@ export const Mesas = () => {
             </table>
           </div>
         </div>
-      </Layout>
+      </Layout_Admin>
     </>
-
-
-
   )
 
 }

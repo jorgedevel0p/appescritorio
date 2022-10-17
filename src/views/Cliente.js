@@ -1,14 +1,12 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom"
-import { Navbar } from '../components/Navbar'
 import { Footer } from '../components/Footer'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 
 export const Clientes = () => {
     return (
         <>
-            <Navbar />
             {/* <Link to='/home' class="btn btn-secondary right my-3 ml-5">Volver al home</Link> */}
             <h1 class="text-center">Mi Cuenta</h1>
             <div class="my-5 text-center">
@@ -30,5 +28,5 @@ export const Clientes = () => {
             <Footer />
         </>
     )
-
+  
 }

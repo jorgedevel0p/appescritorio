@@ -1,50 +1,42 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const Navbar = () => {
+export const Navbar_Finanzas = () => {
 
   return (
     <div className="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style={{ width: 280, height: '100vh' }}>
       <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
         <svg className="bi pe-none me-2" width="40" height="32"></svg>
-        <span className="fs-4">Administrador</span>
+        <span className="fs-4">Finanzas</span>
       </a>
       <hr />
       <ul className="nav nav-pills flex-column mb-auto">
         <li>
-          <Link to='/Home'>
+          <Link to='/'>
             <a href="#" className="nav-link text-white active">
               <i className="fa-solid fa-home m-2" style={{ color: '#ffffff' }}></i>
-              Home
+              Ingresos
             </a>
-          </Link>
+          </Link> 
         </li>
         <li className="nav-item">
-          <Link to='/Users'>
+          <Link to='/'>
             <a href="#" className="nav-link text-white" aria-current="page">
               <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
-              Usuarios
+              Egresos
             </a>
           </Link>
         </li>
         <li>
-          <Link to='/Mesas'>
+          <Link to='/'>
             <a href="#" className="nav-link text-white" aria-current="page">
               <i className="fa-solid fa-utensils m-2" style={{ color: '#ffffff' }}></i>
-              Mesas
+              Resumen de Finanzas
             </a>
           </Link>
 
         </li>
-        <li>
-          <Link to='/Productos'>
-            <a href="#" className="nav-link text-white">
-              <i className="fa-solid fa-cart-shopping m-2" style={{ color: '#ffffff' }}></i>
-              Productos
-            </a>
-          </Link>
 
-        </li>
         <li>
           <Link to='/'>
             <a href="#" className="nav-link text-white">
