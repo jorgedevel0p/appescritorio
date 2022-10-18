@@ -93,6 +93,59 @@ export const Navbar_Admin = () => {
             </a>
           </Link>
         </li>
+        <li className="nav-item">
+          <Link to='/Cajas'>
+            <a href="#" className="nav-link text-white" aria-current="page">
+              <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
+              Caja
+            </a>
+          </Link>
+        </li>
+        <li className="nav-item">
+          <Link to='/Proveedores'>
+            <a href="#" className="nav-link text-white" aria-current="page">
+              <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
+              Proveedores
+            </a>
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to='/Platos'>
+            <a href="#" className="nav-link text-white" aria-current="page">
+              <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
+              Platos
+            </a>
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to='/Reservas'>
+            <a href="#" className="nav-link text-white" aria-current="page">
+              <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
+              Reservas
+            </a>
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to='/Ingredientes'>
+            <a href="#" className="nav-link text-white" aria-current="page">
+              <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
+              Ingredientes
+            </a>
+          </Link>
+        </li>
+        
+        <li className="nav-item">
+          <Link to='/Ordenes'>
+            <a href="#" className="nav-link text-white" aria-current="page">
+              <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
+              Ordenes
+            </a>
+          </Link>
+        </li>
+
         <li>
           <Link to='/'>
             <a href="#" className="nav-link text-white">
@@ -100,7 +153,9 @@ export const Navbar_Admin = () => {
               Cerrar Sesión
             </a>
           </Link>
+
         </li>
+
       </ul>
       <hr />
       <div className="dropdown">

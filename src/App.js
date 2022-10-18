@@ -14,6 +14,12 @@ import { DetallePedidos } from "./views/DetallePedidos";
 import { PedidoProveedor } from "./views/PedidoProveedor";
 import { DetalleOrden } from "./views/DetalleOrden";
 import { MovimientoCaja } from "./views/MovimientoCaja";
+import { Cajas } from "./views/Cajas";
+import { Proveedores } from "./views/Proveedores";
+import { Platos } from "./views/Platos";
+import { Reservas } from "./views/Reservas";
+import { Ingredientes } from "./views/Ingredientes";
+import { Ordenes } from "./views/Ordenes";
 
 function App() {
   return (
@@ -34,6 +40,15 @@ function App() {
         <Route path="/pedidoProveedor" element={<PedidoProveedor />} />
         <Route path="/detalleOrden" element={<DetalleOrden />} />
         <Route path="/movimientoCaja" element={<MovimientoCaja />} />
+        <Route path="/cajas" element={<Cajas/>} />
+        <Route path="/proveedores" element={<Proveedores/>} />
+        <Route path="/platos" element={<Platos/>} />
+        <Route path="/reservas" element={<Reservas/>} />
+        <Route path="/ingredientes" element={<Ingredientes/>} />
+        <Route path="/ordenes" element={<Ordenes/>} />
+        
+        
+
         <Route
           path="about"
           element={
