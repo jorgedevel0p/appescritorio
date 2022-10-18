@@ -114,7 +114,7 @@ export const Productos = () => {
         <img src={Fondo1080} class="card-img" height={140} />
       </div>
       <div class="card my-3 mx-4 justify-center">
-          <div class="card-header">
+          <div class="card-header text-center">
           <h2>Registro de Productos</h2>
         </div>
 
