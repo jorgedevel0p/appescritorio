@@ -46,10 +46,58 @@ export const Navbar_Admin = () => {
 
         </li>
         <li>
+          <Link to='/Boletas'>
+            <a href="#" className="nav-link text-white">
+              <i className="fa-solid fa-cart-shopping m-2" style={{ color: '#ffffff' }}></i>
+              Boletas
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link to='/DetalleOrden'>
+            <a href="#" className="nav-link text-white">
+              <i className="fa-solid fa-cart-shopping m-2" style={{ color: '#ffffff' }}></i>
+              Detalle Orden
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link to='/Facturas'>
+            <a href="#" className="nav-link text-white">
+              <i className="fa-solid fa-cart-shopping m-2" style={{ color: '#ffffff' }}></i>
+              Facturas
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link to='/PedidoProveedor'>
+            <a href="#" className="nav-link text-white">
+              <i className="fa-solid fa-cart-shopping m-2" style={{ color: '#ffffff' }}></i>
+              Pedido Proveedor
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link to='/DetallePedidos'>
+            <a href="#" className="nav-link text-white">
+              <i className="fa-solid fa-cart-shopping m-2" style={{ color: '#ffffff' }}></i>
+              Detalle Pedido Proveedor
+            </a>
+          </Link>
+        </li>
+        <li>
+          <Link to='/MovimientoCaja'>
+            <a href="#" className="nav-link text-white">
+              <i className="fa-solid fa-cart-shopping m-2" style={{ color: '#ffffff' }}></i>
+              Movimiento Caja
+            </a>
+          </Link>
+        </li>
+        <li>
           <Link to='/'>
             <a href="#" className="nav-link text-white">
               <i className="fa-solid fa-right-from-bracket m-2" style={{ color: '#ffffff' }}></i>
-              Cerrar sesion
+              Cerrar Sesión
             </a>
           </Link>
         </li>

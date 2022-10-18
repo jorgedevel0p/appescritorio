@@ -105,7 +105,7 @@ export const Mesas = () => {
         </div>
         <div class="card my-3 mx-4 justify-center">
           <div class="card-header">
-            <h2 className='text-center'>Mesas</h2>
+            <h2 className='text-center'>Detalle Mesas</h2>
           </div>
           <div class="card-body">
             <form>
@@ -138,7 +138,7 @@ export const Mesas = () => {
         <div class="card my-3 mx-4 justify-center">
           <div class="card-header text-center">
             <h2>
-              Mesas
+              Listado Mesas
             </h2>
           </div>
           <div class="card-body">

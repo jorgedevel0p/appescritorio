@@ -8,6 +8,12 @@ import { Clientes } from "./views/Cliente";
 import { Bodegas } from "./views/Bodega";
 import { Cocinas } from "./views/Cocina";
 import { Finanzas } from "./views/Finanzas";
+import { Boletas } from "./views/Boletas";
+import { Facturas } from "./views/Facturas";
+import { DetallePedidos } from "./views/DetallePedidos";
+import { PedidoProveedor } from "./views/PedidoProveedor";
+import { DetalleOrden } from "./views/DetalleOrden";
+import { MovimientoCaja } from "./views/MovimientoCaja";
 
 function App() {
   return (
@@ -22,6 +28,12 @@ function App() {
         <Route path="/bodegas" element={<Bodegas />} />
         <Route path="/cocinas" element={<Cocinas />} />
         <Route path="/finanzas" element={<Finanzas />} />
+        <Route path="/boletas" element={<Boletas />} />
+        <Route path="/facturas" element={<Facturas />} />
+        <Route path="/detallePedidos" element={<DetallePedidos />} />
+        <Route path="/pedidoProveedor" element={<PedidoProveedor />} />
+        <Route path="/detalleOrden" element={<DetalleOrden />} />
+        <Route path="/movimientoCaja" element={<MovimientoCaja />} />
         <Route
           path="about"
           element={
