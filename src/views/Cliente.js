@@ -20,7 +20,7 @@ export const Clientes = () => {
                         </div>
 
                         <div class="col-12">
-                            <Link to='/' class="btn btn-primary">Reservar</Link>
+                            <Link to='/' class="btn btn-primary">Reservar</Link> 
                         </div>
                     </div>
                 </div>
@@ -28,5 +28,4 @@ export const Clientes = () => {
             <Footer />
         </>
     )
-  
 }

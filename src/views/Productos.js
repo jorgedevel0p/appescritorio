@@ -153,7 +153,7 @@ export const Productos = () => {
             }
 
             <button type='button' className='btn btn-light' onClick={resetForm}>Limpiar</button>
-
+            
           </form>
         </div>
       </div>
