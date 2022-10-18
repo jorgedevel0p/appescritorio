@@ -10,16 +10,16 @@ export const Bodegas = () => {
         <>
             <Layout_Bodega>
         
-            <h1 class="text-center">Modulo Bodega</h1>
+            <h1 className="text-center">Modulo Bodega</h1>
             
-            {/* <div class="my-5 text-center container-fluid">
-                <div class="container-fluid justify-center">
-                    <div class="row">
-                        <div class="col-6 ">
-                            <Link to='/' class="btn btn-primary">Modulo de Productos</Link>
+            {/* <div className="my-5 text-center container-fluid">
+                <div className="container-fluid justify-center">
+                    <div className="row">
+                        <div className="col-6 ">
+                            <Link to='/' className="btn btn-primary">Modulo de Productos</Link>
                         </div>
-                        <div class="col-6 ">
-                            <Link to='/' class="btn btn-primary">Modulo de Proveedores</Link>
+                        <div className="col-6 ">
+                            <Link to='/' className="btn btn-primary">Modulo de Proveedores</Link>
                         </div>
                     </div>
                 </div>

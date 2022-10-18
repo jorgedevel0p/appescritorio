@@ -10,19 +10,19 @@ export const Finanzas = () => {
         <>
             <Layout_Finanzas>
             
-            <h1 class="text-center">Modulo Finanzas</h1>
-            <div class="my-5 text-center">
-                <div class="container-fluid justify-center">
-                    <div class="row">
-                        <div class="col-12">
-                            <Link to='/' class="btn btn-primary">Modulo de ingreso</Link>
+            <h1 className="text-center">Modulo Finanzas</h1>
+            <div className="my-5 text-center">
+                <div className="container-fluid justify-center">
+                    <div className="row">
+                        <div className="col-12">
+                            <Link to='/' className="btn btn-primary">Modulo de ingreso</Link>
                         </div>
-                        <div class="col-12 my-4">
-                            <Link to='/' class="btn btn-primary">Modulo de Egreso</Link>
+                        <div className="col-12 my-4">
+                            <Link to='/' className="btn btn-primary">Modulo de Egreso</Link>
                         </div>
 
-                        <div class="col-12">
-                            <Link to='/' class="btn btn-primary">Modulo Resumen Finanzas</Link>
+                        <div className="col-12">
+                            <Link to='/' className="btn btn-primary">Modulo Resumen Finanzas</Link>
                         </div>
                     </div>
                 </div>

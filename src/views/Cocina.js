@@ -9,15 +9,15 @@ export const Cocinas = () => {
     return (
         <>
             <Layout_Cocina>
-            <h1 class="text-center">Modulo Cocina</h1>
-            <div class="my-5 text-center">
-                <div class="container-fluid justify-center">
-                    <div class="row">
-                        <div class="col-12">
-                            <Link to='/' class="btn btn-primary">Modulo de Recetas</Link>
+            <h1 className="text-center">Modulo Cocina</h1>
+            <div className="my-5 text-center">
+                <div className="container-fluid justify-center">
+                    <div className="row">
+                        <div className="col-12">
+                            <Link to='/' className="btn btn-primary">Modulo de Recetas</Link>
                         </div>
-                        <div class="col-12 my-4">
-                            <Link to='/' class="btn btn-primary">Modulo de Pedidos</Link>
+                        <div className="col-12 my-4">
+                            <Link to='/' className="btn btn-primary">Modulo de Pedidos</Link>
                         </div>
                     </div>
                 </div>

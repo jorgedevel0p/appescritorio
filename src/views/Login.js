@@ -61,47 +61,47 @@ export const Login = () => {
   return (
     <>
           
-      <main class="py-5 px-4">
-        <div class="container mt-5">
-          <div class="col-md-4 offset-md-4">
-            <div class="card">              
-              <div class="card-header text-center">
+      <main className="py-5 px-4">
+        <div className="container mt-5">
+          <div className="col-md-4 offset-md-4">
+            <div className="card">              
+              <div className="card-header text-center">
                 <h4>Iniciar Sesión</h4>
               </div>
-              <div class="card-body">
+              <div className="card-body">
                 <form>
 
-                  <div class="form-group">
+                  <div className="form-group">
                     <label for="user">Usuario</label>
-                    <input name="user" id="user" class="form-control" type="string" value={username} onChange={handleUsername} />
+                    <input name="user" id="user" className="form-control" type="string" value={username} onChange={handleUsername} />
                   </div>
 
-                  <div class="form-group">
-                    <div class="row">
-                      <div class="col-3">
+                  <div className="form-group">
+                    <div className="row">
+                      <div className="col-3">
                         <label for="password">Contraseña</label>
                       </div>
                     </div>
-                    <input name="password" id="password" class="form-control" type="password" value={password} onChange={handlePassword} />
+                    <input name="password" id="password" className="form-control" type="password" value={password} onChange={handlePassword} />
                   </div>
 
-                  <div class="form-group mt-4 text-center">
+                  <div className="form-group mt-4 text-center">
                     {
                       isLoading
                         ?
-                        (<div class="spinner-border" role="status">
-                          <span class="visually-hidden">Loading...</span>
+                        (<div className="spinner-border" role="status">
+                          <span className="visually-hidden">Loading...</span>
                         </div>)
-                        : (<button class="btn btn-primary btn-block" onClick={handleSubmit} /* disabled={!username || !password} */>Ingresar</button>)
+                        : (<button className="btn btn-primary btn-block" onClick={handleSubmit} /* disabled={!username || !password} */>Ingresar</button>)
                     }
                   </div>
 
                 </form>
 
-                {/* <p class="text-center">O</p> */}
+                {/* <p className="text-center">O</p> */}
 
-                <div class="form-group mt-4 text-center">
-                  <a href="#" class="btn btn-success btn-block">Registrarse</a>
+                <div className="form-group mt-4 text-center">
+                  <a href="#" className="btn btn-success btn-block">Registrarse</a>
                 </div>
 
               </div>

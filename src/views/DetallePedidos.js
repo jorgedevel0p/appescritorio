@@ -9,7 +9,7 @@ export const DetallePedidos = () => {
         <Layout_Admin>
             <div>
                 <img src={Fondo1080} 
-                    class="card-img" 
+                    className="card-img" 
                     height={140} />
             </div>
             <div className='card my-3 mx-4 justify-center'>

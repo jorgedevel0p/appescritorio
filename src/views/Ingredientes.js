@@ -112,7 +112,7 @@ export const Ingredientes = () => {
     return (
         <Layout_Admin>
             <div>
-                <img src={Fondo1080} class="card-img" height={140} />
+                <img src={Fondo1080} className="card-img" height={140} />
             </div>
             <div className='card my-3 mx-4 justify-center'>
                 <div className='card-header text-center'>

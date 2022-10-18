@@ -111,24 +111,24 @@ export const Productos = () => {
   return (
     <Layout_Admin>
       <div>
-        <img src={Fondo1080} class="card-img" height={140} />
+        <img src={Fondo1080} className="card-img" height={140} />
       </div>
-      <div class="card my-3 mx-4 justify-center">
-          <div class="card-header text-center">
+      <div className="card my-3 mx-4 justify-center">
+          <div className="card-header text-center">
           <h2>Registro de Productos</h2>
         </div>
 
-        <div class="card-body">
+        <div className="card-body">
           <form>
 
-            <div class="form-check">
+            <div className="form-check">
               <input
-                class="form-check-input"
+                className="form-check-input"
                 type="checkbox"
                 checked={producto.state}
                 onChange={handleCheck}
               />
-              <label class="form-check-label" for="flexCheckDefault">
+              <label className="form-check-label" for="flexCheckDefault">
                 Activo
               </label>
             </div>
@@ -158,12 +158,12 @@ export const Productos = () => {
         </div>
       </div>
       <hr className='mt-4 m-4'></hr>
-        <div class="card my-3 mx-4 justify-center">
-          <div class="card-header text-center">
+        <div className="card my-3 mx-4 justify-center">
+          <div className="card-header text-center">
           <h2>Lista de Productos</h2>
         </div>
-        <div class="card-body">
-          <table class="table">
+        <div className="card-body">
+          <table className="table">
             <thead>
               <tr>
                 <th scope="col">ID</th>
@@ -177,7 +177,7 @@ export const Productos = () => {
                 <th scope="col">Eliminar</th>
               </tr>
             </thead>
-            <tbody class="table-group-divider">
+            <tbody className="table-group-divider">
               {productos.map(prod => (
                 <tr>
                   <th scope="row">{prod.id}</th>
@@ -191,7 +191,7 @@ export const Productos = () => {
                     <button type='button' className='btn btn-warning btn-xs' onClick={() => setProductDataIntoForm(prod)}><i className="fa-solid fa-pen-to-square" style={{ color: '#ffffff' }}></i></button>
                   </td>
                   <td>
-                    <button type='button' className='btn btn-danger btn-xs' onClick={() => deleteProduct(prod.id)}><i class="fa-solid fa-trash"></i></button>
+                    <button type='button' className='btn btn-danger btn-xs' onClick={() => deleteProduct(prod.id)}><i className="fa-solid fa-trash"></i></button>
                   </td>
                 </tr>
               ))}

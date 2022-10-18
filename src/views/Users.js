@@ -10,7 +10,7 @@ const DEFAULT_STATE = {
   name: '',
   last_name: '',
   email: '',
-  type: 'Admin',
+  type: '',
   password: '',
 }
 
@@ -109,13 +109,13 @@ export const Users = () => {
   return (
     <Layout_Admin>
         <div>
-          <img src={Fondo1080} class="card-img" height={140}/>
+          <img src={Fondo1080} className="card-img" height={140}/>
         </div>
-        <div class="card my-3 mx-4 justify-center">
-          <div class="card-header">
-            <h2 class="text-center">Registro de Usuario</h2>
+        <div className="card my-3 mx-4 justify-center">
+          <div className="card-header">
+            <h2 className="text-center">Registro de Usuario</h2>
           </div>
-          <div class="card-body">
+          <div className="card-body">
             <form className='container'>
               <input
                 type='text'
@@ -151,14 +151,14 @@ export const Users = () => {
           </div>
         </div>
         <hr className='mt-4 m-4'></hr>
-        <div class="card my-3 mx-4 justify-center">
-          <div class="card-header text-center">
+        <div className="card my-3 mx-4 justify-center">
+          <div className="card-header text-center">
             <h2> Lista de Usuarios</h2>
 
           </div>
-          <div class="card-body">
+          <div className="card-body">
 
-            <table class="table">
+            <table className="table">
               <thead>
                 <tr>
                   <th scope="col">ID</th>
@@ -169,7 +169,7 @@ export const Users = () => {
                   <th scope="col">Acciones</th>
                 </tr>
               </thead>
-              <tbody class="table-group-divider">
+              <tbody className="table-group-divider">
                 {usuarios.map(usuario => (
                   <tr>
                     <td>{usuario.id}</td>
@@ -192,7 +192,7 @@ export const Users = () => {
                         className='btn btn-danger btn-xs'
                         onClick={() => deleteUser(usuario.id)}
                       >
-                        <i class="fa-solid fa-trash"></i>
+                        <i className="fa-solid fa-trash"></i>
                       </button>
                     </td>
 
