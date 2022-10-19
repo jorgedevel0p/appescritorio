@@ -31,12 +31,17 @@ export const Users = () => {
       operation: '/user/',
       data: null,
       method: 'GET',
-      callback: (responseApi) => {
-        const { data } = responseApi
+      callback: ({ok, data}) => {
+        if (!ok) {
+          alert(JSON.stringify(data))
+          return
+        }
+        console.log(data, 'Listado Usuarios recibidas')
         setUsuarios(data)
+        
       }
     })
-  }
+  } 
 
   const saveUser = () => {
     console.log(form)
@@ -49,6 +54,7 @@ export const Users = () => {
           alert(JSON.stringify(data))
           return
         }
+        console.log(data, 'Ha guardado Usuario correctamente')
         getUsers()
         resetForm()
       }
@@ -56,6 +62,9 @@ export const Users = () => {
   }
 
   const updateUser = (id) => {
+    if (confirm("¿Desea actualizar la información de este usuario?") === false) {
+      return
+    }
     makeHttpRequest({
       operation: `/user/${id}`,
       data: form,
@@ -65,6 +74,7 @@ export const Users = () => {
           alert(JSON.stringify(data))
           return
         }
+        console.log(data, 'Usuario se ha actualizado correctamente')
         getUsers()
         resetForm()
       }
@@ -84,6 +94,9 @@ export const Users = () => {
   }
 
   const deleteUser = (id) => {
+    if (confirm("¿Desea eliminar este usuario?") === false) {
+      return
+    }
     makeHttpRequest({
       operation: `/user/${id}`,
       data: null,
@@ -93,6 +106,7 @@ export const Users = () => {
           alert(JSON.stringify(data))
           return
         }
+        console.log(data, 'Usuario se ha eliminado correctamente')
         getUsers()
       }
     })
@@ -109,44 +123,105 @@ export const Users = () => {
   return (
     <Layout_Admin>
         <div>
-          <img src={Fondo1080} className="card-img" height={140}/>
+          <img 
+            src={Fondo1080} 
+            className="card-img" 
+            height={140}
+          />
         </div>
         <div className="card my-3 mx-4 justify-center">
           <div className="card-header">
-            <h2 className="text-center">Registro de Usuario</h2>
+            <h2 className="text-center">
+              Detalle de Usuario
+            </h2>
           </div>
           <div className="card-body">
             <form className='container'>
+              <input 
+                type='text' 
+                name='id' 
+                className='form-control mb-2'
+                placeholder='ID Usuario'
+                readOnly={true}
+                value={form.id}
+                onChange={handleChange}>
+              </input>
               <input
                 type='text'
                 className='form-control mb-2'
                 value={form.username}
                 name='username'
-                placeholder='username'
+                placeholder='Username'
                 onChange={handleChange}
               />
-              <input type='text' className='form-control mb-2' value={form.name} name='name' placeholder='name' onChange={handleChange} />
-              <input type='text' className='form-control mb-2' value={form.last_name} name='last_name' placeholder='last_name' onChange={handleChange} />
-              <input type='text' className='form-control mb-2' value={form.email} name='email' placeholder='email' onChange={handleChange} />
-              <select name="type" className='form-select mb-2' id="cars" value={form.type} placeholder='type' onChange={handleChange}>
-                <option value="Admin">Admin</option>
-                <option value="Finanzas">Finanzas</option>
-                <option value="Cocina">Cocina</option>
-                <option value="Bodega">Bodega</option>
-                <option value="Cliente">Cliente</option>
+              <input 
+                type='text' 
+                className='form-control mb-2' 
+                value={form.name} 
+                name='name' 
+                placeholder='Nombre' 
+                onChange={handleChange} 
+              />
+              <input 
+                type='text' 
+                className='form-control mb-2' 
+                value={form.last_name} 
+                name='last_name' 
+                placeholder='Apellido' 
+                onChange={handleChange} 
+              />
+              <input 
+                type='email' 
+                className='form-control mb-2' 
+                value={form.email} 
+                name='email' 
+                placeholder='e-mail' 
+                onChange={handleChange} 
+              />
+              <select 
+                name="type" 
+                className='form-select mb-2' 
+                id="cars" 
+                value={form.type} 
+                onChange={handleChange}>
+                  <option disabled selected>Tipo de Usuario</option>
+                  <option value="Admin">Admin</option>
+                  <option value="Finanzas">Finanzas</option>
+                  <option value="Cocina">Cocina</option>
+                  <option value="Bodega">Bodega</option>
+                  <option value="Cliente">Cliente</option>
               </select>
-
-              <input type='text' className='form-control mb-2' value={form.password} name='password' placeholder='new password' onChange={handleChange} />
-
-              {
-                !form.id
-                  ? <button type='button' className='btn btn-success' onClick={saveUser}>Guardar usuario</button>
-                  : <button type='button' className='btn btn-dark' onClick={() => updateUser(form.id)}>Actualizar usuario</button>
-
-              }
-
-              <button type='button' className='btn btn-light' onClick={resetForm}>Limpiar</button>
-
+              <input 
+                type='password' 
+                className='form-control mb-2' 
+                value={form.password} 
+                name='password' 
+                placeholder='Nueva password' 
+                onChange={handleChange} 
+              />
+              <div className='col-md-12 text-center my-3 ' >
+                {
+                  !form.id
+                    ? <button 
+                        type='button' 
+                        className='col-md-2 btn btn-success mx-3' 
+                        onClick={saveUser}>
+                          Guardar
+                      </button>
+                    : <button 
+                        type='button' 
+                        className='col-md-2 btn btn-dark mx-3 ' 
+                        onClick={() => updateUser(form.id)}>
+                          Actualizar
+                      </button>
+                }
+                <button 
+                  type='button' 
+                  className='col-md-2 btn btn-light mx-3' 
+                  onClick={resetForm}>
+                    Limpiar
+                </button>
+              </div>
             </form>
           </div>
         </div>
@@ -154,19 +229,19 @@ export const Users = () => {
         <div className="card my-3 mx-4 justify-center">
           <div className="card-header text-center">
             <h2> Lista de Usuarios</h2>
-
           </div>
           <div className="card-body">
-
             <table className="table">
               <thead>
                 <tr>
                   <th scope="col">ID</th>
-                  <th scope="col">Nombre de Usuario</th>
+                  <th scope="col">Username</th>
                   <th scope="col">Nombre</th>
+                  <th scope="col">Apellido</th>
                   <th scope="col">Email</th>
                   <th scope="col">Tipo</th>
-                  <th scope="col">Acciones</th>
+                  <th scope="col">Editar</th>
+                  <th scope="col">Eliminar</th>
                 </tr>
               </thead>
               <tbody className="table-group-divider">
@@ -175,36 +250,36 @@ export const Users = () => {
                     <td>{usuario.id}</td>
                     <td>{usuario.username}</td>
                     <td>{usuario.name}</td>
+                    <td>{usuario.last_name}</td>
                     <td>{usuario.email}</td>
                     <td>{usuario.type}</td>
-
-
                     <td>
                       <button
                         type='button'
                         className='btn btn-warning btn-xs m-1'
-                        onClick={() => setUserDataIntoForm(usuario)}
-                      >
-                        <i className="fa-solid fa-pen-to-square" style={{ color: '#ffffff' }}></i>
+                        onClick={() => setUserDataIntoForm(usuario)}>
+                        <i 
+                          className="fa-solid fa-pen-to-square" 
+                          style={{ color: '#ffffff' }}>
+                        </i>
                       </button>
+                    </td>
+                    <td>
                       <button
                         type='button'
                         className='btn btn-danger btn-xs'
-                        onClick={() => deleteUser(usuario.id)}
-                      >
-                        <i className="fa-solid fa-trash"></i>
+                        onClick={() => deleteUser(usuario.id)}>
+                        <i 
+                          className="fa-solid fa-trash"
+                          >
+                        </i>
                       </button>
                     </td>
-
                   </tr>
                 ))}
-
               </tbody>
             </table>
-
-
           </div>
-
         </div>
     </Layout_Admin>
   )

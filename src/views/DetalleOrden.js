@@ -4,7 +4,118 @@ import { Layout_Admin, Navbar, Footer } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import Fondo1080 from "../assets/img/720x120.jpg"
 
+const DEFAULT_STATE = {
+    id: '',
+    number_dish:'',
+    orden_id:'',
+    plato_id:'',
+    producto_id:'',
+}
+
 export const DetalleOrden = () => {
+
+    const [detalleOrden, setDetalleOrden] = useState(DEFAULT_STATE)
+    const [detalleOrdenes, setDetalleOrdenes] = useState([])
+    const { isLoading, makeHttpRequest } = useHttpRequest()
+  
+    const handleChange = (e) => {
+      setDetalleOrden({
+        ...detalleOrden,
+        [e.target.name]: e.target.value
+      })
+    }
+  
+    const getDetalleOrdenes = () => {
+      makeHttpRequest({
+        operation: '/detalle_orden/',
+        data: null,
+        method: 'GET',
+        callback: ({ ok, data }) => {
+          if (!ok) {
+            alert(JSON.stringify(data))
+            return
+          }
+          console.log(data, 'Listado de Detalle Ordenes recibido')
+          setDetalleOrdenes(data)
+        }
+      })
+    }
+  
+    const saveDetalleOrden = () => {
+      console.log(' llega')
+      let detalleOrdenToSave = { ...detalleOrden }
+  
+      makeHttpRequest({
+        operation: '/detalle_orden/',
+        data: detalleOrden,
+        method: 'POST',
+        callback: ({ ok, data }) => {
+          if (!ok) {
+            alert(JSON.stringify(data))
+            return
+          }
+          console.log(data, 'Ha guardado el detalle orden correctamente')
+          resetForm()
+          getDetalleOrdenes()
+        }
+      })
+    }
+    const setDetalleOrdenDataIntoForm = (detalleOrden) => {
+      setDetalleOrden(detalleOrden)
+    }
+  
+    const updateDetalleOrden = (id) => {
+      if (confirm("¿Desea actualizar la información de este detalle orden?") === false) {
+        return
+      }
+      makeHttpRequest({
+        operation: `/detalle_orden/${id}`,
+        data: detalleOrden,
+        method: 'PUT',
+        callback: ({ ok, data }) => {
+          if (!ok) {
+              alert(JSON.stringify(data))
+            return
+          }
+          console.log(data, 'Detalle Orden se ha actualizado correctamente')
+          getDetalleOrdenes()
+          resetForm()
+        }
+      })
+    }
+  
+    const deleteDetalleOrden = (id) => {
+      if (confirm("¿Desea eliminar este detalle orden?") === false) {
+        return
+      }
+  
+      makeHttpRequest({
+        operation: `/detalle_orden/${id}`,
+        data: null,
+        method: 'DELETE',
+        callback: ({ ok, data }) => {
+          if (!ok) {
+              alert(JSON.stringify(data))
+          return
+          }
+          console.log(data, 'Detalle Orden se ha eliminado correctamente')
+          getDetalleOrdenes()
+        }
+      })
+    }
+  
+    const handleCheck = (e) => {
+      setDetalleOrden({
+        ...detalleOrden,
+        available: e.target.checked
+      })
+    }
+    
+    const resetForm = () => setDetalleOrden({ ...DEFAULT_STATE })
+    
+    useEffect(() => {
+      getDetalleOrdenes()
+    }, [])
     return(
         <Layout_Admin>
             <div>
@@ -20,41 +131,69 @@ export const DetalleOrden = () => {
                 <div className='card-body'>
                     
                     <input 
-                        type='text' 
+                        type='number' 
                         name='id' 
                         className='form-control mb-2'
-                        placeholder='ID Boleta'
-                        readOnly={true}>
+                        placeholder='ID Detalle Orden'
+                        readOnly={true}
+                        value={detalleOrden.id}
+                        onChange={handleChange}> 
                     </input>
                     <input 
-                        type='text' 
+                        type='number' 
                         name='cantidad' 
                         className='form-control mb-2'
-                        placeholder='Cantidad Platos'>
+                        placeholder='Cantidad Platos'
+                        value={detalleOrden.number_dish}
+                        onChange={handleChange}> 
                     </input>
                     <input
-                        type='text'
+                        type='number'
                         name='orden'
                         className='form-control mb-2'
-                        placeholder='ID Orden'>                            
+                        placeholder='ID Orden'
+                        value={detalleOrden.orden_id}
+                        onChange={handleChange}>                             
                     </input>
                     <input
-                        type='text'
+                        type='number'
                         name='plato'
                         className='form-control mb-2'
-                        placeholder='ID Plato'>                            
+                        placeholder='ID Plato'
+                        value={detalleOrden.plato_id}
+                        onChange={handleChange}>                            
                     </input>
                     <input
-                        type='text'
+                        type='number'
                         name='producto'
                         className='form-control mb-2'
-                        placeholder='ID Producto'>                            
+                        placeholder='ID Producto'
+                        value={detalleOrden.producto_id}
+                        onChange={handleChange}>                            
                     </input>
-                    <div>
-                        <button type='button' className='btn btn-success '>Guardar</button>
-                        <button type='button' className='btn btn-dark'>Actualizar</button>
-                        <button type='button' className='btn btn-light'>Limpiar</button>
-                    </div>                        
+                    <div className='col-md-12 text-center my-3 ' >
+                        {
+                        !detalleOrden.id
+                            ? <button 
+                                type='button' 
+                                className='col-md-2 btn btn-success' 
+                                onClick={saveDetalleOrden}>
+                                Guardar
+                            </button>
+                            : <button 
+                                type='button' 
+                                className='col-md-2 btn btn-dark' 
+                                onClick={() => updateDetalleOrden(detalleOrden.id)}>
+                                    Actualizar
+                            </button>
+                        }
+                        <button 
+                            type='button' 
+                            className='col-md-2 btn btn-light mx-3' 
+                            onClick={resetForm}>
+                                Limpiar
+                        </button>
+                    </div>                      
                     
                 </div>
             </div>
@@ -73,8 +212,42 @@ export const DetalleOrden = () => {
                                 <th scope='col'>ID Plato</th>
                                 <th scope='col'>ID Producto</th>
                                 <th scope='col'>Editar</th>
+                                <th scope='col'>Eliminar</th>
                             </tr>
                         </thead>
+                        <tbody className="table-group-divider">
+                            {detalleOrdenes.map(detalleOrden => (
+                            <tr>
+                                <th scope="row">{detalleOrden.id}</th>
+                                <td>{detalleOrden.number_dish}</td>
+                                <td>{detalleOrden.orden_id}</td>
+                                <td>{detalleOrden.plato_id}</td>
+                                <td>{detalleOrden.producto_id}</td>
+                                <td>
+                                <button 
+                                    type='button' 
+                                    className='btn btn-warning btn-xs' 
+                                    onClick={() => setDetalleOrdenDataIntoForm(detalleOrden)}>
+                                    <i 
+                                        className="fa-solid fa-pen-to-square" 
+                                        style={{ color: '#ffffff' }}>
+                                    </i>
+                                    </button>
+                                </td>
+                                <td>
+                                <button 
+                                    type='button' 
+                                    className='btn btn-danger btn-xs' 
+                                    onClick={() => deleteDetalleOrden(detalleOrden.id)}>
+                                    <i 
+                                        className="fa-solid fa-trash">
+                                    </i>
+                                </button>
+                                </td>
+                            </tr>
+                            ))}
+                        </tbody>
+
                     </table>
 
                 </div>

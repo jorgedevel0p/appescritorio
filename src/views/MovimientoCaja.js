@@ -4,7 +4,120 @@ import { Layout_Admin, Navbar, Footer } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import Fondo1080 from "../assets/img/720x120.jpg"
 
+const DEFAULT_STATE = {
+    id:'',
+    date_mov:'',
+    initial_balance:'',
+    boleta_id:'',
+    factura_id:'',
+}
+
 export const MovimientoCaja = () => {
+
+    const [movimientoCaja, setMovimientoCaja] = useState(DEFAULT_STATE)
+    const [movimientosCaja, setMovimientosCaja] = useState([])
+    const { isLoading, makeHttpRequest } = useHttpRequest()
+  
+    const handleChange = (e) => {
+      setMovimientoCaja({
+        ...movimientoCaja,
+        [e.target.name]: e.target.value
+      })
+    }
+  
+    const getMovimientosCaja = () => {
+      makeHttpRequest({
+        operation: '/movimiento_caja/',
+        data: null,
+        method: 'GET',
+        callback: ({ ok, data }) => {
+          if (!ok) {
+            alert(JSON.stringify(data))
+            return
+          }
+          console.log(data, 'Listado de Movimientos Caja recibido')
+          setMovimientosCaja(data)
+        }
+      })
+    }
+  
+    const saveMovimientoCaja = () => {
+      console.log(' llega')
+      let movimientoCajaToSave = { ...movimientoCaja }
+  
+      makeHttpRequest({
+        operation: '/movimiento_caja/',
+        data: movimientoCaja,
+        method: 'POST',
+        callback: ({ ok, data }) => {
+          if (!ok) {
+            alert(JSON.stringify(data))
+            return
+          }
+          console.log(data, 'Ha guardado la movimiento caja correctamente')
+          resetForm()
+          getMovimientosCaja()
+        }
+      })
+    }
+    const setMovimientoCajaDataIntoForm = (movimientoCaja) => {
+      setMovimientoCaja(movimientoCaja)
+    }
+  
+    const updateMovimientoCaja = (id) => {
+      if (confirm("¿Desea actualizar la información de esta movimiento caja?") === false) {
+        return
+      }
+      makeHttpRequest({
+        operation: `/movimiento_caja/${id}`,
+        data: movimientoCaja,
+        method: 'PUT',
+        callback: ({ ok, data }) => {
+          if (!ok) {
+              alert(JSON.stringify(data))
+            return
+          }
+          console.log(data, 'MovimientoCaja se ha actualizado correctamente')
+          getMovimientosCaja()
+          resetForm()
+        }
+      })
+    }
+  
+    const deleteMovimientoCaja = (id) => {
+      if (confirm("¿Desea eliminar esta movimiento caja?") === false) {
+        return
+      }
+  
+      makeHttpRequest({
+        operation: `/movimiento_caja/${id}`,
+        data: null,
+        method: 'DELETE',
+        callback: ({ ok, data }) => {
+          if (!ok) {
+              alert(JSON.stringify(data))
+          return
+          }
+          console.log(data, 'MovimientoCaja se ha eliminado correctamente')
+          getMovimientosCaja()
+        }
+      })
+    }
+  
+    const handleCheck = (e) => {
+      setMovimientoCaja({
+        ...movimientoCaja,
+        available: e.target.checked
+      })
+    }
+    
+    const resetForm = () => setMovimientoCaja({ ...DEFAULT_STATE })
+    
+    useEffect(() => {
+      getMovimientosCaja()
+    }, [])
+
+
     return(
         <Layout_Admin>
             <div>
@@ -14,53 +127,80 @@ export const MovimientoCaja = () => {
             </div>
             <div className='card my-3 mx-4 justify-center'>
                 <div className='card-header text-center'>
-                    <h2>Registro de Movimiento Caja                        
+                    <h2>Detalle de Movimiento Caja                        
                     </h2>
                 </div>
                 <div className='card-body'>    
                     <input 
-                        type='text' 
+                        type='number' 
                         name='id' 
                         className='form-control mb-2'
                         placeholder='ID Movimiento Caja'
-                        readOnly={true}>
+                        readOnly={true}
+                        value={movimientoCaja.id}
+                        onChange={handleChange}>
                     </input>
                     <input
                         type='date'
                         name='date'
                         className='form-control mb-2'
-                        placeholder='Fecha'>                            
+                        placeholder='Fecha'
+                        value={movimientoCaja.date_mov}
+                        onChange={handleChange}>                          
                     </input>
                     <input 
-                        type='text' 
+                        type='number' 
                         name='balance' 
                         className='form-control mb-2'
-                        placeholder='Saldo Inicial'>
+                        placeholder='Saldo Inicial'
+                        value={movimientoCaja.initial_balance}
+                        onChange={handleChange}>
                     </input>
                     <input 
-                        type='text' 
-                        name='boleta id' 
+                        type='number' 
+                        name='boleta_id' 
                         className='form-control mb-2'
-                        placeholder='ID Boleta'>
+                        placeholder='ID Boleta'
+                        value={movimientoCaja.boleta_id}
+                        onChange={handleChange}>
                     </input>
                     <input
-                        type='text'
-                        name='factura'
+                        type='number'
+                        name='factura_id'
                         className='form-control mb-2'
-                        placeholder='ID Factura'>                            
+                        placeholder='ID Factura'
+                        value={movimientoCaja.factura_id}
+                        onChange={handleChange}>                          
                     </input>
-                    <div>
-                        <button type='button' className='btn btn-success '>Guardar</button>
-                        <button type='button' className='btn btn-dark'>Actualizar</button>
-                        <button type='button' className='btn btn-light'>Limpiar</button>
-                    </div>                        
-                    
+                    <div className='col-md-12 text-center my-3 ' >
+                        {
+                        !movimientoCaja.id
+                            ? <button 
+                                type='button' 
+                                className='col-md-2 btn btn-success' 
+                                onClick={saveMovimientoCaja}>
+                                Guardar
+                            </button>
+                            : <button 
+                                type='button' 
+                                className='col-md-2 btn btn-dark' 
+                                onClick={() => updateMovimientoCaja(movimientoCaja.id)}>
+                                Actualizar
+                            </button>
+                        }
+                        <button 
+                        type='button' 
+                        className='col-md-2 btn btn-light mx-3' 
+                        onClick={resetForm}>
+                            Limpiar
+                        </button>
+                    </div>                                          
                 </div>
             </div>
             <hr className='mt-4 m-4'></hr>
             <div className='card my-3 mx-4 justify-center'>
                 <div  className='card-header text-center'>
-                    <h2>Listado de Boletas</h2>
+                    <h2>Listado de Movimiento Caja</h2>
                 </div>
                 <div className='card-body'>
                     <table className='table'>
@@ -72,8 +212,41 @@ export const MovimientoCaja = () => {
                                 <th scope='col'>ID Boleta</th>
                                 <th scope='col'>ID Factura</th>
                                 <th scope='col'>Editar</th>
+                                <th scope='col'>Eliminar</th>
                             </tr>
                         </thead>
+                        <tbody className="table-group-divider">
+                            {movimientosCaja.map(movimientoCaja => (
+                                <tr>
+                                    <th scope="row">{movimientoCaja.id}</th>
+                                    <td>{movimientoCaja.date_mov}</td>
+                                    <td>{movimientoCaja.initial_balance}</td>
+                                    <td>{movimientoCaja.boleta_id}</td>
+                                    <td>{movimientoCaja.factura_id}</td>
+                                    <td>
+                                        <button 
+                                            type='button' 
+                                            className='btn btn-warning btn-xs' 
+                                            onClick={() => setMovimientoCajaDataIntoForm(movimientoCaja)}>
+                                            <i 
+                                                className="fa-solid fa-pen-to-square" 
+                                                style={{ color: '#ffffff' }}>
+                                            </i>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button 
+                                            type='button' 
+                                            className='btn btn-danger btn-xs' 
+                                            onClick={() => deleteMovimientoCaja(movimientoCaja.id)}>
+                                            <i 
+                                                className="fa-solid fa-trash">
+                                            </i>
+                                        </button>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
                     </table>
 
                 </div>

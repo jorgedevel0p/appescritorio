@@ -13,14 +13,14 @@ const DEFAULT_STATE = {
 }
 
 export const Platos = () => {
-  // const [plato, setPlato] = useState(DEFAULT_STATE)
+  const [plato, setPlato] = useState(DEFAULT_STATE)
   const [platos, setPlatos] = useState([])
   const [form, setForm] = useState(DEFAULT_STATE)
   const { isLoading, makeHttpRequest } = useHttpRequest()
     
   const handleChange = (e) => {
-      setForm({
-        ...form,
+      setPlato({
+        ...plato,
         [e.target.name]: e.target.value
       })
   }
@@ -30,24 +30,29 @@ export const Platos = () => {
       operation: '/plato/',
       data: null,
       method: 'GET',
-      callback: (responseApi) => {
-        const { data } = responseApi
+      callback: ({ok, data}) => {
+        if (!ok) {
+            alert(JSON.stringify(data))
+          return
+        }
         setPlatos(data)
+        console.log(data, 'Listado de Platos recibido')
       }
     })
   }
     
   const savePlato = () => {
-    console.log(form)
+    console.log(plato)
     makeHttpRequest({
       operation: '/plato/',
-      data: form,
+      data: plato,
       method: 'POST',
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
           return
         }
+        console.log(data, 'Ha guardado Plato correctamente')
         getPlatos()
         resetForm()
       }
@@ -55,15 +60,19 @@ export const Platos = () => {
   }
     
   const updatePlato = (id) => {
+    if (confirm("¿Desea actualizar la información de este plato?") === false) {
+      return
+    }
     makeHttpRequest({
       operation: `/plato/${id}`,
-      data: form,
+      data: plato,
       method: 'PUT',
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
           return
         }
+        console.log(data, 'Plato se ha actualizado correctamente')
         getPlatos()
         resetForm()
       }
@@ -71,18 +80,13 @@ export const Platos = () => {
   }
     
   const setPlatoDataIntoForm = (plato) => {
-    const { id, name, description, recipe, value, type_dish } = plato
-    setForm({
-      id,
-      name,
-      description,
-      recipe,
-      value,
-      type_dish,
-    })
+    setPlato(plato)
   }
     
   const deletePlato = (id) => {
+    if (confirm("¿Desea eliminar el plato?") === false) {
+      return
+    } 
     makeHttpRequest({
       operation: `/plato/${id}`,
       data: null,
@@ -92,13 +96,14 @@ export const Platos = () => {
           alert(JSON.stringify(data))
           return
         }
+        console.log(dato, 'Se ha eliminado el plato correctamente')
         getPlatos()
       }
     })
   }
     
   const resetForm = () => [
-    setForm({ ...DEFAULT_STATE })
+    setPlato({ ...DEFAULT_STATE })
   ]
 
   useEffect(() => {
@@ -116,28 +121,80 @@ export const Platos = () => {
             <h2>Platos</h2>
           </div>
           <div className='card-body'>
-            {/* <input type='text' name='id' className='form-control mb-2' placeholder='ID Plato' readOnly={true}></input> */}
-            <input type='text' name='name' className='form-control mb-2' placeholder='Nombre'></input>
-            <input type='text' name='description' className='form-control mb-2' placeholder='Descripción'></input>
-            <input type='text-box' name='recipe' className='form-control mb-2' placeholder='Receta'></input>
-            <input type='number' name='value' className='form-control mb-2' placeholder='Valor'></input>
-            {/* <input type='text' name='type_dish' className='form-control mb-2' placeholder='Tipo de plato'></input> */}
+            <input 
+              type='text' 
+              name='id' 
+              className='form-control mb-2' 
+              placeholder='ID Plato' 
+              readOnly={true}
+              value={plato.id}
+              onChange={handleChange}>
+            </input>
+            <input 
+              type='text' 
+              name='name' 
+              className='form-control mb-2' 
+              placeholder='Nombre'
+              value={plato.name}
+              onChange={handleChange}>
+            </input>
+            <input 
+              type='text' 
+              name='description' 
+              className='form-control mb-2' 
+              placeholder='Descripción'
+              value={form.description}
+              onChange={handleChange}>
+            </input>
+            <input 
+              type='text-box' 
+              name='recipe' 
+              className='form-control mb-2' 
+              placeholder='Receta'
+              value={plato.recipe}
+              onChange={handleChange}>
+            </input>
+            <input 
+              type='number' 
+              name='value' 
+              className='form-control mb-2' 
+              placeholder='Valor'
+              value={plato.value}
+              onChange={handleChange}>
+            </input>
             <select
               type='text'
               name='type_dish'
-              className='form-control mb-2'>
+              className='form-control mb-2'
+              value={plato.type_dish}
+              onChange={handleChange}>
                 <option disabled selected>Tipo de Plato</option>
                 <option value="Entrada">Entrada</option>
                 <option value="Fondo">Fondo</option>
                 <option value="Postre">Postre</option>
             </select>  
-            <div>
+            <div className='col-md-12 text-center my-3 ' >
               {
-                !form.id
-                  ?<button type='button' className='btn btn-success' onClick={savePlato}>Guardar</button>
-                  :<button type='button' className='btn btn-dark' onClick={updatePlato(plato.id)}>Actualizar</button>
+                !plato.id
+                  ?<button 
+                    type='button' 
+                    className='col-md-2 btn btn-success mx-3' 
+                    onClick={savePlato}>
+                      Guardar
+                  </button>
+                  :<button 
+                    type='button' 
+                    className='col-md-2 btn btn-dark mx-3 '
+                    onClick={() => updatePlato(plato.id)}>
+                      Actualizar
+                  </button>
               }
-              <button type='button' className='btn btn-light' onClick={resetForm}>Limpiar</button>
+              <button 
+                type='button' 
+                className='col-md-2 btn btn-light mx-3' 
+                onClick={resetForm}>
+                    Limpiar
+            </button>
             </div>        
           </div>
         </div>
@@ -157,6 +214,7 @@ export const Platos = () => {
                   <th scope='col'>Valor</th>
                   <th scope='col'>Tipo de Plato</th>
                   <th scope='col'>Editar</th>
+                  <th scope='col'>Eliminar</th>
                 </tr>
               </thead>
               <tbody className='table-group-divider'>
@@ -176,6 +234,16 @@ export const Platos = () => {
                       <i className='fa-solid fa-pen-to-square'
                         style={{color: '#ffffff'}}>
                       </i>
+                    </button>
+                  </td>
+                  <td>
+                    <button 
+                        type='button' 
+                        className='btn btn-danger btn-xs' 
+                        onClick={() => deletePlato(plato.id)}>
+                        <i 
+                            className="fa-solid fa-trash">
+                        </i>
                     </button>
                   </td>
                 </tr>

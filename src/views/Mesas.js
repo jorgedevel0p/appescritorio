@@ -24,14 +24,6 @@ export const Mesas = () => {
       [e.target.name]: e.target.value
     })
   }
-  const handleCheck = (e) => {
-    setMesa({
-      ...mesa,
-      available: e.target.checked
-    })
-  }
-
-  const resetForm = () => setMesa({ ...DEFAULT_STATE })
 
   const getMesas = () => {
     makeHttpRequest({
@@ -39,7 +31,11 @@ export const Mesas = () => {
       data: null,
       method: 'GET',
       callback: ({ ok, data }) => {
-        console.log(data, 'mesas recibidos')
+        if (!ok) {
+          alert(JSON.stringify(data))
+          return
+        }
+        console.log(data, 'Listado de Mesas recibido')
         setMesas(data)
       }
     })
@@ -53,8 +49,12 @@ export const Mesas = () => {
       operation: '/mesa/',
       data: mesa,
       method: 'POST',
-      callback: (responseApi) => {
-        console.log(responseApi, 'ha guardado la mesa correctamente')
+      callback: ({ ok, data }) => {
+        if (!ok) {
+          alert(JSON.stringify(data))
+          return
+        }
+        console.log(data, 'Ha guardado la mesa correctamente')
         resetForm()
         getMesas()
       }
@@ -65,12 +65,19 @@ export const Mesas = () => {
   }
 
   const updateMesa = (id) => {
+    if (confirm("¿Desea actualizar la información de esta mesa?") === false) {
+      return
+    }
     makeHttpRequest({
       operation: `/mesa/${id}`,
       data: mesa,
       method: 'PUT',
-      callback: (responseApi) => {
-        console.log(responseApi, 'respuesta update mesa')
+      callback: ({ ok, data }) => {
+        if (!ok) {
+            alert(JSON.stringify(data))
+          return
+        }
+        console.log(data, 'Mesa se ha actualizado correctamente')
         getMesas()
         resetForm()
       }
@@ -78,7 +85,7 @@ export const Mesas = () => {
   }
 
   const deleteMesa = (id) => {
-    if (confirm("Desea eliminar mesa?") === false) {
+    if (confirm("¿Desea eliminar esta mesa?") === false) {
       return
     }
 
@@ -86,13 +93,26 @@ export const Mesas = () => {
       operation: `/mesa/${id}`,
       data: null,
       method: 'DELETE',
-      callback: (responseApi) => {
-        console.log(responseApi, 'ha eliminado la mesa correctamente')
+      callback: ({ ok, data }) => {
+        if (!ok) {
+            alert(JSON.stringify(data))
+        return
+        }
+        console.log(data, 'Mesa se ha eliminado correctamente')
         getMesas()
       }
     })
   }
 
+  const handleCheck = (e) => {
+    setMesa({
+      ...mesa,
+      available: e.target.checked
+    })
+  }
+  
+  const resetForm = () => setMesa({ ...DEFAULT_STATE })
+  
   useEffect(() => {
     getMesas()
   }, [])
@@ -102,37 +122,94 @@ export const Mesas = () => {
     <>
       <Layout_Admin>
         <div>
-          <img src={Fondo1080} className="card-img" height={140} />
+          <img 
+            src={Fondo1080} 
+            className="card-img" 
+            height={140} />
         </div>
         <div className="card my-3 mx-4 justify-center">
           <div className="card-header">
-            <h2 className='text-center'>Detalle Mesas</h2>
+            <h2 className='text-center'>
+              Detalle Mesas
+            </h2>
           </div>
           <div className="card-body">
             <form>
-              <input type='number' name='id' readOnly='true' className='form-control mb-2' value={mesa.id} placeholder='ID' onChange={handleChange} />
-              <input type='number' name='capacity' className='form-control mb-2' value={mesa.capacity} placeholder='Capacidad' onChange={handleChange} />
-              <input type='text' name='number_name' className='form-control mb-2' value={mesa.number_name} placeholder='N° Mesa' onChange={handleChange} />
-              <input type='text' name='user id' className='form-control mb-2' value={mesa.user} placeholder='ID User' onChange={handleChange} />
-              <div className="form-check">
+              <input 
+                type='number' 
+                name='id' 
+                readOnly='true' 
+                className='form-control mb-2' 
+                value={mesa.id} 
+                placeholder='ID' 
+                onChange={handleChange} />
+              <input 
+                type='number' 
+                name='capacity' 
+                className='form-control mb-2' 
+                value={mesa.capacity} 
+                placeholder='Capacidad' 
+                onChange={handleChange} />
+              <input 
+                type='text' 
+                name='number_name' 
+                className='form-control mb-2' 
+                value={mesa.number_name} 
+                placeholder='N° Mesa' 
+                onChange={handleChange} />
+              <input 
+                type='text' 
+                name='user id' 
+                className='form-control mb-2' 
+                value={mesa.user} 
+                placeholder='ID User' 
+                onChange={handleChange} 
+              />
+              <select
+                type='text' 
+                name='available' 
+                className='form-control mb-2'
+                value={mesa.available}
+                onChange={handleChange}>
+                  <option disabled selected>Disponibilidad Mesa</option>
+                  <option value="0">Disponible</option>
+                  <option value="1">No Disponible</option>
+              </select>
+              {/* <div className="form-check">
                 <input
                   className="form-check-input"
                   type="checkbox"
                   checked={mesa.available}
                   onChange={handleCheck}
                 />
-                <label className="form-check-label" for="flexCheckDefault">
-                  Activa
+                <label 
+                  className="form-check-label" 
+                  for="flexCheckDefault">
+                    Activa
                 </label>
-              </div>
-              <div className="container my-3">
+              </div> */}
+              <div className='col-md-12 text-center my-3 ' >
                 {
                   !mesa.id
-                    ? <button type='button' className='btn btn-success' onClick={saveMesa}>Guardar mesa</button>
-                    : <button type='button' className='btn btn-dark' onClick={() => updateMesa(mesa.id)}>Actualizar mesa</button>
-
+                    ? <button 
+                        type='button' 
+                        className='col-md-2 btn btn-success' 
+                        onClick={saveMesa}>
+                          Guardar
+                      </button>
+                    : <button 
+                        type='button' 
+                        className='col-md-2 btn btn-dark' 
+                        onClick={() => updateMesa(mesa.id)}>
+                          Actualizar
+                      </button>
                 }
-                <button type='button' className='btn btn-light' onClick={resetForm}>Limpiar</button>
+                <button 
+                  type='button' 
+                  className='col-md-2 btn btn-light mx-3' 
+                  onClick={resetForm}>
+                    Limpiar
+                </button>
               </div>
             </form>
           </div>
@@ -166,14 +243,28 @@ export const Mesas = () => {
                     <td>{mes.available}</td>
                     <td>{mes.user}</td>
                     <td>
-                      <button type='button' className='btn btn-warning btn-xs' onClick={() => setMesaDataIntoForm(mes)}><i className="fa-solid fa-pen-to-square" style={{ color: '#ffffff' }}></i></button>
+                      <button 
+                        type='button' 
+                        className='btn btn-warning btn-xs' 
+                        onClick={() => setMesaDataIntoForm(mes)}>
+                          <i 
+                            className="fa-solid fa-pen-to-square" 
+                            style={{ color: '#ffffff' }}>
+                          </i>
+                        </button>
                     </td>
                     <td>
-                      <button type='button' className='btn btn-danger btn-xs' onClick={() => deleteMesa(mes.id)}><i className="fa-solid fa-trash"></i></button>
+                      <button 
+                        type='button' 
+                        className='btn btn-danger btn-xs' 
+                        onClick={() => deleteMesa(mes.id)}>
+                          <i 
+                            className="fa-solid fa-trash">
+                          </i>
+                      </button>
                     </td>
                   </tr>
                 ))}
-
               </tbody>
             </table>
           </div>
