@@ -10,10 +10,10 @@ export const Navbar_Admin = () => {
         <span className="fs-4">Administrador</span>
       </a>
       <hr />
-      <ul className="nav nav-pills flex-column mb-auto">
+      <ul className="nav nav-pills flex-column mb-auto activate">
         <li>
           <Link to='/Home'>
-            <a href="#" className="nav-link text-white active">
+            <a href="#" className="nav-link text-white">
               <i className="fa-solid fa-home m-2" style={{ color: '#ffffff' }}></i>
               Home
             </a>
@@ -22,99 +22,17 @@ export const Navbar_Admin = () => {
         <li className="nav-item">
           <Link to='/Users'>
             <a href="#" className="nav-link text-white" aria-current="page">
-              <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
+              <i className="fa-solid fa-user m-2" style={{ color: '#ffffff' }}></i>
               Usuarios
             </a>
           </Link>
         </li>
-        <li>
+
+        <li className="nav-item">
           <Link to='/Mesas'>
             <a href="#" className="nav-link text-white" aria-current="page">
-              <i className="fa-solid fa-utensils m-2" style={{ color: '#ffffff' }}></i>
+              <i class="fa-solid fa-table m-2" style={{ color: '#ffffff' }}></i>
               Mesas
-            </a>
-          </Link>
-
-        </li>
-        <li>
-          <Link to='/Productos'>
-            <a href="#" className="nav-link text-white">
-              <i className="fa-solid fa-cart-shopping m-2" style={{ color: '#ffffff' }}></i>
-              Productos
-            </a>
-          </Link>
-
-        </li>
-        <li>
-          <Link to='/Boletas'>
-            <a href="#" className="nav-link text-white">
-              <i className="fa-solid fa-cart-shopping m-2" style={{ color: '#ffffff' }}></i>
-              Boletas
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link to='/DetalleOrden'>
-            <a href="#" className="nav-link text-white">
-              <i className="fa-solid fa-cart-shopping m-2" style={{ color: '#ffffff' }}></i>
-              Detalle Orden
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link to='/Facturas'>
-            <a href="#" className="nav-link text-white">
-              <i className="fa-solid fa-cart-shopping m-2" style={{ color: '#ffffff' }}></i>
-              Facturas
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link to='/PedidoProveedor'>
-            <a href="#" className="nav-link text-white">
-              <i className="fa-solid fa-cart-shopping m-2" style={{ color: '#ffffff' }}></i>
-              Pedido Proveedor
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link to='/DetallePedidos'>
-            <a href="#" className="nav-link text-white">
-              <i className="fa-solid fa-cart-shopping m-2" style={{ color: '#ffffff' }}></i>
-              Detalle Pedido Proveedor
-            </a>
-          </Link>
-        </li>
-        <li>
-          <Link to='/MovimientoCaja'>
-            <a href="#" className="nav-link text-white">
-              <i className="fa-solid fa-cart-shopping m-2" style={{ color: '#ffffff' }}></i>
-              Movimiento Caja
-            </a>
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to='/Cajas'>
-            <a href="#" className="nav-link text-white" aria-current="page">
-              <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
-              Caja
-            </a>
-          </Link>
-        </li>
-        <li className="nav-item">
-          <Link to='/Proveedores'>
-            <a href="#" className="nav-link text-white" aria-current="page">
-              <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
-              Proveedores
-            </a>
-          </Link>
-        </li>
-
-        <li className="nav-item">
-          <Link to='/Platos'>
-            <a href="#" className="nav-link text-white" aria-current="page">
-              <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
-              Platos
             </a>
           </Link>
         </li>
@@ -122,8 +40,35 @@ export const Navbar_Admin = () => {
         <li className="nav-item">
           <Link to='/Reservas'>
             <a href="#" className="nav-link text-white" aria-current="page">
-              <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
+              <i class="fa-regular fa-calendar-check m-2" style={{ color: '#ffffff' }}></i>
               Reservas
+            </a>
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to='/Ordenes'>
+            <a href="#" className="nav-link text-white" aria-current="page">
+              <i class="fa-solid fa-arrow-up-wide-short m-2" style={{ color: '#ffffff' }}></i>
+              Ordenes
+            </a>
+          </Link>
+        </li>
+
+        <li>
+          <Link to='/DetalleOrden'>
+            <a href="#" className="nav-link text-white" aria-current="page">
+              <i className="fa-solid fa-circle-info m-2" style={{ color: '#ffffff' }}></i>
+              Detalle Orden
+            </a>
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to='/Platos'>
+            <a href="#" className="nav-link text-white" aria-current="page">
+              <i className="fa-solid fa-utensils m-2" style={{ color: '#ffffff' }}></i>
+              Platos
             </a>
           </Link>
         </li>
@@ -131,17 +76,79 @@ export const Navbar_Admin = () => {
         <li className="nav-item">
           <Link to='/Ingredientes'>
             <a href="#" className="nav-link text-white" aria-current="page">
-              <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
+              <i class="fa-solid fa-carrot m-2" style={{ color: '#ffffff' }}></i>
               Ingredientes
             </a>
           </Link>
         </li>
-        
+
         <li className="nav-item">
-          <Link to='/Ordenes'>
+          <Link to='/Productos'>
             <a href="#" className="nav-link text-white" aria-current="page">
-              <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
-              Ordenes
+              <i className="fa-solid fa-cart-shopping m-2" style={{ color: '#ffffff' }}></i>
+              Productos
+            </a>
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to='/Proveedores'>
+            <a href="#" className="nav-link text-white" aria-current="page">
+              <i class="fa-solid fa-truck-field-un m-2" style={{ color: '#ffffff' }}></i>
+              Proveedores
+            </a>
+          </Link>
+        </li>
+        <li className='nav-item'>
+          <Link to='/PedidoProveedor'>
+            <a href="#" className="nav-link text-white">
+              <i className="fa-solid fa-cart-shopping m-2" style={{ color: '#ffffff' }}></i>
+              Pedido Proveedor
+            </a>
+          </Link>
+        </li>
+
+        <li className='nav-item'>
+          <Link to='/DetallePedidos'>
+            <a href="#" className="nav-link text-white">
+              <i class="fa-solid fa-list-check m-2" style={{ color: '#ffffff' }}></i>
+              Detalle Pedido Proveedor
+            </a>
+          </Link>
+        </li>
+
+        <li className='nav-item'>
+          <Link to='/Facturas'>
+            <a href="#" className="nav-link text-white" aria-current="page">
+              <i className="fa-solid fa-file-invoice m-2" style={{ color: '#ffffff' }}></i>
+              Facturas
+            </a>
+          </Link>
+        </li>
+
+        <li className="nav-item">
+          <Link to='/Cajas'>
+            <a href="#" className="nav-link text-white" aria-current="page">
+              <i className="fa-solid fa-cash-register m-2" style={{ color: '#ffffff' }}></i>
+              Caja
+            </a>
+          </Link>
+        </li>
+
+        <li className='nav-item'>
+          <Link to='/MovimientoCaja'>
+            <a href="#" className="nav-link text-white">
+              <i class="fa-solid fa-cash-register m-2" style={{ color: '#ffffff' }}></i>
+              Movimiento Caja
+            </a>
+          </Link>
+        </li>
+
+        <li className='nav-item'>
+          <Link to='/Boletas'>
+            <a href="#" className="nav-link text-white" aria-current="page">
+              <i className="fa-solid fa-ticket m-2" style={{ color: '#ffffff' }}></i>
+              Boletas
             </a>
           </Link>
         </li>
@@ -153,11 +160,11 @@ export const Navbar_Admin = () => {
               Cerrar Sesión
             </a>
           </Link>
-
         </li>
-
       </ul>
+
       <hr />
+
       <div className="dropdown">
         <div href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
           <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
