@@ -10,17 +10,25 @@ export const Navbar_Finanzas = () => {
         <span className="fs-4">Finanzas</span>
       </a>
       <hr />
-      <ul className="nav nav-pills flex-column mb-auto">
+      <ul className="nav nav-pills flex-column mb-auto activate">
+      <li>
+          <Link to='/Finanzas'>
+            <a href="#" className="nav-link text-white">
+              <i className="fa-solid fa-home m-2" style={{ color: '#ffffff' }}></i>
+              Home
+            </a>
+          </Link> 
+        </li>
         <li>
-          <Link to='/'>
-            <a href="#" className="nav-link text-white active">
+          <Link to='/Ingresos'>
+            <a href="#" className="nav-link text-white">
               <i className="fa-solid fa-home m-2" style={{ color: '#ffffff' }}></i>
               Ingresos
             </a>
           </Link> 
         </li>
         <li className="nav-item">
-          <Link to='/'>
+          <Link to='/Egresos'>
             <a href="#" className="nav-link text-white" aria-current="page">
               <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
               Egresos
@@ -28,10 +36,10 @@ export const Navbar_Finanzas = () => {
           </Link>
         </li>
         <li>
-          <Link to='/'>
+          <Link to='/Utilidades'>
             <a href="#" className="nav-link text-white" aria-current="page">
               <i className="fa-solid fa-utensils m-2" style={{ color: '#ffffff' }}></i>
-              Resumen de Finanzas
+              Utilidades
             </a>
           </Link>
 

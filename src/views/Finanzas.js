@@ -4,11 +4,15 @@ import { useNavigate } from "react-router-dom"
 import { Footer } from '../components/Footer'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import { Layout_Finanzas } from '../components'
+import Fondo1080 from "../assets/img/720x120.jpg"
 
 export const Finanzas = () => {
     return (
         <>
             <Layout_Finanzas>
+            <div>
+                <img src={Fondo1080} className="card-img" height={140} />
+            </div>
             
             <h1 className="text-center">Modulo Finanzas</h1>
             <div className="my-5 text-center">

@@ -20,6 +20,9 @@ import { Platos } from "./views/Platos";
 import { Reservas } from "./views/Reservas";
 import { Ingredientes } from "./views/Ingredientes";
 import { Ordenes } from "./views/Ordenes";
+import { Ingresos } from "./views/Ingresos";
+import { Egresos } from "./views/Egresos";
+import { Utilidades } from "./views/Utilidades";
 
 function App() {
   return (
@@ -46,6 +49,9 @@ function App() {
         <Route path="/reservas" element={<Reservas/>} />
         <Route path="/ingredientes" element={<Ingredientes/>} />
         <Route path="/ordenes" element={<Ordenes/>} />
+        <Route path="/ingresos" element={<Ingresos/>} />
+        <Route path="/egresos" element={<Egresos/>} />
+        <Route path="/utilidades" element={<Utilidades/>} />
         
         
 
