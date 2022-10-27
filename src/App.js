@@ -23,6 +23,8 @@ import { Ordenes } from "./views/Ordenes";
 import { Ingresos } from "./views/Ingresos";
 import { Egresos } from "./views/Egresos";
 import { Utilidades } from "./views/Utilidades";
+import { ControlStock } from "./views/ControlStock";
+import { PedidoBodega } from "./views/PedidoBodega";
 
 function App() {
   return (
@@ -52,6 +54,8 @@ function App() {
         <Route path="/ingresos" element={<Ingresos/>} />
         <Route path="/egresos" element={<Egresos/>} />
         <Route path="/utilidades" element={<Utilidades/>} />
+        <Route path="/controlStock" element={<ControlStock/>} />
+        <Route path="/pedidoBodega" element={<PedidoBodega/>}/>
         
         
 

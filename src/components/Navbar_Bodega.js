@@ -12,18 +12,18 @@ export const Navbar_Bodega = () => {
             <hr />
             <ul className="nav nav-pills flex-column mb-auto">
                 <li>
-                    <Link to='/'>
+                    <Link to='/controlStock'>
                         <a href="#" className="nav-link text-white active">
                             <i className="fa-solid fa-home m-2" style={{ color: '#ffffff' }}></i>
-                            Productos
+                            Stock de Productos
                         </a>
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link to='/'>
+                    <Link to='/pedidoBodega'>
                         <a href="#" className="nav-link text-white" aria-current="page">
                             <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
-                            Proveedores
+                            Pedido Proveedores
                         </a>
                     </Link>
                 </li>
