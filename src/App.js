@@ -23,7 +23,12 @@ import { Ordenes } from "./views/Ordenes";
 import { Ingresos } from "./views/Ingresos";
 import { Egresos } from "./views/Egresos";
 import { Utilidades } from "./views/Utilidades";
+<<<<<<< HEAD
 import { Registro } from "./views/Registro";
+=======
+import { ControlStock } from "./views/ControlStock";
+import { PedidoBodega } from "./views/PedidoBodega";
+>>>>>>> e1c61ea577e9616efc522f313e2eafe878afa5be
 
 function App() {
   return (
@@ -53,7 +58,12 @@ function App() {
         <Route path="/ingresos" element={<Ingresos/>} />
         <Route path="/egresos" element={<Egresos/>} />
         <Route path="/utilidades" element={<Utilidades/>} />
+<<<<<<< HEAD
         <Route path="/registro" element={<Registro/>} />
+=======
+        <Route path="/controlStock" element={<ControlStock/>} />
+        <Route path="/pedidoBodega" element={<PedidoBodega/>}/>
+>>>>>>> e1c61ea577e9616efc522f313e2eafe878afa5be
         
         
 
