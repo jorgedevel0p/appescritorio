@@ -1,29 +1,29 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-export const Navbar_Cocina = () => {
+export const Navbar_Cliente = () => {
 
     return (
         <div className="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style={{ width: 280, height: '100vh' }}>
             <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                 <svg className="bi pe-none me-2" width="40" height="32"></svg>
-                <span className="fs-4">Cocina</span>
+                <span className="fs-4">Cliente</span>
             </a>
             <hr />
             <ul className="nav nav-pills flex-column mb-auto">
                 <li>
-                    <Link to='/Recetas'>
-                        <a href="#" className="nav-link text-white ">
+                    <Link to='/'>
+                        <a href="#" className="nav-link text-white active">
                             <i className="fa-solid fa-home m-2" style={{ color: '#ffffff' }}></i>
-                            Recetas
+                            Nueva Reserva
                         </a>
                     </Link>
                 </li>
                 <li className="nav-item">
-                    <Link to='/TableroCocina'>
+                    <Link to='/'>
                         <a href="#" className="nav-link text-white" aria-current="page">
                             <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
-                            Tablero
+                            Listado Reservas
                         </a>
                     </Link>
                 </li>
@@ -31,7 +31,7 @@ export const Navbar_Cocina = () => {
                     <Link to='/'>
                         <a href="#" className="nav-link text-white">
                             <i className="fa-solid fa-right-from-bracket m-2" style={{ color: '#ffffff' }}></i>
-                            Cerrar sesion
+                            Cerrar sesión
                         </a>
                     </Link>
                 </li>
@@ -39,7 +39,8 @@ export const Navbar_Cocina = () => {
             <hr />
             <div className="dropdown">
                 <div href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <Link to='/Profile'>
+                    
+                    <Link to='/Profile'>
                         <img src="https://n9.cl/68nqk" alt="" width="32" height="32" className="rounded-circle me-2"  />
                         <strong>Perfil</strong>
                     </Link>

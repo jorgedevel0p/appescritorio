@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react'
-import { Layout_Admin } from '../components/index'
+import React, { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
+import { useNavigate } from "react-router-dom"
+import { Footer } from '../components/Footer'
 import { useHttpRequest } from '../hooks/useHttpRequest'
+import { Layout_Cocina } from '../components'
 import Fondo1080 from "../assets/img/720x120.jpg"
 
 const DEFAULT_STATE = {
@@ -13,124 +16,98 @@ const DEFAULT_STATE = {
     image_plato: '',
 }
 
-export const Platos = () => {
-  const [plato, setPlato] = useState(DEFAULT_STATE)
-  const [platos, setPlatos] = useState([])
-  const [form, setForm] = useState(DEFAULT_STATE)
-  const { isLoading, makeHttpRequest } = useHttpRequest()
-    
-  const handleChange = (e) => {
-      setPlato({
-        ...plato,
-        [e.target.name]: e.target.value
-      })
-  }
-    
-  const getPlatos = () => {
-    makeHttpRequest({
-      operation: '/plato/',
-      data: null,
-      method: 'GET',
-      callback: ({ok, data}) => {
-        if (!ok) {
-            alert(JSON.stringify(data))
-          return
-        }
-        setPlatos(data)
-        console.log(data, 'Listado de Platos recibido')
-      }
-    })
-  }
-    
-  const savePlato = () => {
-    console.log(plato)
-    makeHttpRequest({
-      operation: '/plato/',
-      data: plato,
-      method: 'POST',
-      callback: ({ ok, data }) => {
-        if (!ok) {
-          alert(JSON.stringify(data))
-          return
-        }
-        console.log(data, 'Ha guardado Plato correctamente')
-        getPlatos()
-        resetForm()
-      }
-    })
-  }
-    
-  const updatePlato = (id) => {
-    if (confirm("¿Desea actualizar la información de este plato?") === false) {
-      return
+export const Recetas = () => {
+    const [plato, setPlato] = useState(DEFAULT_STATE)
+    const [platos, setPlatos] = useState([])
+    const [form, setForm] = useState(DEFAULT_STATE)
+    const { isLoading, makeHttpRequest } = useHttpRequest()
+      
+    const handleChange = (e) => {
+        setPlato({
+          ...plato,
+          [e.target.name]: e.target.value
+        })
     }
-    makeHttpRequest({
-      operation: `/plato/${id}`,
-      data: plato,
-      method: 'PUT',
-      callback: ({ ok, data }) => {
-        if (!ok) {
-          alert(JSON.stringify(data))
-          return
+      
+    const getPlatos = () => {
+      makeHttpRequest({
+        operation: '/plato/',
+        data: null,
+        method: 'GET',
+        callback: ({ok, data}) => {
+          if (!ok) {
+              alert(JSON.stringify(data))
+            return
+          }
+          setPlatos(data)
+          console.log(data, 'Listado de Platos recibido')
         }
-        console.log(data, 'Plato se ha actualizado correctamente')
-        getPlatos()
-        resetForm()
-      }
-    })
-  }
-    
-  const setPlatoDataIntoForm = (plato) => {
-    setPlato(plato)
-  }
-    
-  const deletePlato = (id) => {
-    if (confirm("¿Desea eliminar el plato?") === false) {
-      return
-    } 
-    makeHttpRequest({
-      operation: `/plato/${id}`,
-      data: null,
-      method: 'DELETE',
-      callback: ({ ok, data }) => {
-        if (!ok) {
-          alert(JSON.stringify(data))
-          return
+      })
+    }
+      
+    const savePlato = () => {
+      console.log(plato)
+      makeHttpRequest({
+        operation: '/plato/',
+        data: plato,
+        method: 'POST',
+        callback: ({ ok, data }) => {
+          if (!ok) {
+            alert(JSON.stringify(data))
+            return
+          }
+          console.log(data, 'Ha guardado Plato correctamente')
+          getPlatos()
+          resetForm()
         }
-        console.log(dato, 'Se ha eliminado el plato correctamente')
-        getPlatos()
+      })
+    }
+      
+    const updatePlato = (id) => {
+      if (confirm("¿Desea actualizar la información de este plato?") === false) {
+        return
       }
-    })
-  }
+      makeHttpRequest({
+        operation: `/plato/${id}`,
+        data: plato,
+        method: 'PUT',
+        callback: ({ ok, data }) => {
+          if (!ok) {
+            alert(JSON.stringify(data))
+            return
+          }
+          console.log(data, 'Plato se ha actualizado correctamente')
+          getPlatos()
+          resetForm()
+        }
+      })
+    }
+      
+    const setPlatoDataIntoForm = (plato) => {
+      setPlato(plato)
+    }
+      
     
-  const resetForm = () => [
-    setPlato({ ...DEFAULT_STATE })
-  ]
+      
+    const resetForm = () => [
+      setPlato({ ...DEFAULT_STATE })
+    ]
+  
+    useEffect(() => {
+      getPlatos()
+    }, [])
 
-  useEffect(() => {
-    getPlatos()
-  }, [])
-   
-  return (
-    <>
-      <Layout_Admin>
-        <div>
+    return (
+        <>
+            <Layout_Cocina>
+            <div>
           <img src={Fondo1080} className="card-img" height={140} />
         </div>
         <div className='card my-3 mx-4 justify-center'>
           <div className='card-header text-center'>
-            <h2>Platos</h2>
+            <h4>Añadir Receta</h4>
           </div>
-          <div className='card-body'>
-            <input 
-              type='text' 
-              name='id' 
-              className='form-control mb-2' 
-              placeholder='ID Plato' 
-              readOnly={true}
-              value={plato.id}
-              onChange={handleChange}>
-            </input>
+          <div className='card-body'>            
             <input 
               type='text' 
               name='name' 
@@ -154,11 +131,12 @@ export const Platos = () => {
               placeholder='Receta'
               value={plato.recipe}
               onChange={handleChange}>
-            </input>
+            </input> 
             <input 
               type='number' 
               name='value' 
               className='form-control mb-2' 
+              min={0}
               placeholder='Valor'
               value={plato.value}
               onChange={handleChange}>
@@ -173,7 +151,7 @@ export const Platos = () => {
                 <option value="Entrada">Entrada</option>
                 <option value="Fondo">Fondo</option>
                 <option value="Postre">Postre</option>
-            </select>  
+            </select>
             <input 
                 type='url' 
                 name='image_plato' 
@@ -182,7 +160,7 @@ export const Platos = () => {
                 placeholder='Imagen'
                 value={plato.image_plato}
                 onChange={handleChange}>
-            </input> 
+            </input>  
             <div className='col-md-12 text-center my-3 ' >
               {
                 !plato.id
@@ -190,7 +168,7 @@ export const Platos = () => {
                     type='button' 
                     className='col-md-2 btn btn-success mx-3' 
                     onClick={savePlato}>
-                      Guardar
+                      Añadir
                   </button>
                   :<button 
                     type='button' 
@@ -211,26 +189,23 @@ export const Platos = () => {
         <hr className='mt-4 m-4'></hr>
         <div className='card my-3 mx-4 justify-center'>
           <div className='card-header text-center'>
-            <h2>Listado de Platos</h2>
+            <h4>Recetas</h4>
           </div>
           <div className='card-body'>
             <table className='table'>
               <thead>
                 <tr>
-                  <th scope='col'>ID</th>
                   <th scope='col'>Nombre</th>
                   <th scope='col'>Descripción</th>
                   <th scope='col'>Receta</th>
                   <th scope='col'>Valor</th>
                   <th scope='col'>Tipo de Plato</th>
                   <th scope='col'>Editar</th>
-                  <th scope='col'>Eliminar</th>
                 </tr>
               </thead>
               <tbody className='table-group-divider'>
                 {platos.map(plato => (
                 <tr>
-                  <th scope='row'>{plato.id}</th>
                   <td>{plato.name}</td>
                   <td>{plato.description}</td>
                   <td>{plato.recipe}</td>
@@ -246,23 +221,18 @@ export const Platos = () => {
                       </i>
                     </button>
                   </td>
-                  <td>
-                    <button 
-                        type='button' 
-                        className='btn btn-danger btn-xs' 
-                        onClick={() => deletePlato(plato.id)}>
-                        <i 
-                            className="fa-solid fa-trash">
-                        </i>
-                    </button>
-                  </td>
+                  
                 </tr>
                 ))}
               </tbody>
             </table>
           </div>
         </div>
-      </Layout_Admin>
-    </>
-  )
+
+
+            </Layout_Cocina>
+            <Footer />
+        </>
+    )
+
 }

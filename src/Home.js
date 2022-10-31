@@ -11,7 +11,7 @@ export const Home = () => {
                     className="card-img" 
                     height={140} />
                     </div>
-                    <h1 class="text-center mt-3">
+                    <h1 className="text-center mt-3">
           Modulo Administrador
         </h1>
         <div >

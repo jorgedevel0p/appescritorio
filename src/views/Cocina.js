@@ -14,10 +14,10 @@ export const Cocinas = () => {
                 <div className="container-fluid justify-center">
                     <div className="row">
                         <div className="col-12">
-                            <Link to='/' className="btn btn-primary">Modulo de Recetas</Link>
+                            <Link to='/Recetas' className="btn btn-primary">Modulo de Recetas</Link>
                         </div>
                         <div className="col-12 my-4">
-                            <Link to='/' className="btn btn-primary">Modulo de Pedidos</Link>
+                            <Link to='/TableroCocina' className="btn btn-primary">Modulo de Pedidos</Link>
                         </div>
                     </div>
                 </div>

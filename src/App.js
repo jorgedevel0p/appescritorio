@@ -26,6 +26,9 @@ import { Utilidades } from "./views/Utilidades";
 import { Registro } from "./views/Registro";
 import { ControlStock } from "./views/ControlStock";
 import { PedidoBodega } from "./views/PedidoBodega";
+import { Profile } from "./views/Profile";
+import { Recetas } from "./views/Recetas";
+import { TableroCocina } from "./views/TableroCocina";
 
 
 function App() {
@@ -59,6 +62,9 @@ function App() {
         <Route path="/registro" element={<Registro/>} />
         <Route path="/controlStock" element={<ControlStock/>} />
         <Route path="/pedidoBodega" element={<PedidoBodega/>}/>
+        <Route path="/profile" element={<Profile/>}/>
+        <Route path="/recetas" element={<Recetas/>}/>
+        <Route path="/tableroCocina" element={<TableroCocina/>}/>
         
         
 

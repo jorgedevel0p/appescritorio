@@ -1,12 +1,14 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useNavigate } from "react-router-dom"
+import { Layout_Cliente } from '../components'
 import { Footer } from '../components/Footer'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 
 export const Clientes = () => {
     return (
         <>
+        <Layout_Cliente>
             {/* <Link to='/home' className="btn btn-secondary right my-3 ml-5">Volver al home</Link> */}
             <h1 className="text-center">Mi Cuenta</h1>
             <div className="my-5 text-center">
@@ -25,6 +27,7 @@ export const Clientes = () => {
                     </div>
                 </div>
             </div>
+            </Layout_Cliente>
             <Footer />
         </>
     )

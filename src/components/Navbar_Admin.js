@@ -31,7 +31,7 @@ export const Navbar_Admin = () => {
         <li className="nav-item">
           <Link to='/Mesas'>
             <a href="#" className="nav-link text-white" aria-current="page">
-              <i class="fa-solid fa-table m-2" style={{ color: '#ffffff' }}></i>
+              <i className="fa-solid fa-table m-2" style={{ color: '#ffffff' }}></i>
               Mesas
             </a>
           </Link>
@@ -40,7 +40,7 @@ export const Navbar_Admin = () => {
         <li className="nav-item">
           <Link to='/Reservas'>
             <a href="#" className="nav-link text-white" aria-current="page">
-              <i class="fa-regular fa-calendar-check m-2" style={{ color: '#ffffff' }}></i>
+              <i className="fa-regular fa-calendar-check m-2" style={{ color: '#ffffff' }}></i>
               Reservas
             </a>
           </Link>
@@ -49,7 +49,7 @@ export const Navbar_Admin = () => {
         <li className="nav-item">
           <Link to='/Ordenes'>
             <a href="#" className="nav-link text-white" aria-current="page">
-              <i class="fa-solid fa-arrow-up-wide-short m-2" style={{ color: '#ffffff' }}></i>
+              <i className="fa-solid fa-arrow-up-wide-short m-2" style={{ color: '#ffffff' }}></i>
               Ordenes
             </a>
           </Link>
@@ -76,7 +76,7 @@ export const Navbar_Admin = () => {
         <li className="nav-item">
           <Link to='/Ingredientes'>
             <a href="#" className="nav-link text-white" aria-current="page">
-              <i class="fa-solid fa-carrot m-2" style={{ color: '#ffffff' }}></i>
+              <i className="fa-solid fa-carrot m-2" style={{ color: '#ffffff' }}></i>
               Ingredientes
             </a>
           </Link>
@@ -94,7 +94,7 @@ export const Navbar_Admin = () => {
         <li className="nav-item">
           <Link to='/Proveedores'>
             <a href="#" className="nav-link text-white" aria-current="page">
-              <i class="fa-solid fa-truck-field-un m-2" style={{ color: '#ffffff' }}></i>
+              <i className="fa-solid fa-truck-field-un m-2" style={{ color: '#ffffff' }}></i>
               Proveedores
             </a>
           </Link>
@@ -111,7 +111,7 @@ export const Navbar_Admin = () => {
         <li className='nav-item'>
           <Link to='/DetallePedidos'>
             <a href="#" className="nav-link text-white">
-              <i class="fa-solid fa-list-check m-2" style={{ color: '#ffffff' }}></i>
+              <i className="fa-solid fa-list-check m-2" style={{ color: '#ffffff' }}></i>
               Detalle Pedido Proveedor
             </a>
           </Link>
@@ -138,7 +138,7 @@ export const Navbar_Admin = () => {
         <li className='nav-item'>
           <Link to='/MovimientoCaja'>
             <a href="#" className="nav-link text-white">
-              <i class="fa-solid fa-cash-register m-2" style={{ color: '#ffffff' }}></i>
+              <i className="fa-solid fa-cash-register m-2" style={{ color: '#ffffff' }}></i>
               Movimiento Caja
             </a>
           </Link>
@@ -167,8 +167,10 @@ export const Navbar_Admin = () => {
 
       <div className="dropdown">
         <div href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-          <img src="https://github.com/mdo.png" alt="" width="32" height="32" className="rounded-circle me-2" />
-          <strong>Perfil</strong>
+        <Link to='/Profile'>
+                        <img src="https://n9.cl/68nqk" alt="" width="32" height="32" className="rounded-circle me-2"  />
+                        <strong>Perfil</strong>
+                    </Link>
         </div>
         <ul className="dropdown-menu dropdown-menu-dark text-small shadow">
           <li>New project...</li>

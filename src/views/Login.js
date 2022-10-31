@@ -4,6 +4,8 @@ import { Navbar } from '../components/Navbar_Admin'
 import { Footer } from '../components/Footer'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 
+
+
 export const Login = () => {
   const navigate = useNavigate()
   const { isLoading, error, makeHttpRequest } = useHttpRequest()
@@ -19,6 +21,7 @@ export const Login = () => {
 
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
+  
 
   const handleUsername = (evento) => {
     const value = evento.target.value
@@ -35,7 +38,9 @@ export const Login = () => {
 
     const data = {
       username: username,
-      password: password
+      password: password,
+      
+
     }
 
     makeHttpRequest({
@@ -50,6 +55,8 @@ export const Login = () => {
         }
         localStorage.setItem('type_user', data.type)
         localStorage.setItem('token', data.access)
+        console.log({data})
+        
         console.log(data.type)
 
         const routeToNavigate = ROUTES_DEPEND_ON_TYPE[data.type]
@@ -95,7 +102,7 @@ export const Login = () => {
                         </div>)
                         : (<button className="btn btn-primary btn-block" onClick={handleSubmit} /* disabled={!username || !password} */>Ingresar</button>)
                     }
-                  </div>
+                  </div>  
 
                 </form>
 
