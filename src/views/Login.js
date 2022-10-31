@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { useNavigate } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import { Navbar } from '../components/Navbar_Admin'
 import { Footer } from '../components/Footer'
 import { useHttpRequest } from '../hooks/useHttpRequest'
@@ -101,7 +101,9 @@ export const Login = () => {
                 {/* <p className="text-center">O</p> */}
 
                 <div className="form-group mt-4 text-center">
-                  <a href="#" className="btn btn-success btn-block">Registrarse</a>
+                  <Link to='/Registro'>
+                    <a href="#" className="btn btn-success btn-block ">Registrarse</a>
+                  </Link>
                 </div>
 
               </div>

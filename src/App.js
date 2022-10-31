@@ -23,6 +23,7 @@ import { Ordenes } from "./views/Ordenes";
 import { Ingresos } from "./views/Ingresos";
 import { Egresos } from "./views/Egresos";
 import { Utilidades } from "./views/Utilidades";
+import { Registro } from "./views/Registro";
 
 function App() {
   return (
@@ -52,6 +53,7 @@ function App() {
         <Route path="/ingresos" element={<Ingresos/>} />
         <Route path="/egresos" element={<Egresos/>} />
         <Route path="/utilidades" element={<Utilidades/>} />
+        <Route path="/registro" element={<Registro/>} />
         
         
 

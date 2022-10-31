@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { Layout_Finanzas } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import Fondo1080 from "../assets/img/720x120.jpg"
-import DataTable, {createTheme} from 'react-data-table-component'
+import DataTable from 'react-data-table-component'
 import 'style-components'
 
 
