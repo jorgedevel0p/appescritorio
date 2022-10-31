@@ -19,6 +19,8 @@ export const Users = () => {
   const [usuarios, setUsuarios] = useState([])
   const [form, setForm] = useState(DEFAULT_STATE)
 
+  
+
   const handleChange = (e) => {
     setForm({
       ...form,
@@ -59,7 +61,7 @@ export const Users = () => {
         resetForm()
       }
     })
-  }
+  } 
 
   const updateUser = (id) => {
     if (confirm("¿Desea actualizar la información de este usuario?") === false) {

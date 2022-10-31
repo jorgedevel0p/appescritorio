@@ -10,14 +10,23 @@ const DEFAULT_STATE = {
     name: '',
     last_name: '',
     email: '',
-    type: '',
+    type: 'Cliente',
     password: '',
 }
 
 export const Registro = () => {
+    const navigate = useNavigate()
     const { isLoading, error, makeHttpRequest } = useHttpRequest()
     const [usuarios, setUsuarios] = useState([])
     const [form, setForm] = useState(DEFAULT_STATE)
+
+    const ROUTES_DEPEND_ON_TYPE = {
+      Cliente: '/clientes',
+      Admin: '/home',
+      Bodega: '/bodegas',
+      Finanzas: '/finanzas',
+      Cocina: '/cocinas',
+    }   
 
     const handleChange = (e) => {
       setForm({
@@ -26,22 +35,27 @@ export const Registro = () => {
       })
     }
 
-    const saveUser = () => {
-        console.log(form)
-        makeHttpRequest({
-          operation: '/user/',
-          data: form,
-          method: 'POST',
-          callback: ({ ok, data }) => {
-            if (!ok) {
-              alert(JSON.stringify(data))
-              return
-            }
-            console.log(data, 'Ha guardado Usuario correctamente')
-            getUsers()
-            resetForm()
+    const handleSubmit = (evento) => {
+      evento.preventDefault()
+      console.log(form)  
+      
+      makeHttpRequest({
+        operation: '/user/',
+        data: form,
+        method: 'POST', 
+        callback: ({ ok, data }) => {
+          if (!ok) { 
+            alert(JSON.stringify(data))            
+            return
           }
-        })
+          console.log(data, 'Ha guardado Usuario correctamente')
+          
+          const routeToNavigate = ROUTES_DEPEND_ON_TYPE[form.type]
+        console.log(routeToNavigate)
+        navigate(routeToNavigate)
+        
+        }
+      })
     }
 
 
@@ -98,7 +112,7 @@ export const Registro = () => {
                       type='email' 
                       className='form-control mb-2' 
                       value={form.email} 
-                      name='Email'
+                      name='email'
                       onChange={handleChange} 
                     />
                   </div>
@@ -121,7 +135,7 @@ export const Registro = () => {
                       <button 
                         type='button' 
                         className='btn col-6 btn-primary btn-block' 
-                        onClick={saveUser}>
+                        onClick={handleSubmit}>
                           Guardar
                       </button>                  
                     </div>
