@@ -9,7 +9,7 @@ const DEFAULT_STATE = {
   number_name: '',
   available: '',
   capacity: '',
-  user:'',
+  user : '',
 }
 
 export const Mesas = () => {
@@ -154,14 +154,14 @@ export const Mesas = () => {
                 type='text' 
                 name='number_name' 
                 className='form-control mb-2' 
-                value={mesa.number_name} 
+                value={mesa.number_name}  
                 placeholder='N° Mesa' 
                 onChange={handleChange} />
               <input 
-                type='text' 
-                name='user id' 
+                type='number' 
+                name='user' 
                 className='form-control mb-2' 
-                value={mesa.user} 
+                value={mesa.user}
                 placeholder='ID User' 
                 onChange={handleChange} 
               />
@@ -172,8 +172,8 @@ export const Mesas = () => {
                 value={mesa.available}
                 onChange={handleChange}>
                   <option disabled selected>Disponibilidad Mesa</option>
-                  <option value="0">Disponible</option>
-                  <option value="1">No Disponible</option>
+                  <option value={1}>Disponible</option>
+                  <option value={0}>No Disponible</option>
               </select>
               {/* <div className="form-check">
                 <input
