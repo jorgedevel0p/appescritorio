@@ -7,8 +7,8 @@ import Fondo1080 from "../assets/img/720x120.jpg"
 const DEFAULT_STATE = {
     id:'',
     date:'',
-    pedido_proveedor_id:'',
-    proveedor_id:'',
+    pedido_proveedor:'',
+    proveedor:'',
 }
 
 export const Facturas = () => {
@@ -151,18 +151,18 @@ export const Facturas = () => {
                     </input>
                     <input 
                         type='number' 
-                        name='pedido_prov id' 
+                        name='pedido_proveedor' 
                         className='form-control mb-2'
                         placeholder='Pedido Proveedor ID'
-                        value={factura.pedido_proveedor_id}
+                        value={factura.pedido_proveedor}
                         onChange={handleChange}>
                     </input>
                     <input 
                         type='number' 
-                        name='proveedor id' 
+                        name='proveedor' 
                         className='form-control mb-2'
                         placeholder='Proveedor ID'
-                        value={factura.proveedor_id}
+                        value={factura.proveedor}
                         onChange={handleChange}>
                     </input>
                     <div className='col-md-12 text-center my-3 ' >
@@ -212,8 +212,8 @@ export const Facturas = () => {
                                 <tr>
                                     <th scope="row">{factura.id}</th>
                                     <td>{factura.date}</td>
-                                    <td>{factura.pedido_proveedor_id}</td>
-                                    <td>{factura.proveedor_id}</td>
+                                    <td>{factura.pedido_proveedor}</td>
+                                    <td>{factura.proveedor}</td>
                                     <td>
                                         <button 
                                             type='button' 

@@ -6,8 +6,8 @@ import Fondo1080 from "../assets/img/720x120.jpg"
 const DEFAULT_STATE = {
     id: '',
     status: '',
-    mesa_id: '',
-    user_id: '',
+    mesa: '',
+    user: '',
 }
 
 export const Reservas = () => {
@@ -141,18 +141,18 @@ export const Reservas = () => {
                     </select>
                     <input 
                         type='number' 
-                        name='mesa_id' 
+                        name='mesa' 
                         className='form-control mb-2' 
                         placeholder='ID Mesa' 
-                        value={reserva.mesa_id}
+                        value={reserva.mesa}
                         onChange={handleChange}>
                     </input>
                     <input 
                         type='number' 
-                        name='user_id' 
+                        name='user' 
                         className='form-control mb-2' 
                         placeholder='ID Usuario'
-                        value={reserva.user_id}
+                        value={reserva.user}
                         onChange={handleChange}>
                     </input>
                     <div className='col-md-12 text-center my-3 ' >
@@ -202,8 +202,8 @@ export const Reservas = () => {
                                 <tr>
                                     <th scope='row'>{reserva.id}</th>
                                     <td>{reserva.status}</td>
-                                    <td>{reserva.mesa_id}</td>
-                                    <td>{reserva.user_id}</td>
+                                    <td>{reserva.mesa}</td>
+                                    <td>{reserva.user}</td>
                                     <td>
                                         <button 
                                         type='button' 

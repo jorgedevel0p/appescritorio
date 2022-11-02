@@ -8,7 +8,7 @@ const DEFAULT_STATE = {
     name: '',
     email:'',
     phone:'',
-    state:'',
+    state: ''
 }
 
 export const Proveedores = () => {
@@ -162,10 +162,11 @@ export const Proveedores = () => {
                         type='text' 
                         name='state' 
                         className='form-control mb-2'
-                        value={proveedor.state}>
-                            <option disabled selected>Estado Proveedor</option>
-                            <option value="0">Inactivo</option>
-                            <option value="1">Activo</option>
+                        value={proveedor.state}
+                        onChange={handleChange}>
+                            <option disabled selected>Estado</option>
+                            <option value={0}>Proveedor Inactivo</option>
+                            <option value={1}>Proveedor Activo</option>
                     </select>
                     <div className='col-md-12 text-center my-3 ' >
                         {

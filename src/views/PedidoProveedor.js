@@ -10,7 +10,7 @@ const DEFAULT_STATE = {
     time:'',
     total_value:'',
     state:'',
-    proveedor_id:'',
+    proveedor:'',
 }
 
 export const PedidoProveedor = () => {
@@ -161,7 +161,7 @@ export const PedidoProveedor = () => {
                     </input>
                     <input 
                         type='text' 
-                        name='total value' 
+                        name='total_value' 
                         className='form-control mb-2'
                         placeholder='Valor Total'
                         value={pedidoProv.total_value}
@@ -174,9 +174,9 @@ export const PedidoProveedor = () => {
                         value={pedidoProv.state}
                         onChange={handleChange}>
                             <option disabled selected>Estado</option>
-                            <option value="Efectivo">Pagado</option>
-                            <option value="Credito">Pendiente</option>
-                            <option value="Debito">Cancelado</option>
+                            <option value="Pagado">Pagado</option>
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="Cancelado">Cancelado</option>
                     </select>
                     <input
                         type='text'
@@ -238,7 +238,7 @@ export const PedidoProveedor = () => {
                                 <td>{pedidoProv.time}</td>
                                 <td>{pedidoProv.total_value}</td>
                                 <td>{pedidoProv.state}</td>
-                                <td>{pedidoProv.proveedor_id}</td>
+                                <td>{pedidoProv.proveedor}</td>
                                 <td>
                                 <button 
                                     type='button' 

@@ -8,8 +8,8 @@ const DEFAULT_STATE = {
     id:'',
     date_mov:'',
     initial_balance:'',
-    boleta_id:'',
-    factura_id:'',
+    boleta:'',
+    factura:'',
 }
 
 export const MovimientoCaja = () => {
@@ -142,7 +142,7 @@ export const MovimientoCaja = () => {
                     </input>
                     <input
                         type='date'
-                        name='date'
+                        name='date_mov'
                         className='form-control mb-2'
                         placeholder='Fecha'
                         value={movimientoCaja.date_mov}
@@ -150,7 +150,7 @@ export const MovimientoCaja = () => {
                     </input>
                     <input 
                         type='number' 
-                        name='balance' 
+                        name='initial_balance' 
                         className='form-control mb-2'
                         placeholder='Saldo Inicial'
                         value={movimientoCaja.initial_balance}
@@ -158,10 +158,10 @@ export const MovimientoCaja = () => {
                     </input>
                     <input 
                         type='number' 
-                        name='boleta_id' 
+                        name='boleta' 
                         className='form-control mb-2'
                         placeholder='ID Boleta'
-                        value={movimientoCaja.boleta_id}
+                        value={movimientoCaja.boleta}
                         onChange={handleChange}>
                     </input>
                     <input
@@ -169,7 +169,7 @@ export const MovimientoCaja = () => {
                         name='factura_id'
                         className='form-control mb-2'
                         placeholder='ID Factura'
-                        value={movimientoCaja.factura_id}
+                        value={movimientoCaja.factura}
                         onChange={handleChange}>                          
                     </input>
                     <div className='col-md-12 text-center my-3 ' >
@@ -221,8 +221,8 @@ export const MovimientoCaja = () => {
                                     <th scope="row">{movimientoCaja.id}</th>
                                     <td>{movimientoCaja.date_mov}</td>
                                     <td>{movimientoCaja.initial_balance}</td>
-                                    <td>{movimientoCaja.boleta_id}</td>
-                                    <td>{movimientoCaja.factura_id}</td>
+                                    <td>{movimientoCaja.boleta}</td>
+                                    <td>{movimientoCaja.factura}</td>
                                     <td>
                                         <button 
                                             type='button' 

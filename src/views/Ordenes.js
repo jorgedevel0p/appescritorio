@@ -9,7 +9,7 @@ const DEFAULT_STATE = {
     time: '',
     number_people: '',
     state: '',
-    mesa_id: '',
+    mesa: '',
 }
 
 export const Ordenes = () => {
@@ -166,10 +166,10 @@ export const Ordenes = () => {
                     </select>
                     <input 
                         type='number' 
-                        name='mesa_id' 
+                        name='mesa' 
                         className='form-control mb-2' 
                         placeholder='ID Mesa'
-                        value={orden.mesa_id}
+                        value={orden.mesa}
                         onChange={handleChange}>
                     </input>
                     <div className='col-md-12 text-center my-3 ' >
@@ -224,7 +224,7 @@ export const Ordenes = () => {
                                     <td>{orden.time}</td>
                                     <td>{orden.number_people}</td>
                                     <td>{orden.state}</td>
-                                    <td>{orden.mesa_id}</td>
+                                    <td>{orden.mesa}</td>
                                     <td>
                                     <button 
                                         type='button' 

@@ -12,8 +12,8 @@ const DEFAULT_STATE = {
     date:'',
     time:'',
     state:'',
-    orden_id:'',
-    user_id:'',
+    orden:'',
+    user:'',
 }
 
 export const Boletas = () => {
@@ -135,14 +135,14 @@ export const Boletas = () => {
                     </input>
                     <input 
                         type='number' 
-                        name='valor' 
+                        name='value' 
                         className='form-control mb-2'
                         placeholder='Valor Boleta'
                         value={boleta.value}
                         onChange={handleChange}>
                     </input>
                     <input 
-                        type='text' 
+                        type='number' 
                         name='tip' 
                         className='form-control mb-2'
                         placeholder='Propina'
@@ -188,11 +188,11 @@ export const Boletas = () => {
                             <option value="Debito">Cancelado</option>
                     </select>
                     <input
-                        type='text'
+                        type='number'
                         name='orden'
                         className='form-control mb-2'
                         placeholder='ID Orden'
-                        value={boleta.orden_id}
+                        value={boleta.orden}
                         onChange={handleChange}>                            
                     </input>
                     <input
@@ -200,7 +200,7 @@ export const Boletas = () => {
                         name='user'
                         className='form-control mb-2'
                         placeholder='ID User'
-                        value={boleta.user_id}
+                        value={boleta.user}
                         onChange={handleChange}>                            
                     </input>
                     <div className='col-md-12 text-center my-3 ' >
@@ -260,8 +260,8 @@ export const Boletas = () => {
                                 <td>{bol.date}</td>
                                 <td>{bol.time}</td>
                                 <td>{bol.state}</td>
-                                <td>{bol.orden_id}</td>
-                                <td>{bol.user_id}</td>                                
+                                <td>{bol.orden}</td>
+                                <td>{bol.user}</td>                                
                                 <td>
                                 <button 
                                     type='button' 

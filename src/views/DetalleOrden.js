@@ -7,9 +7,9 @@ import Fondo1080 from "../assets/img/720x120.jpg"
 const DEFAULT_STATE = {
     id: '',
     number_dish:'',
-    orden_id:'',
-    plato_id:'',
-    producto_id:'',
+    orden:'',
+    plato:'',
+    producto:'',
 }
 
 export const DetalleOrden = () => {
@@ -141,7 +141,7 @@ export const DetalleOrden = () => {
                     </input>
                     <input 
                         type='number' 
-                        name='cantidad' 
+                        name='number_dish' 
                         className='form-control mb-2'
                         placeholder='Cantidad Platos'
                         value={detalleOrden.number_dish}
@@ -152,7 +152,7 @@ export const DetalleOrden = () => {
                         name='orden'
                         className='form-control mb-2'
                         placeholder='ID Orden'
-                        value={detalleOrden.orden_id}
+                        value={detalleOrden.orden}
                         onChange={handleChange}>                             
                     </input>
                     <input
@@ -160,7 +160,7 @@ export const DetalleOrden = () => {
                         name='plato'
                         className='form-control mb-2'
                         placeholder='ID Plato'
-                        value={detalleOrden.plato_id}
+                        value={detalleOrden.plato}
                         onChange={handleChange}>                            
                     </input>
                     <input
@@ -168,7 +168,7 @@ export const DetalleOrden = () => {
                         name='producto'
                         className='form-control mb-2'
                         placeholder='ID Producto'
-                        value={detalleOrden.producto_id}
+                        value={detalleOrden.producto}
                         onChange={handleChange}>                            
                     </input>
                     <div className='col-md-12 text-center my-3 ' >
@@ -220,9 +220,9 @@ export const DetalleOrden = () => {
                             <tr>
                                 <th scope="row">{detalleOrden.id}</th>
                                 <td>{detalleOrden.number_dish}</td>
-                                <td>{detalleOrden.orden_id}</td>
-                                <td>{detalleOrden.plato_id}</td>
-                                <td>{detalleOrden.producto_id}</td>
+                                <td>{detalleOrden.orden}</td>
+                                <td>{detalleOrden.plato}</td>
+                                <td>{detalleOrden.producto}</td>
                                 <td>
                                 <button 
                                     type='button' 

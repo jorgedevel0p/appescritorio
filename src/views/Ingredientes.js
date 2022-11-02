@@ -7,8 +7,8 @@ const DEFAULT_STATE = {
     id: '',
     name_ingredient: '',
     quantity: '',
-    plato_id:'',
-    producto_id:'',
+    plato:'',
+    producto:'',
 }
 
 export const Ingredientes = () => {
@@ -154,18 +154,18 @@ export const Ingredientes = () => {
                     </input>
                     <input 
                         type='number' 
-                        name='plato_id' 
+                        name='plato' 
                         className='form-control mb-2' 
                         placeholder='Plato ID' 
-                        value={ingrediente.plato_id}
+                        value={ingrediente.plato}
                         onChange={handleChange}>                            
                     </input>
                     <input 
                         type='number' 
-                        name='producto_id' 
+                        name='producto' 
                         className='form-control mb-2' 
                         placeholder='Producto ID'
-                        value={ingrediente.producto_id}
+                        value={ingrediente.producto}
                         onChange={handleChange}>                            
                     </input>
                     <div className='col-md-12 text-center my-3 ' >
@@ -217,8 +217,8 @@ export const Ingredientes = () => {
                                 <th scope="row">{ing.id}</th>
                                 <td>{ing.name_ingredient}</td>
                                 <td>{ing.quantity}</td>
-                                <td>{ing.plato_id}</td>
-                                <td>{ing.producto_id}</td>
+                                <td>{ing.plato}</td>
+                                <td>{ing.producto}</td>
                                 <td>
                                 <button 
                                     type='button' 

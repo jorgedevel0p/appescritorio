@@ -129,7 +129,7 @@ export const Cajas = () => {
                     </input>
                     <input 
                         type='number' 
-                        name='daily_total_valor' 
+                        name='daily_total_value' 
                         className='form-control mb-2' 
                         placeholder='Total Diario'
                         value={caja.daily_total_value}

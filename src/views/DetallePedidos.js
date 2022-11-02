@@ -8,8 +8,8 @@ const DEFAULT_STATE = {
     id: '',
     value: '',
     quantity: '',
-    pedido_proveedor_id:'',
-    producto_id:'',
+    pedido_proveedor:'',
+    producto:'',
 }
 
 export const DetallePedidos = () => {
@@ -142,7 +142,7 @@ export const DetallePedidos = () => {
                     </input>
                     <input 
                         type='number' 
-                        name='valor' 
+                        name='value' 
                         className='form-control mb-2'
                         placeholder='Valor Pedido'
                         value={detallePedido.value}
@@ -158,10 +158,10 @@ export const DetallePedidos = () => {
                     </input>        
                     <input
                         type='number'
-                        name='pedido_prov id'
+                        name='pedido_proveedor'
                         className='form-control mb-2'
                         placeholder='ID Pedido Proveedor'
-                        value={detallePedido.pedido_proveedor_id}
+                        value={detallePedido.pedido_proveedor}
                         onChange={handleChange}>                           
                     </input>
                     <input
@@ -169,7 +169,7 @@ export const DetallePedidos = () => {
                         name='producto'
                         className='form-control mb-2'
                         placeholder='ID Producto'
-                        value={detallePedido.producto_id}
+                        value={detallePedido.producto}
                         onChange={handleChange}>                            
                     </input>
                     <div className='col-md-12 text-center my-3 ' >
@@ -222,8 +222,8 @@ export const DetallePedidos = () => {
                                     <th scope="row">{detallePedido.id}</th>
                                     <td>{detallePedido.value}</td>
                                     <td>{detallePedido.quantity}</td>
-                                    <td>{detallePedido.pedido_proveedor_id}</td>
-                                    <td>{detallePedido.producto_id}</td>
+                                    <td>{detallePedido.pedido_proveedor}</td>
+                                    <td>{detallePedido.producto}</td>
                                     <td>
                                         <button 
                                             type='button' 
