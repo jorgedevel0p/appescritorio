@@ -60,7 +60,7 @@ export const Ingresos = () => {
         },
         {
             name: 'ID Usuario',
-            selector: row => row.user_id
+            selector: row => row.user
         },
     ]
 

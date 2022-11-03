@@ -29,6 +29,8 @@ import { PedidoBodega } from "./views/PedidoBodega";
 import { Profile } from "./views/Profile";
 import { Recetas } from "./views/Recetas";
 import { TableroCocina } from "./views/TableroCocina";
+import { ReservaWeb } from "./views/ReservaWeb";
+import { ReservasCliente } from "./views/ReservasCliente";
 
 
 function App() {
@@ -65,6 +67,8 @@ function App() {
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/recetas" element={<Recetas/>}/>
         <Route path="/tableroCocina" element={<TableroCocina/>}/>
+        <Route path="/reservaWeb" element = {<ReservaWeb/>}/>
+        <Route path="/reservasCliente" element = {<ReservasCliente/>}/>
         
         
 

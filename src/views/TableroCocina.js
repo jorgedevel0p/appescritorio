@@ -9,9 +9,13 @@ export const TableroCocina = () => {
     return (
         <>
             <Layout_Cocina>
-                
 
             </Layout_Cocina>
+            <div>
+                <img src={Fondo1080}
+                    className="card-img"
+                    height={140} />
+            </div>
             <Footer />
         </>
     )

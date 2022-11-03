@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react'
-import { Layout_Bodega } from '../components/index'
+import { Footer, Layout_Bodega } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import Fondo1080 from "../assets/img/Bodega_720x120.jpg"
 import DataTable from 'react-data-table-component'
@@ -63,21 +63,21 @@ export const ControlStock = () => {
     ]
 
     return (
-        <Layout_Bodega>
-            <div>
-                <img src={Fondo1080} className="card-img" height={140} />
-            </div>
 
-            <div className="card-header text-center">
-                <h2>Control de Stock</h2>
-            </div>
-            <div className="card-body">
-                <DataTable
-                    columns={columns}
-                    data={productos}
-                    pagination
-                />
-            </div>
-        </Layout_Bodega >
+            <Layout_Bodega>
+                <div>
+                    <img src={Fondo1080} className="card-img" height={140} />
+                </div>
+                <div className="card-header text-center my-4">
+                    <h2>Control de Stock</h2>
+                </div>
+                <div className="card-body">
+                    <DataTable
+                        columns={columns}
+                        data={productos}
+                        pagination
+                    />
+                </div>
+            </Layout_Bodega>
     )
 }

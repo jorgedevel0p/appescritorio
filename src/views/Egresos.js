@@ -55,7 +55,7 @@ export const Egresos = () => {
         },
         {
             name: 'ID Proveedor',
-            selector: row => row.proveedor_id
+            selector: row => row.proveedor
         },
     ]
 
