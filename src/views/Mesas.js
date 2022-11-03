@@ -194,7 +194,7 @@ export const Mesas = () => {
               Listado Mesas
             </h2>
           </div>
-          <div className="card-body">
+          <div className="card-body text-center">
             <table className="table">
               <thead>
                 <tr>

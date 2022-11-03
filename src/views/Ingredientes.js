@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useContext } from 'react'
 import { Layout_Admin } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import Fondo1080 from "../assets/img/720x120.jpg"
+import restaurantContext from '../context/restaurantContext'
 
 const DEFAULT_STATE = {
     id: '',
@@ -12,7 +13,7 @@ const DEFAULT_STATE = {
 }
 
 export const Ingredientes = () => {
-
+  const { productos, platos, getProductosById, getPlatosById } = useContext(restaurantContext)
     const [ingrediente, setIngrediente] = useState(DEFAULT_STATE)
     const [ingredientes, setIngredientes] = useState([])
     const { isLoading, makeHttpRequest } = useHttpRequest()
@@ -152,22 +153,36 @@ export const Ingredientes = () => {
                         placeholder='Cantidad'
                         value={ingrediente.quantity}>                            
                     </input>
-                    <input 
-                        type='number' 
-                        name='plato' 
-                        className='form-control mb-2' 
-                        placeholder='Plato ID' 
-                        value={ingrediente.plato}
-                        onChange={handleChange}>                            
-                    </input>
-                    <input 
-                        type='number' 
-                        name='producto' 
-                        className='form-control mb-2' 
-                        placeholder='Producto ID'
-                        value={ingrediente.producto}
-                        onChange={handleChange}>                            
-                    </input>
+                    <div className="col mb-3">
+                                <label for="user" class="form-label">Plato</label>
+                                <select
+                                    type='text'
+                                    name='plato'
+                                    className='form-control'
+                                    value={ingrediente.plato}
+                                    onChange={handleChange}
+                                >
+                                    <option value='' disabled selected>Plato</option>
+                                    {platos.data.map(plato => (
+                                        <option value={plato.id}>{plato.name}</option>
+                                    ))}
+                                </select>
+                            </div>                
+                    <div className="col mb-3">
+                                <label for="user" class="form-label">Producto</label>
+                                <select
+                                    type='text'
+                                    name='producto'
+                                    className='form-control'
+                                    value={ingrediente.producto}
+                                    onChange={handleChange}
+                                >
+                                    <option value='' disabled selected>Producto</option>
+                                    {productos.data.map(prod => (
+                                        <option value={prod.id}>{prod.name}</option>
+                                    ))}
+                                </select>
+                            </div>
                     <div className='col-md-12 text-center my-3 ' >
                         {
                         !ingrediente.id
@@ -198,15 +213,15 @@ export const Ingredientes = () => {
                 <div className='card-header text-center'>
                     <h2>Listado de Ingredientes</h2>
                 </div>
-                <div className='card-body'>
+                <div className='card-body text-center'>
                     <table className='table'>
                         <thead>
                             <tr>
                                 <th scope='col'>ID Ingrediente</th>
                                 <th scope='col'>Nombre ingrediente</th>
                                 <th scope='col'>Cantidad</th>
-                                <th scope='col'>ID Plato</th>
-                                <th scope='col'>ID Producto</th>
+                                <th scope='col'>Plato</th>
+                                <th scope='col'>Producto</th>
                                 <th scope='col'>Editar</th>
                                 <th scope='col'>Eliminar</th>
                             </tr>
@@ -217,8 +232,8 @@ export const Ingredientes = () => {
                                 <th scope="row">{ing.id}</th>
                                 <td>{ing.name_ingredient}</td>
                                 <td>{ing.quantity}</td>
-                                <td>{ing.plato}</td>
-                                <td>{ing.producto}</td>
+                                <td>{getPlatosById(ing.plato).name}</td>
+                                <td>{getProductosById(ing.producto).name}</td>
                                 <td>
                                 <button 
                                     type='button' 

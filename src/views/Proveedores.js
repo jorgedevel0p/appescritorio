@@ -3,6 +3,7 @@ import { Layout_Admin } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import Fondo1080 from "../assets/img/720x120.jpg"
 
+
 const DEFAULT_STATE = {
     id: '',
     name: '',
@@ -129,7 +130,7 @@ export const Proveedores = () => {
                         type='text' 
                         name='id' 
                         className='form-control mb-2' 
-                        placeholder='ID Caja' 
+                        placeholder='ID Proveedor' 
                         readOnly={true}
                         value={proveedor.id}
                         onChange={handleChange}>
@@ -198,7 +199,7 @@ export const Proveedores = () => {
                 <div className='card-header text-center'>
                     <h2>Listado de Proveedores</h2>
                 </div>
-                <div className='card-body'>
+                <div className='card-body text-center'>
                     <table className='table'>
                         <thead>
                             <tr>

@@ -125,7 +125,11 @@ export const Boletas = () => {
                     <h2>Detalle Boleta                        
                     </h2>
                 </div>
-                <div className='card-body'>                    
+                <div className='card-body'>  
+                
+                    <div className="row row-cols-4 mb-2">
+                    <div className="col mb-1">
+                        <label for="user" class="form-label">ID Boleta</label>                  
                     <input 
                         type='text' 
                         name='id' 
@@ -134,15 +138,20 @@ export const Boletas = () => {
                         readOnly={true}
                         value={boleta.id}
                         onChange={handleChange}>
-                    </input>
-                    <input 
-                        type='number' 
-                        name='value' 
-                        className='form-control mb-2'
-                        placeholder='Valor Boleta'
-                        value={boleta.value}
-                        onChange={handleChange}>
-                    </input>
+                    </input></div>
+                    <div className="col mb-1">
+                        <label for="user" class="form-label">Valor Boleta</label>
+                        <input 
+                            type='number' 
+                            name='value' 
+                            className='form-control mb-2'
+                            placeholder='Valor Boleta'
+                            value={boleta.value}
+                            onChange={handleChange}>
+                        </input></div>
+                        <div className="col mb-1">
+                    <label for="user" class="form-label">Valor Propina</label>
+                    
                     <input 
                         type='number' 
                         name='tip' 
@@ -150,7 +159,9 @@ export const Boletas = () => {
                         placeholder='Propina'
                         value={boleta.tip}
                         onChange={handleChange}>
-                    </input>
+                    </input></div>
+                    <div className="col mb-1">
+                    <label for="user" class="form-label">Medio de Pago</label>
                     <select 
                         type='text' 
                         name='payment_method' 
@@ -161,7 +172,12 @@ export const Boletas = () => {
                             <option value="Efectivo">Efectivo</option>
                             <option value="Credito">Crédito</option>
                             <option value="Debito">Débito</option>
-                    </select>
+                    </select></div>
+                    </div>
+                    <div className="row row-cols-2 mb-2">
+                    <div className="col mb-">
+                    <label for="user" class="form-label">Fecha</label>
+  
                     <input
                         type='date'
                         name='date'
@@ -170,6 +186,10 @@ export const Boletas = () => {
                         value={boleta.date}
                         onChange={handleChange}>                            
                     </input>
+                    </div>
+                    <div className="col mb-1">
+                    <label for="user" class="form-label">Hora</label>
+  
                     <input
                         type='time'
                         name='time'
@@ -178,6 +198,11 @@ export const Boletas = () => {
                         value={boleta.time}
                         onChange={handleChange}>                            
                     </input>
+                    </div>
+                    </div>
+                    <div className="row row-cols-2 mb-2">
+                    <div className="col mb-1">
+                    <label for="user" class="form-label">Estado Orden</label>
                     <select 
                         type='text' 
                         name='state' 
@@ -188,7 +213,9 @@ export const Boletas = () => {
                             <option value="Efectivo">Pagado</option>
                             <option value="Credito">Pendiente</option>
                             <option value="Debito">Cancelado</option>
-                    </select>
+                    </select></div>
+                    <div className="col mb-1">
+                    <label for="user" class="form-label">ID Orden</label>
                     <input
                         type='number'
                         name='orden'
@@ -196,7 +223,7 @@ export const Boletas = () => {
                         placeholder='ID Orden'
                         value={boleta.orden}
                         onChange={handleChange}>                            
-                    </input>
+                    </input></div></div>
                     
                     <div className="col mb-3">
                                 <label for="user" class="form-label">Usuario boleta</label>
@@ -243,7 +270,7 @@ export const Boletas = () => {
                 <div  className='card-header text-center'>
                     <h2>Listado de Boletas</h2>
                 </div>
-                <div className='card-body'>
+                <div className='card-body text-center'>
                     <table className='table'>
                         <thead>
                             <tr>

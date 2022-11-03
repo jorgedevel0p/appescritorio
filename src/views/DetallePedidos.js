@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Layout_Admin, Navbar, Footer } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import Fondo1080 from "../assets/img/720x120.jpg"
+import restaurantContext from '../context/restaurantContext'
 
 const DEFAULT_STATE = {
     id: '',
@@ -13,7 +14,7 @@ const DEFAULT_STATE = {
 }
 
 export const DetallePedidos = () => {
-
+  const { productos, getProductosById } = useContext(restaurantContext)
     const [detallePedido, setDetallePedido] = useState(DEFAULT_STATE)
     const [detallePedidos, setDetallePedidos] = useState([])
     const { isLoading, makeHttpRequest } = useHttpRequest()
@@ -164,14 +165,21 @@ export const DetallePedidos = () => {
                         value={detallePedido.pedido_proveedor}
                         onChange={handleChange}>                           
                     </input>
-                    <input
-                        type='number'
-                        name='producto'
-                        className='form-control mb-2'
-                        placeholder='ID Producto'
-                        value={detallePedido.producto}
-                        onChange={handleChange}>                            
-                    </input>
+                    <div className="col mb-3">
+                                <label for="user" class="form-label">Producto</label>
+                                <select
+                                    type='text'
+                                    name='producto'
+                                    className='form-control'
+                                    value={detallePedido.producto}
+                                    onChange={handleChange}
+                                >
+                                    <option value='' disabled selected>Producto</option>
+                                    {productos.data.map(prod => (
+                                        <option value={prod.id}>{prod.name}</option>
+                                    ))}
+                                </select>
+                            </div>
                     <div className='col-md-12 text-center my-3 ' >
                         {
                         !detallePedidos.id
@@ -202,7 +210,7 @@ export const DetallePedidos = () => {
                 <div  className='card-header text-center'>
                     <h2>Listado de Detalle Pedido Proveedor</h2>
                 </div>
-                <div className='card-body'>
+                <div className='card-body text-center'>
                     <table className='table'>
                         <thead>
                             <tr>
@@ -210,7 +218,7 @@ export const DetallePedidos = () => {
                                 <th scope='col'>Valor</th>
                                 <th scope='col'>Cantidad</th>
                                 <th scope='col'>ID Pedido Proveedor</th>
-                                <th scope='col'>ID Producto</th>
+                                <th scope='col'>Producto</th>
                                 <th scope='col'>Editar</th>
                                 <th scope='col'>Eliminar</th>
                             </tr>
@@ -223,7 +231,7 @@ export const DetallePedidos = () => {
                                     <td>{detallePedido.value}</td>
                                     <td>{detallePedido.quantity}</td>
                                     <td>{detallePedido.pedido_proveedor}</td>
-                                    <td>{detallePedido.producto}</td>
+                                    <td>{getProductosById(detallePedido.producto).name}</td>
                                     <td>
                                         <button 
                                             type='button' 

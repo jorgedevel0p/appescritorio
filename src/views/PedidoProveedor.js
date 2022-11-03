@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Layout_Admin, Navbar, Footer } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import Fondo1080 from "../assets/img/720x120.jpg"
+import restaurantContext from '../context/restaurantContext'
 
 const DEFAULT_STATE = {
     id:'',
@@ -14,7 +15,7 @@ const DEFAULT_STATE = {
 }
 
 export const PedidoProveedor = () => {
-
+  const { proveedores, getProveedoresById } = useContext(restaurantContext)
   const [pedidoProv, setPedidoProv] = useState(DEFAULT_STATE)
   const [pedidosProv, setPedidosProv] = useState([])
   const { isLoading, makeHttpRequest } = useHttpRequest()
@@ -178,14 +179,21 @@ export const PedidoProveedor = () => {
                             <option value="Pendiente">Pendiente</option>
                             <option value="Cancelado">Cancelado</option>
                     </select>
-                    <input
-                        type='text'
-                        name='proveedor'
-                        className='form-control mb-2'
-                        placeholder='ID Proveedor'
-                        value={pedidoProv.proveedor_id}
-                        onChange={handleChange}>                           
-                    </input>
+                    <div className="col mb-3">
+                                <label for="user" class="form-label">Proveedor</label>
+                                <select
+                                    type='text'
+                                    name='proveedor'
+                                    className='form-control'
+                                    value={pedidoProv.proveedor}
+                                    onChange={handleChange}
+                                >
+                                    <option value='' disabled selected>Proveedor</option>
+                                    {proveedores.data.map(prov => (
+                                        <option value={prov.id}>{prov.name}</option>
+                                    ))}
+                                </select>
+                            </div>  
                     <div className='col-md-12 text-center my-3 ' >
                         {
                         !pedidoProv.id
@@ -216,7 +224,7 @@ export const PedidoProveedor = () => {
                 <div  className='card-header text-center'>
                     <h2>Listado de Pedidos a Proveedor</h2>
                 </div>
-                <div className='card-body'>
+                <div className='card-body text-center'>
                     <table className='table'>
                         <thead>
                             <tr>
@@ -225,7 +233,7 @@ export const PedidoProveedor = () => {
                                 <th scope='col'>Hora</th>
                                 <th scope='col'>Valor Total</th>
                                 <th scope='col'>Estado</th>
-                                <th scope='col'>ID Proveedor</th>
+                                <th scope='col'>Proveedor</th>
                                 <th scope='col'>Editar</th>
                                 <th scope='col'>Eliminar</th>
                             </tr>
@@ -238,7 +246,7 @@ export const PedidoProveedor = () => {
                                 <td>{pedidoProv.time}</td>
                                 <td>{pedidoProv.total_value}</td>
                                 <td>{pedidoProv.state}</td>
-                                <td>{pedidoProv.proveedor}</td>
+                                <td>{getProveedoresById(pedidoProv.proveedor).name}</td>
                                 <td>
                                 <button 
                                     type='button' 

@@ -191,7 +191,7 @@ export const Recetas = () => {
           <div className='card-header text-center'>
             <h4>Recetas</h4>
           </div>
-          <div className='card-body'>
+          <div className='card-body text-center'>
             <table className='table'>
               <thead>
                 <tr>

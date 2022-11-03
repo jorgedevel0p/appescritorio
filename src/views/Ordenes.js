@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { Layout_Admin } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import Fondo1080 from "../assets/img/720x120.jpg"
+import restaurantContext from '../context/restaurantContext'
 
 const DEFAULT_STATE = {
     id: '',
@@ -14,6 +15,7 @@ const DEFAULT_STATE = {
 }
 
 export const Ordenes = () => {
+    const{mesas} = useContext(restaurantContext)
     const [orden, setOrden] = useState(DEFAULT_STATE)
     const [ordenes, setOrdenes] = useState([])
     const [form, setForm] = useState(DEFAULT_STATE)
@@ -122,6 +124,8 @@ export const Ordenes = () => {
                     </h2>
                 </div>
                 <div className='card-body'>
+                <div className="col mb-3">
+                <label for="user" class="form-label">ID Orden</label>
                     <input 
                         type='text' 
                         name='id' 
@@ -130,31 +134,45 @@ export const Ordenes = () => {
                         readOnly={true}
                         value={orden.id}
                         onChange={handleChange}>                            
-                    </input>
-                    <input 
-                        type='date' 
-                        name='date' 
-                        className='form-control mb-2' 
-                        placeholder='Fecha'
-                        value={orden.date}
-                        onChange={handleChange}>
-                    </input>
-                    <input 
-                        type='time'     
-                        name='start_time' 
-                        className='form-control mb-2' 
-                        placeholder='Hora Inicio'
-                        value={orden.start_time}
-                        onChange={handleChange}>
-                    </input>
-                    <input 
-                        type='time'     
-                        name='end_time' 
-                        className='form-control mb-2' 
-                        placeholder='Hora Término'
-                        value={orden.end_time}
-                        onChange={handleChange}>
-                    </input>
+                    </input></div>
+                    
+                    <div className="row row-cols-3 mb-2">
+                        <div className="col mb-3">
+                        <label for="user" class="form-label">Fecha</label>
+                        <input 
+                          type='date' 
+                          name='date' 
+                          className='form-control mb-2' 
+                          placeholder='Fecha'
+                          value={orden.date}
+                          onChange={handleChange}>
+                      </input>
+                    </div> 
+                    <div className="col mb-3">
+                        <label for="user" class="form-label">Hora Inicio</label>
+                        <input 
+                            type='time'     
+                            name='start_time' 
+                            className='form-control mb-2' 
+                            placeholder='Hora Inicio'
+                            value={orden.start_time}
+                            onChange={handleChange}>
+                        </input>
+                        </div>
+                      <div className="col mb-3">
+                        <label for="user" class="form-label">Hora Término</label>  
+                        <input 
+                            type='time'     
+                            name='end_time' 
+                            className='form-control mb-2' 
+                            placeholder='Hora Término'
+                            value={orden.end_time}
+                            onChange={handleChange}>
+                        </input>
+                      </div>
+                    </div>
+                    <div className="col-12 mb-1">
+                    <label for="user" class="form-label">Número de Personas</label>  
                     <input 
                         type='number' 
                         name='number_people' 
@@ -162,7 +180,9 @@ export const Ordenes = () => {
                         placeholder='Numero de Personas'
                         value={orden.number_people}
                         onChange={handleChange}>
-                    </input>
+                    </input></div>
+                    <div className="col-12 mb-1">
+                    <label for="user" class="form-label">Estado de la orden</label>  
                     <select 
                         type='text' 
                         name='state' 
@@ -173,15 +193,22 @@ export const Ordenes = () => {
                             <option value={1}>Activa</option>
                             <option value={0}>Cerrada</option>
                     </select>
-                    <input 
-                        type='number' 
-                        name='mesa' 
-                        className='form-control mb-2' 
-                        placeholder='ID Mesa'
-                        value={orden.mesa}
-                        onChange={handleChange}>
-                    </input>
-                    
+                    </div>
+                    <div className="col-12 mb-">
+                                <label for="user" class="form-label">Mesa</label>
+                                <select
+                                    type='text'
+                                    name='mesa'
+                                    className='form-control'
+                                    value={orden.mesa}
+                                    onChange={handleChange}
+                                >
+                                    <option value='' disabled selected>Número mesa</option>
+                                    {mesas.data.map(mesa => (
+                                        <option value={mesa.id}>{mesa.number_name}</option>
+                                    ))}
+                                </select>
+                            </div>
                     <div className='col-md-12 text-center my-3 ' >
                         {
                         !orden.id
@@ -212,7 +239,7 @@ export const Ordenes = () => {
                 <div className='card-header text-center'>
                     <h2>Listado de Ordenes</h2>
                 </div>
-                <div className='card-body'>
+                <div className='card-body text-center'>
                     <table className='table'>
                         <thead>
                             <tr>
@@ -227,7 +254,7 @@ export const Ordenes = () => {
                                 <th scope='col'>Eliminar</th>
                             </tr>
                         </thead>
-                        <tbody className="table-group-divider">
+                        <tbody className="table-group-divider text-center">
                             {ordenes.map(orden => (
                                 <tr>
                                     <th scope="row">{orden.id}</th>

@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Layout_Admin, Navbar, Footer } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import Fondo1080 from "../assets/img/720x120.jpg"
+import restaurantContext from '../context/restaurantContext'
 
 const DEFAULT_STATE = {
     id:'',
@@ -12,7 +13,7 @@ const DEFAULT_STATE = {
 }
 
 export const Facturas = () => {
-
+  const { proveedores, getProveedoresById } = useContext(restaurantContext)
     
 
   const [factura, setFactura] = useState(DEFAULT_STATE)
@@ -157,14 +158,22 @@ export const Facturas = () => {
                         value={factura.pedido_proveedor}
                         onChange={handleChange}>
                     </input>
-                    <input 
-                        type='number' 
-                        name='proveedor' 
-                        className='form-control mb-2'
-                        placeholder='Proveedor ID'
-                        value={factura.proveedor}
-                        onChange={handleChange}>
-                    </input>
+                    
+                    <div className="col mb-3">
+                                <label for="user" class="form-label">Proveedor</label>
+                                <select
+                                    type='text'
+                                    name='proveedor'
+                                    className='form-control'
+                                    value={factura.proveedor}
+                                    onChange={handleChange}
+                                >
+                                    <option value='' disabled selected>Proveedor</option>
+                                    {proveedores.data.map(prov => (
+                                        <option value={prov.id}>{prov.name}</option>
+                                    ))}
+                                </select>
+                            </div>  
                     <div className='col-md-12 text-center my-3 ' >
                         {
                         !factura.id
@@ -196,14 +205,14 @@ export const Facturas = () => {
                 <div  className='card-header text-center'>
                     <h2>Listado de Facturas</h2>
                 </div>
-                <div className='card-body'>
+                <div className='card-body text-center'>
                     <table className='table'>
                         <thead>
                             <tr>
                                 <th scope='col'>ID</th>
                                 <th scope='col'>Fecha</th>
                                 <th scope='col'>ID Pedido Proveedor</th>
-                                <th scope='col'>ID Proveedor</th>
+                                <th scope='col'>Proveedor</th>
                                 <th scope='col'>Editar</th>
                                 <th scope='col'>Eliminar</th>
                             </tr>
@@ -213,7 +222,7 @@ export const Facturas = () => {
                                     <th scope="row">{factura.id}</th>
                                     <td>{factura.date}</td>
                                     <td>{factura.pedido_proveedor}</td>
-                                    <td>{factura.proveedor}</td>
+                                    <td>{getProveedoresById(factura.proveedor).name}</td>
                                     <td>
                                         <button 
                                             type='button' 

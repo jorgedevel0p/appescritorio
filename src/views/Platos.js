@@ -225,7 +225,7 @@ export const Platos = () => {
           <div className='card-header text-center'>
             <h2>Listado de Platos</h2>
           </div>
-          <div className='card-body'>
+          <div className='card-body text-center'>
             <table className='table'>
               <thead>
                 <tr>

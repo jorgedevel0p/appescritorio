@@ -14,7 +14,7 @@ const DEFAULT_STATE = {
 }
 
 export const DetalleOrden = () => {
-    const { mesas, users, productos, getUserById } = useContext(restaurantContext)
+    const { productos, platos, getProductosById, getPlatosById } = useContext(restaurantContext)
     const [detalleOrden, setDetalleOrden] = useState(DEFAULT_STATE)
     const [detalleOrdenes, setDetalleOrdenes] = useState([])
     const { isLoading, makeHttpRequest } = useHttpRequest()
@@ -155,23 +155,37 @@ export const DetalleOrden = () => {
                         placeholder='ID Orden'
                         value={detalleOrden.orden}
                         onChange={handleChange}>                             
-                    </input>
-                    <input
-                        type='number'
-                        name='plato'
-                        className='form-control mb-2'
-                        placeholder='ID Plato'
-                        value={detalleOrden.plato}
-                        onChange={handleChange}>                            
-                    </input>
-                    <input
-                        type='number'
-                        name='producto'
-                        className='form-control mb-2'
-                        placeholder='ID Producto'
-                        value={detalleOrden.producto}
-                        onChange={handleChange}>                            
-                    </input>
+                    </input>  
+                    <div className="col mb-3">
+                                <label for="user" class="form-label">Plato</label>
+                                <select
+                                    type='text'
+                                    name='plato'
+                                    className='form-control'
+                                    value={detalleOrden.plato}
+                                    onChange={handleChange}
+                                >
+                                    <option value='' disabled selected>Plato</option>
+                                    {platos.data.map(plato => (
+                                        <option value={plato.id}>{plato.name}</option>
+                                    ))}
+                                </select>
+                            </div>                
+                    <div className="col mb-3">
+                                <label for="user" class="form-label">Producto</label>
+                                <select
+                                    type='text'
+                                    name='producto'
+                                    className='form-control'
+                                    value={detalleOrden.producto}
+                                    onChange={handleChange}
+                                >
+                                    <option value='' disabled selected>Producto</option>
+                                    {productos.data.map(prod => (
+                                        <option value={prod.id}>{prod.name}</option>
+                                    ))}
+                                </select>
+                            </div>
                     <div className='col-md-12 text-center my-3 ' >
                         {
                         !detalleOrden.id
@@ -203,15 +217,15 @@ export const DetalleOrden = () => {
                 <div  className='card-header text-center'>
                     <h2>Listado de Detalles Ordenes</h2>
                 </div>
-                <div className='card-body'>
+                <div className='card-body text-center'>
                     <table className='table'>
                         <thead>
                             <tr>
                                 <th scope='col'>ID</th>
                                 <th scope='col'>Cantidad de Platos</th>
                                 <th scope='col'>ID Orden</th>
-                                <th scope='col'>ID Plato</th>
-                                <th scope='col'>ID Producto</th>
+                                <th scope='col'>Plato</th>
+                                <th scope='col'>Producto</th>
                                 <th scope='col'>Editar</th>
                                 <th scope='col'>Eliminar</th>
                             </tr>
@@ -222,8 +236,8 @@ export const DetalleOrden = () => {
                                 <th scope="row">{detalleOrden.id}</th>
                                 <td>{detalleOrden.number_dish}</td>
                                 <td>{detalleOrden.orden}</td>
-                                <td>{detalleOrden.plato}</td>
-                                <td>{detalleOrden.producto}</td>
+                                <td>{getPlatosById(detalleOrden.plato).name}</td>
+                                <td>{getProductosById(detalleOrden.producto).name}</td>
                                 <td>
                                 <button 
                                     type='button' 

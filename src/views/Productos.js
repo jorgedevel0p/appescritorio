@@ -232,7 +232,7 @@ export const Productos = () => {
           <div className="card-header text-center">
           <h2>Lista de Productos</h2>
         </div>
-        <div className="card-body">
+        <div className="card-body text-center">
           <table className="table">
             <thead>
               <tr>

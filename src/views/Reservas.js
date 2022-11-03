@@ -245,7 +245,7 @@ export const Reservas = () => {
                 <div className='card-header text-center'>
                     <h2>Listado de Reservas</h2>
                 </div>
-                <div className='card-body'>
+                <div className='card-body text-center'>
                     <table className='table'>
                         <thead>
                             <tr>

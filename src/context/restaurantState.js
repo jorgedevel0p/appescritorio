@@ -7,8 +7,13 @@ import {
   GET_USERS_LOADING,
   GET_USERS_SUCCESS,
   GET_USERS_ERROR,
-  GET_MESAS_SUCCESS
+  GET_MESAS_SUCCESS,
+  GET_PRODUCTOS_SUCCESS,
+  GET_PROVEEDORES_SUCCESS,
+  GET_PLATOS_SUCCESS
+
 } from './types'
+// import { stat } from 'original-fs'
 
 const fetchingStatus = {
   loading: false,
@@ -22,8 +27,18 @@ const INITIAL_STATE = {
     data: [],
     fetchingStatus
   },
-  proveedores: null,
-  productos: null
+  proveedores: {
+    data: [],
+    fetchingStatus
+  },
+  productos: {
+    data: [],
+    fetchingStatus
+  },
+  platos: {
+    data: [],
+    fetchingStatus
+  }
 }
 
 const RestaurantState = (props) => {
@@ -32,6 +47,18 @@ const RestaurantState = (props) => {
 
   function getUserById(id) {
     return state.users.data.find(user => user.id === id)
+  }
+
+  function getProductosById(id) {
+    return state.productos.data.find(producto => producto.id === id)
+  }
+
+  function getProveedoresById(id) {
+    return state.proveedores.data.find(proveedor => proveedor.id === id)
+  }
+
+  function getPlatosById(id) {
+    return state.platos.data.find(plato => plato.id === id)
   }
 
   function getResourcesByName(resource) {
@@ -57,10 +84,25 @@ const RestaurantState = (props) => {
     getResourcesByName('mesa').then(res => dispatch({ type: GET_MESAS_SUCCESS, payload: res }))
   }
 
+  function getProductos(){
+    getResourcesByName('producto').then(res => dispatch({ type: GET_PRODUCTOS_SUCCESS, payload: res }))
+  }
+
+  function getProveedores(){
+    getResourcesByName('proveedor').then(res => dispatch({ type: GET_PROVEEDORES_SUCCESS, payload: res }))
+  }
+
+  function getPlatos(){
+    getResourcesByName('plato').then(res => dispatch({ type: GET_PLATOS_SUCCESS, payload: res }))
+  }
+
   useEffect(() => {
     
     getUsers()
     getMesas()
+    getProductos()
+    getProveedores(),
+    getPlatos()
 
   }, [])
 
@@ -71,8 +113,17 @@ const RestaurantState = (props) => {
       value={{
         users: state.users,
         mesas: state.mesas,
+        productos: state.productos,
+        proveedores: state.proveedores,
+        platos: state.platos,
         getUsers,
         getMesas,
+        getProductos,
+        getProveedores,
+        getPlatos,
+        getPlatosById,
+        getProductosById,
+        getProveedoresById,
         getUserById
       }}
     >
