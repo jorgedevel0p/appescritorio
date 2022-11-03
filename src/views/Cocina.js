@@ -17,25 +17,25 @@ export const Cocinas = () => {
                 <hr></hr>
                 <form className='container ' >
                     <div className="row row-cols-3 my-2">
-                    <div class="alert alert-secondary mx-1"  role="alert">
+                    <div class="alert alert-warning mx-1"  role="alert">
                         Cuidado con los utensilios de cocina
 </div>
-<div class="alert alert-secondary mx-1"  role="alert">
+<div class="alert alert-warning mx-1"  role="alert">
                 Presta atención a los líquidos de alta temperatura    
 </div>
-<div class="alert alert-secondary mx-1"  role="alert">
+<div class="alert alert-warning mx-1"  role="alert">
                 Mantén tu espacio de trabajo limpio    
 </div>
-<div class="alert alert-secondary mx-1"  role="alert">
+<div class="alert alert-warning mx-1"  role="alert">
                 Siempre usa los implementos que se te asignaron   
 </div>
-<div class="alert alert-secondary mx-1"  role="alert">
+<div class="alert alert-warning mx-1"  role="alert">
                 Utiliza los productos de mejor calidad  
 </div>
-<div class="alert alert-secondary mx-1"  role="alert">
+<div class="alert alert-warning mx-1"  role="alert">
                 Recuerda lavar bien tus manos y utensilios 
 </div>
-<div class="alert alert-secondary mx-1"  role="alert">
+<div class="alert alert-warning mx-1"  role="alert">
                 Usa calzado limpio y apropiado  
 </div>
                     </div>
