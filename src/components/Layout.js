@@ -64,3 +64,11 @@ export const Layout_Cliente = (props) => {
     </main>
   )
 }
+
+export const Layout_Inicio = (props) => {
+  return (
+    <main class="">
+      <Navbar_Inicio />
+      </main>
+      )
+     }

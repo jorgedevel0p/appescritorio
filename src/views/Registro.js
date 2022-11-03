@@ -142,7 +142,7 @@ export const Registro = () => {
                   </div>
                   <div className='row'>
                     <div className='col-12'>
-                      <Link to='/'>
+                      <Link to='/login'>
                         <a href="#" 
                           className="btn col-6 btn-success btn-block mt-2">
                             ¿Tienes cuenta? Inicia Sesión!</a>

@@ -31,13 +31,16 @@ import { Recetas } from "./views/Recetas";
 import { TableroCocina } from "./views/TableroCocina";
 import { ReservaWeb } from "./views/ReservaWeb";
 import { ReservasCliente } from "./views/ReservasCliente";
+import { Inicio } from "./views/Inicio";
+import { Nosotros } from "./views/Nosotros";
+import { Carta } from "./views/Carta";
 
 
 function App() {
   return (
     <HashRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/home" element={<Home />} />
         <Route path="/users" element={<Users />} />
         <Route path="/mesas" element={<Mesas />} />
@@ -69,7 +72,9 @@ function App() {
         <Route path="/tableroCocina" element={<TableroCocina/>}/>
         <Route path="/reservaWeb" element = {<ReservaWeb/>}/>
         <Route path="/reservasCliente" element = {<ReservasCliente/>}/>
-        
+        <Route path="/" element={<Inicio/>}/>
+        <Route path="/nosotros" element={<Nosotros/>}/>
+        <Route path="/carta" element={<Carta/>}/>
         
 
         <Route

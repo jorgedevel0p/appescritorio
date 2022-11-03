@@ -1,10 +1,13 @@
-import React  from 'react'
+import React, { useContext }  from 'react'
 import { Layout_Admin, Navbar, Footer } from './components/index'
 import Fondo1080 from "./assets/img/720x120.jpg"
+import restaurantContext from './context/restaurantContext'
 
 export const Home = () => {
+  const {platos, getPlatos} = useContext(restaurantContext)
 
   return (
+    <>
       <Layout_Admin>
         <div>
                 <img src={Fondo1080} 
@@ -41,5 +44,19 @@ export const Home = () => {
             
         
       </Layout_Admin>
+      {/* <h1>Menú</h1>
+      <div>
+      <div>
+        <ul>
+          <li>{platos.data.map(plato => plato.type_dish)}</li>
+        </ul>
+      </div>
+      <div>
+        <ul>
+          <li>{platos.data.map(plato => plato.name)}</li>
+        </ul>
+      </div>
+      </div> */}
+      </>
   )
 }
