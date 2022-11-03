@@ -11,6 +11,7 @@ const DEFAULT_STATE = {
     value: '',
     type_dish: '',
     image_plato: '',
+    score:'',
 }
 
 export const Platos = () => {
@@ -174,6 +175,17 @@ export const Platos = () => {
                 <option value="Fondo">Fondo</option>
                 <option value="Postre">Postre</option>
             </select>  
+            <select
+              type='number'
+              name='score'
+              className='form-control mb-2'
+              value={plato.score}
+              onChange={handleChange}>
+                <option disabled selected>Dificultad</option>
+                <option value={'1'}>1</option>
+                <option value={'2'}>2</option>
+                <option value={'3'}>3</option>
+            </select> 
             <input 
                 type='url' 
                 name='image_plato' 
@@ -222,6 +234,7 @@ export const Platos = () => {
                   <th scope='col'>Descripción</th>
                   <th scope='col'>Receta</th>
                   <th scope='col'>Valor</th>
+                  <th scope='col'>Dificultad</th>
                   <th scope='col'>Tipo de Plato</th>
                   <th scope='col'>Editar</th>
                   <th scope='col'>Eliminar</th>
@@ -235,7 +248,8 @@ export const Platos = () => {
                   <td>{plato.description}</td>
                   <td>{plato.recipe}</td>
                   <td>{plato.value}</td>
-                  <td>{plato.type_dish}</td>
+                  <td>{plato.score}</td>
+                  <td>{plato.type_dish}</td>                  
                   <td>
                     <button 
                       type='button' 
