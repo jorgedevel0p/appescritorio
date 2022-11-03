@@ -1,7 +1,8 @@
-import React, { useEffect, useState } from 'react'
+import React,  { useState, useContext }  from 'react'
 import { Link } from 'react-router-dom'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import { Layout_Admin } from '../components/index'
+import restaurantContext from '../context/restaurantContext'
 import Fondo1080 from '../assets/img/720x120.jpg'
 
 const DEFAULT_STATE = {
@@ -15,11 +16,9 @@ const DEFAULT_STATE = {
 }
 
 export const Users = () => {
+  const { users, getUsers } = useContext(restaurantContext)
   const { isLoading, error, makeHttpRequest } = useHttpRequest()
-  const [usuarios, setUsuarios] = useState([])
   const [form, setForm] = useState(DEFAULT_STATE)
-
-  
 
   const handleChange = (e) => {
     setForm({
@@ -27,23 +26,6 @@ export const Users = () => {
       [e.target.name]: e.target.value
     })
   }
-
-  const getUsers = () => {
-    makeHttpRequest({
-      operation: '/user/',
-      data: null,
-      method: 'GET',
-      callback: ({ok, data}) => {
-        if (!ok) {
-          alert(JSON.stringify(data))
-          return
-        }
-        console.log(data, 'Listado Usuarios recibidas')
-        setUsuarios(data)
-        
-      }
-    })
-  } 
 
   const saveUser = () => {
     console.log(form)
@@ -84,6 +66,7 @@ export const Users = () => {
   }
 
   const setUserDataIntoForm = (usuario) => {
+    console.log(usuario, 'usuario')
     const { id, username, name, last_name, email, type, /* password */ } = usuario
     setForm({
       id,
@@ -118,10 +101,6 @@ export const Users = () => {
     setForm({ ...DEFAULT_STATE })
   ]
 
-  useEffect(() => {
-    getUsers()
-  }, [])
-
   return (
     <Layout_Admin>
         <div>
@@ -138,16 +117,7 @@ export const Users = () => {
             </h2>
           </div>
           <div className="card-body">
-            <form className='container'>
-              <input 
-                type='text' 
-                name='id' 
-                className='form-control mb-2'
-                placeholder='ID Usuario'
-                readOnly={true}
-                value={form.id}
-                onChange={handleChange}>
-              </input>
+            <form className='container' style={{width: 400}}>
               <input
                 type='text'
                 className='form-control mb-2'
@@ -206,20 +176,20 @@ export const Users = () => {
                   !form.id
                     ? <button 
                         type='button' 
-                        className='col-md-2 btn btn-success mx-3' 
+                        className='btn btn-success mx-3' 
                         onClick={saveUser}>
                           Guardar
                       </button>
                     : <button 
                         type='button' 
-                        className='col-md-2 btn btn-dark mx-3 ' 
+                        className='btn btn-dark mx-3 ' 
                         onClick={() => updateUser(form.id)}>
                           Actualizar
                       </button>
                 }
                 <button 
                   type='button' 
-                  className='col-md-2 btn btn-light mx-3' 
+                  className='btn btn-light mx-3' 
                   onClick={resetForm}>
                     Limpiar
                 </button>
@@ -247,7 +217,7 @@ export const Users = () => {
                 </tr>
               </thead>
               <tbody className="table-group-divider">
-                {usuarios.map(usuario => (
+                {users.data.map(usuario => (
                   <tr>
                     <td>{usuario.id}</td>
                     <td>{usuario.username}</td>

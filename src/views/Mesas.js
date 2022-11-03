@@ -1,7 +1,7 @@
-import React, { useState, useEffect } from 'react'
-import { Link } from 'react-router-dom'
-import { Layout_Admin, Navbar, Footer } from '../components/index'
+import React, { useState, useContext } from 'react'
+import { Layout_Admin } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
+import restaurantContext from '../context/restaurantContext'
 import Fondo1080 from "../assets/img/720x120.jpg"
 
 const DEFAULT_STATE = {
@@ -9,13 +9,12 @@ const DEFAULT_STATE = {
   number_name: '',
   available: '',
   capacity: '',
-  user : '',
+  user: '',
 }
 
 export const Mesas = () => {
-
+  const { mesas, users, getUserById, getMesas } = useContext(restaurantContext)
   const [mesa, setMesa] = useState(DEFAULT_STATE)
-  const [mesas, setMesas] = useState([])
   const { isLoading, makeHttpRequest } = useHttpRequest()
 
   const handleChange = (e) => {
@@ -25,29 +24,13 @@ export const Mesas = () => {
     })
   }
 
-  const getMesas = () => {
-    makeHttpRequest({
-      operation: '/mesa/',
-      data: null,
-      method: 'GET',
-      callback: ({ ok, data }) => {
-        if (!ok) {
-          alert(JSON.stringify(data))
-          return
-        }
-        console.log(data, 'Listado de Mesas recibido')
-        setMesas(data)
-      }
-    })
-  }
-
   const saveMesa = () => {
-    console.log(' llega')
     let mesaToSave = { ...mesa }
+    mesaToSave.available = (mesa.available > 0) // if 1 = true, if 0 = false
 
     makeHttpRequest({
       operation: '/mesa/',
-      data: mesa,
+      data: mesaToSave,
       method: 'POST',
       callback: ({ ok, data }) => {
         if (!ok) {
@@ -74,7 +57,7 @@ export const Mesas = () => {
       method: 'PUT',
       callback: ({ ok, data }) => {
         if (!ok) {
-            alert(JSON.stringify(data))
+          alert(JSON.stringify(data))
           return
         }
         console.log(data, 'Mesa se ha actualizado correctamente')
@@ -95,8 +78,8 @@ export const Mesas = () => {
       method: 'DELETE',
       callback: ({ ok, data }) => {
         if (!ok) {
-            alert(JSON.stringify(data))
-        return
+          alert(JSON.stringify(data))
+          return
         }
         console.log(data, 'Mesa se ha eliminado correctamente')
         getMesas()
@@ -104,27 +87,22 @@ export const Mesas = () => {
     })
   }
 
-  const handleCheck = (e) => {
+  const handleCheck = () => {
     setMesa({
       ...mesa,
-      available: e.target.checked
+      available: !mesa.available
     })
   }
-  
-  const resetForm = () => setMesa({ ...DEFAULT_STATE })
-  
-  useEffect(() => {
-    getMesas()
-  }, [])
 
+  const resetForm = () => setMesa({ ...DEFAULT_STATE })
 
   return (
     <>
       <Layout_Admin>
         <div>
-          <img 
-            src={Fondo1080} 
-            className="card-img" 
+          <img
+            src={Fondo1080}
+            className="card-img"
             height={140} />
         </div>
         <div className="card my-3 mx-4 justify-center">
@@ -134,81 +112,76 @@ export const Mesas = () => {
             </h2>
           </div>
           <div className="card-body">
-            <form>
-              <input 
-                type='number' 
-                name='id' 
-                readOnly='true' 
-                className='form-control mb-2' 
-                value={mesa.id} 
-                placeholder='ID' 
-                onChange={handleChange} />
-              <input 
-                type='number' 
-                name='capacity' 
-                className='form-control mb-2' 
-                value={mesa.capacity} 
-                placeholder='Capacidad' 
-                onChange={handleChange} />
-              <input 
-                type='text' 
-                name='number_name' 
-                className='form-control mb-2' 
-                value={mesa.number_name}  
-                placeholder='N° Mesa' 
-                onChange={handleChange} />
-              <input 
-                type='number' 
-                name='user' 
-                className='form-control mb-2' 
-                value={mesa.user}
-                placeholder='ID User' 
-                onChange={handleChange} 
-              />
-              <select
-                type='text' 
-                name='available' 
-                className='form-control mb-2'
-                value={mesa.available}
-                onChange={handleChange}>
-                  <option disabled selected>Disponibilidad Mesa</option>
-                  <option value={1}>Disponible</option>
-                  <option value={0}>No Disponible</option>
-              </select>
-              {/* <div className="form-check">
+            <form className='container' style={{ width: 400 }}>
+              <div className="row row-cols-2 mb-2">
+                <div className="col">
+                  <label for="number_name" class="form-label">Número de Mesa</label>
+                  <input
+                    type='text'
+                    name='number_name'
+                    className='form-control'
+                    value={mesa.number_name}
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="col">
+                  <label for="number_name" class="form-label">Capacidad</label>
+                  <input
+                    type='number'
+                    name='capacity'
+                    className='form-control'
+                    value={mesa.capacity}
+                    min="1"
+                    onChange={handleChange} />
+                </div>
+              </div>
+              <div className="mb-3">
+                <label for="user" class="form-label">Usuario asignado</label>
+                <select
+                  type='text'
+                  name='user'
+                  className='form-control'
+                  value={mesa.user}
+                  onChange={handleChange}
+                >
+                  <option value='' disabled selected>Usuario reserva</option>
+                  {users.data.map(user => (
+                    <option value={user.id}>{user.email}</option>
+                  ))}
+                </select>
+              </div>
+
+              <div class="form-check" onClick={handleCheck}>
                 <input
                   className="form-check-input"
                   type="checkbox"
                   checked={mesa.available}
-                  onChange={handleCheck}
                 />
-                <label 
-                  className="form-check-label" 
-                  for="flexCheckDefault">
-                    Activa
+                <label className="form-check-label" for="flexCheckDefault">
+                  Mesa disponible ?
                 </label>
-              </div> */}
+              </div>
               <div className='col-md-12 text-center my-3 ' >
                 {
                   !mesa.id
-                    ? <button 
-                        type='button' 
-                        className='col-md-2 btn btn-success' 
-                        onClick={saveMesa}>
-                          Guardar
-                      </button>
-                    : <button 
-                        type='button' 
-                        className='col-md-2 btn btn-dark' 
-                        onClick={() => updateMesa(mesa.id)}>
-                          Actualizar
-                      </button>
+                    ? <button
+                      type='button'
+                      className='btn btn-success'
+                      onClick={saveMesa}>
+                      Guardar
+                    </button>
+                    : <button
+                      type='button'
+                      className='btn btn-dark'
+                      onClick={() => updateMesa(mesa.id)}>
+                      Actualizar
+                    </button>
                 }
-                <button 
-                  type='button' 
-                  className='col-md-2 btn btn-light mx-3' 
+                <button
+                  type='button'
+                  className='btn btn-light mx-3'
                   onClick={resetForm}>
-                    Limpiar
+                  Limpiar
                 </button>
               </div>
             </form>
@@ -225,7 +198,6 @@ export const Mesas = () => {
             <table className="table">
               <thead>
                 <tr>
-                  <th scope="col">ID</th>
                   <th scope="col">Capacidad</th>
                   <th scope="col">N° Mesa</th>
                   <th scope="col">Disponibilidad</th>
@@ -235,32 +207,37 @@ export const Mesas = () => {
                 </tr>
               </thead>
               <tbody className="table-group-divider">
-                {mesas.map(mes => (
+                {mesas.data.map(mes => (
                   <tr>
-                    <th scope="row">{mes.id}</th>
-                    <td>{mes.capacity}</td>
+                    <td> <i className="fa-solid fa-users"></i> {mes.capacity}</td>
                     <td>{mes.number_name}</td>
-                    <td>{mes.available}</td>
-                    <td>{mes.user}</td>
                     <td>
-                      <button 
-                        type='button' 
-                        className='btn btn-warning btn-xs' 
+                      {
+                        mes.available
+                          ? <span className="badge bg-success">Disponible</span>
+                          : <span className="badge bg-secondary">Ocupada</span>
+                      }
+                    </td>
+                    <td>{getUserById(mes.user).email}</td>
+                    <td>
+                      <button
+                        type='button'
+                        className='btn btn-warning btn-xs'
                         onClick={() => setMesaDataIntoForm(mes)}>
-                          <i 
-                            className="fa-solid fa-pen-to-square" 
-                            style={{ color: '#ffffff' }}>
-                          </i>
-                        </button>
+                        <i
+                          className="fa-solid fa-pen-to-square"
+                          style={{ color: '#ffffff' }}>
+                        </i>
+                      </button>
                     </td>
                     <td>
-                      <button 
-                        type='button' 
-                        className='btn btn-danger btn-xs' 
+                      <button
+                        type='button'
+                        className='btn btn-danger btn-xs'
                         onClick={() => deleteMesa(mes.id)}>
-                          <i 
-                            className="fa-solid fa-trash">
-                          </i>
+                        <i
+                          className="fa-solid fa-trash">
+                        </i>
                       </button>
                     </td>
                   </tr>
