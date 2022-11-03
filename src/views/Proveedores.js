@@ -165,8 +165,8 @@ export const Proveedores = () => {
                         value={proveedor.state}
                         onChange={handleChange}>
                             <option disabled selected>Estado</option>
-                            <option value={0}>Proveedor Inactivo</option>
-                            <option value={1}>Proveedor Activo</option>
+                            <option value={0}>Inactivo</option>
+                            <option value={1}>Activo</option>
                     </select>
                     <div className='col-md-12 text-center my-3 ' >
                         {
@@ -218,7 +218,10 @@ export const Proveedores = () => {
                                 <td>{proveedor.name}</td>
                                 <td>{proveedor.email}</td>
                                 <td>{proveedor.phone}</td>
-                                <td>{proveedor.state}</td>
+                                <td>{proveedor.state
+                                ? <span className="badge bg-success">Activo</span>
+                                : <span className="badge bg-secondary">Inactivo</span>
+                                }</td>
                                 <td>
                                 <button
                                     type='button'

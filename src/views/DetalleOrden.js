@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext} from 'react'
 import { Link } from 'react-router-dom'
 import { Layout_Admin, Navbar, Footer } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import Fondo1080 from "../assets/img/720x120.jpg"
+import restaurantContext from '../context/restaurantContext'
 
 const DEFAULT_STATE = {
     id: '',
@@ -13,7 +14,7 @@ const DEFAULT_STATE = {
 }
 
 export const DetalleOrden = () => {
-
+    const { mesas, users, productos, getUserById } = useContext(restaurantContext)
     const [detalleOrden, setDetalleOrden] = useState(DEFAULT_STATE)
     const [detalleOrdenes, setDetalleOrdenes] = useState([])
     const { isLoading, makeHttpRequest } = useHttpRequest()

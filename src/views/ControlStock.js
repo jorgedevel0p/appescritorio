@@ -60,6 +60,10 @@ export const ControlStock = () => {
             name: 'Marca',
             selector: row => row.brand
         },
+        {
+            name: 'Alerta',
+            selector: ''
+        },
     ]
 
     return (

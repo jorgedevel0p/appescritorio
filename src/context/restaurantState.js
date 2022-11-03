@@ -22,7 +22,7 @@ const INITIAL_STATE = {
     data: [],
     fetchingStatus
   },
-  proovedores: null,
+  proveedores: null,
   productos: null
 }
 

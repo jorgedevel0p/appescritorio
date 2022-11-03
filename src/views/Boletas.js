@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Layout_Admin, Navbar, Footer } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import Fondo1080 from "../assets/img/720x120.jpg"
+import restaurantContext from '../context/restaurantContext'
 
 const DEFAULT_STATE = {
     id: '',
@@ -20,6 +21,7 @@ export const Boletas = () => {
     const [boleta, setBoleta] = useState(DEFAULT_STATE)
     const [boletas, setBoletas] = useState([])
     const {isLoading, makeHttpRequest} = useHttpRequest()
+    const { mesas, users, getUserById } = useContext(restaurantContext)
 
     const handleChange = (e) => {
         setBoleta({
@@ -195,14 +197,22 @@ export const Boletas = () => {
                         value={boleta.orden}
                         onChange={handleChange}>                            
                     </input>
-                    <input
-                        type='text'
-                        name='user'
-                        className='form-control mb-2'
-                        placeholder='ID User'
-                        value={boleta.user}
-                        onChange={handleChange}>                            
-                    </input>
+                    
+                    <div className="col mb-3">
+                                <label for="user" class="form-label">Usuario boleta</label>
+                                <select
+                                    type='text'
+                                    name='user'
+                                    className='form-control'
+                                    value={boleta.user}
+                                    onChange={handleChange}
+                                >
+                                    <option value='' disabled selected>Usuario boleta</option>
+                                    {users.data.map(user => (
+                                        <option value={user.id}>{user.email}</option>
+                                    ))}
+                                </select>
+                            </div>
                     <div className='col-md-12 text-center my-3 ' >
                         {
                             !boleta.id
@@ -245,7 +255,7 @@ export const Boletas = () => {
                                 <th scope='col'>Hora</th>
                                 <th scope='col'>Estado</th>
                                 <th scope='col'>ID Orden</th>
-                                <th scope='col'>ID Usuario</th>
+                                <th scope='col'>Mail Usuario</th>
                                 <th scope='col'>Editar</th>
                                 <th scope='col'>Eliminar</th>
                             </tr>
@@ -261,6 +271,7 @@ export const Boletas = () => {
                                 <td>{bol.time}</td>
                                 <td>{bol.state}</td>
                                 <td>{bol.orden}</td>
+                                <td>{getUserById(bol.user).email}</td>
                                 <td>{bol.user}</td>                                
                                 <td>
                                 <button 

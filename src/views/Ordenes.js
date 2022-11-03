@@ -170,8 +170,8 @@ export const Ordenes = () => {
                         value={orden.state}
                         onChange={handleChange}>
                             <option disabled selected>Estado</option>
-                            <option value={1}>Orden Activa</option>
-                            <option value={0}>Orden Terminada</option>
+                            <option value={1}>Activa</option>
+                            <option value={0}>Cerrada</option>
                     </select>
                     <input 
                         type='number' 
@@ -181,6 +181,7 @@ export const Ordenes = () => {
                         value={orden.mesa}
                         onChange={handleChange}>
                     </input>
+                    
                     <div className='col-md-12 text-center my-3 ' >
                         {
                         !orden.id
@@ -234,7 +235,10 @@ export const Ordenes = () => {
                                     <td>{orden.start_time}</td>
                                     <td>{orden.end_time}</td>
                                     <td>{orden.number_people}</td>
-                                    <td>{orden.state}</td>
+                                    <td>{orden.state
+                                    ? <span className="badge bg-success">Activa</span>
+                                    : <span className="badge bg-secondary">Cerrada</span>
+                                    }</td>
                                     <td>{orden.mesa}</td>
                                     <td>
                                     <button 
