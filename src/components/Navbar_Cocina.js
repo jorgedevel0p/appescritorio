@@ -13,6 +13,14 @@ export const Navbar_Cocina = () => {
             </Link>
             <hr />
             <ul className="nav nav-pills flex-column mb-auto">
+            <li>
+          <Link to='/cocinas'>
+            <a href="#" className="nav-link text-white">
+              <i className="fa-solid fa-home m-2" style={{ color: '#ffffff' }}></i>
+              Home
+            </a>
+          </Link>
+        </li>
                 <li>
                     <Link to='/Recetas'>
                         <a href="#" className="nav-link text-white ">
@@ -33,7 +41,7 @@ export const Navbar_Cocina = () => {
                     <Link to='/'>
                         <a href="#" className="nav-link text-white">
                             <i className="fa-solid fa-right-from-bracket m-2" style={{ color: '#ffffff' }}></i>
-                            Cerrar sesion
+                            Cerrar Sesión
                         </a>
                     </Link>
                 </li>

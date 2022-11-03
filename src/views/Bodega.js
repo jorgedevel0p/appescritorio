@@ -16,20 +16,33 @@ export const Bodegas = () => {
                         height={140} />
                 </div>
 
-                <h1 className="text-center">Modulo Bodega</h1>
+                <h1 className="text-center">Módulo Bodega</h1>
+                <hr></hr>
 
-                {/* <div className="my-5 text-center container-fluid">
-                <div className="container-fluid justify-center">
-                    <div className="row">
-                        <div className="col-6 ">
-                            <Link to='/' className="btn btn-primary">Modulo de Productos</Link>
-                        </div>
-                        <div className="col-6 ">
-                            <Link to='/' className="btn btn-primary">Modulo de Proveedores</Link>
-                        </div>
+
+                <form className='container ' >
+                    <div className="row row-cols-3 my-2">
+                    <div class="alert alert-primary mx-1"  role="alert">
+                        Utiliza los EPP si estás en bodega 
+</div>
+<div class="alert alert-primary mx-1"  role="alert">
+                Almacena los productos de acuerdo a su naturaleza    
+</div>
+<div class="alert alert-primary mx-1"  role="alert">
+                Protége los alimentos para reducir riesgos de contaminación    
+</div>
+<div class="alert alert-primary mx-1"  role="alert">
+                La temperatura debe ser la correcta para cada uno de ellos  
+</div>
+<div class="alert alert-primary mx-1"  role="alert">
+                Revisa la fecha de vencimiento y considerala al almacenarlos
+</div>
+<div class="alert alert-primary mx-1"  role="alert">
+                Recuerda controlar el stock para que no haga falta mercadería
+</div>
+
                     </div>
-                </div>
-            </div> */}
+                </form>
 
             </Layout_Bodega>
 

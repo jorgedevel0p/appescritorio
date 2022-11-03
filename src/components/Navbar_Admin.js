@@ -128,15 +128,6 @@ export const Navbar_Admin = () => {
           </Link>
         </li>
 
-        <li className="nav-item">
-          <Link to='/Cajas'>
-            <a href="#" className="nav-link text-white" aria-current="page">
-              <i className="fa-solid fa-cash-register m-2" style={{ color: '#ffffff' }}></i>
-              Caja
-            </a>
-          </Link>
-        </li>
-
         <li className='nav-item'>
           <Link to='/MovimientoCaja'>
             <a href="#" className="nav-link text-white">

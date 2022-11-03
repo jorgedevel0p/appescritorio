@@ -51,7 +51,7 @@ export const Navbar_Finanzas = () => {
           <Link to='/'>
             <a href="#" className="nav-link text-white">
               <i className="fa-solid fa-right-from-bracket m-2" style={{ color: '#ffffff' }}></i>
-              Cerrar sesion
+              Cerrar Sesión
             </a>
           </Link>
         </li>

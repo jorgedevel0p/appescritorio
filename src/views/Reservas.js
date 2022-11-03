@@ -9,6 +9,8 @@ const DEFAULT_STATE = {
     status: '',
     mesa: '',
     user: '',
+    date: '',
+    time:'',
 }
 
 export const Reservas = () => {
@@ -155,8 +157,36 @@ export const Reservas = () => {
                                 </select>
                             </div>
                         </div>
-
+                        <div className="row row-cols-2 mb-2">
                         <div className="col mb-3">
+                                <label for="user" class="form-label">Fecha a reservar</label>
+                                <input
+                                    type='date'
+                                    name='date'
+                                    className='form-control'
+                                    value={reserva.date}
+                                    onChange={handleChange}
+                                >
+
+                                </input>
+                            </div>
+                            <div className="col mb-3">
+                                <label for="user" class="form-label">Hora a reservar</label>
+                                <input
+                                    type='time'
+                                    name='time'
+                                    className='form-control'
+                                    value={reserva.time}
+                                    onChange={handleChange}
+                                >
+
+                                </input>
+                            </div>
+                            
+
+                        </div>
+
+                        {/* <div className="col mb-3">
                             <label for="user" class="form-label">Fecha reserva</label>
                             <input
                                 type='datetime-local'
@@ -166,7 +196,23 @@ export const Reservas = () => {
                                 value={reserva.status}
                                 onChange={handleChange}>
                             </input>
+                        </div> */}
+                        <div className="col mb-3">
+                            <label for="user" class="form-label">Estado Reserva</label>
+                            <select
+                                type='text'
+                                name='status'
+                                className='form-control mb-2'
+                                placeholder='Estado'
+                                value={reserva.status}
+                                onChange={handleChange}>
+                                    <option disabled selected>Estado</option>
+                                    <option value={'Reservado'}>Reservado</option>
+                                    <option value={'Cancelado'}>Cancelado</option>
+                            </select>
                         </div>
+
+
 
                         <div className='col-md-12 text-center my-3 ' >
                             {
@@ -207,6 +253,8 @@ export const Reservas = () => {
                                 <th scope='col'>Estado</th>
                                 <th scope='col'>Mesa</th>
                                 <th scope='col'>Usuario</th>
+                                <th scope='col'>Fecha</th>
+                                <th scope='col'>Hora</th>
                                 <th scope='col'>Editar</th>
                                 <th scope='col'>Eliminar</th>
                             </tr>
@@ -218,6 +266,8 @@ export const Reservas = () => {
                                     <td>{reserva.status.replace('T', ' - ')}</td>
                                     <td>{reserva.mesa}</td>
                                     <td>{getUserById(reserva.user).email}</td>
+                                    <td>{reserva.date}</td>
+                                    <td>{reserva.time}</td>
                                     <td>
                                         <button
                                             type='button'

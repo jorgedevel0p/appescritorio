@@ -71,6 +71,7 @@ export const ControlStock = () => {
                 <div className="card-header text-center my-4">
                     <h2>Control de Stock</h2>
                 </div>
+                <hr></hr>
                 <div className="card-body">
                     <DataTable
                         columns={columns}

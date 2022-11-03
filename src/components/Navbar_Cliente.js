@@ -13,6 +13,14 @@ export const Navbar_Cliente = () => {
             </Link>
             <hr />
             <ul className="nav nav-pills flex-column mb-auto">
+            <li>
+          <Link to='/clientes'>
+            <a href="#" className="nav-link text-white">
+              <i className="fa-solid fa-home m-2" style={{ color: '#ffffff' }}></i>
+              Home
+            </a>
+          </Link>
+        </li>
                 <li>
                     <Link to='/reservaWeb'>
                         <a href="#" className="nav-link text-white">
@@ -33,7 +41,7 @@ export const Navbar_Cliente = () => {
                     <Link to='/'>
                         <a href="#" className="nav-link text-white">
                             <i className="fa-solid fa-right-from-bracket m-2" style={{ color: '#ffffff' }}></i>
-                            Cerrar sesión
+                            Cerrar Sesión
                         </a>
                     </Link>
                 </li>

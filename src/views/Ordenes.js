@@ -6,7 +6,8 @@ import Fondo1080 from "../assets/img/720x120.jpg"
 const DEFAULT_STATE = {
     id: '',
     date: '',
-    time: '',
+    start_time: '',
+    end_time:'',
     number_people: '',
     state: '',
     mesa: '',
@@ -140,10 +141,18 @@ export const Ordenes = () => {
                     </input>
                     <input 
                         type='time'     
-                        name='time' 
+                        name='start_time' 
                         className='form-control mb-2' 
-                        placeholder='Hora'
-                        value={orden.time}
+                        placeholder='Hora Inicio'
+                        value={orden.start_time}
+                        onChange={handleChange}>
+                    </input>
+                    <input 
+                        type='time'     
+                        name='end_time' 
+                        className='form-control mb-2' 
+                        placeholder='Hora Término'
+                        value={orden.end_time}
                         onChange={handleChange}>
                     </input>
                     <input 
@@ -208,7 +217,8 @@ export const Ordenes = () => {
                             <tr>
                                 <th scope='col'>ID</th>
                                 <th scope='col'>Fecha</th>
-                                <th scope='col'>Hora</th>
+                                <th scope='col'>Hora Inicio</th>
+                                <th scope='col'>Hora Término</th>
                                 <th scope='col'>Numero de Personas</th>
                                 <th scope='col'>Estado</th>
                                 <th scope='col'>ID Mesa</th>
@@ -221,7 +231,8 @@ export const Ordenes = () => {
                                 <tr>
                                     <th scope="row">{orden.id}</th>
                                     <td>{orden.date}</td>
-                                    <td>{orden.time}</td>
+                                    <td>{orden.start_time}</td>
+                                    <td>{orden.end_time}</td>
                                     <td>{orden.number_people}</td>
                                     <td>{orden.state}</td>
                                     <td>{orden.mesa}</td>
