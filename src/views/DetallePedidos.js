@@ -138,7 +138,7 @@ export const DetallePedidos = () => {
         <div className="card-header d-flex justify-content-between">
           <h2>Detalle Pedido Proveedor</h2>
           <Modal
-            modalTitle={'Agregar usuario'}
+            modalTitle={'Agregar Detalle Pedido Proveedo'}
             renderButton={() => (
               <div ref={btnAddModal}><i class="fa-solid fa-plus" /></div>
             )}
@@ -177,33 +177,30 @@ export const DetallePedidos = () => {
                   value={detallePedido.pedido_proveedor}
                   onChange={handleChange}>
                 </input>
-                <div className="col mb-3">
-                  <label for="user" class="form-label">Producto</label>
-                  <select
-                    type='text'
-                    name='producto'
-                    className='form-control'
-                    value={detallePedido.producto}
-                    onChange={handleChange}
-                  >
-                    <option value='' disabled selected>Producto</option>
-                    {productos.data.map(prod => (
-                      <option value={prod.id}>{prod.name}</option>
-                    ))}
-                  </select>
-                </div>
+                <select
+                  type='text'
+                  name='producto'
+                  className='form-control'
+                  value={detallePedido.producto}
+                  onChange={handleChange}
+                >
+                  <option disabled selected>Producto</option>
+                  {productos.data.map(prod => (
+                    <option value={prod.id}>{prod.name}</option>
+                  ))}
+                </select>
                 <div className='col-md-12 text-center my-3 ' >
                   {
-                    !detallePedidos.id
+                    !detallePedido.id
                       ? <button
                         type='button'
-                        className='col-md-2 btn btn-success'
+                        className='btn btn-success mx-3'
                         onClick={saveDetallePedido}>
                         Guardar
                       </button>
                       : <button
                         type='button'
-                        className='col-md-2 btn btn-dark'
+                        className='btn btn-dark mx-3'
                         onClick={() => updateDetallePedido(detallePedido.id)}>
                         Actualizar
                       </button>

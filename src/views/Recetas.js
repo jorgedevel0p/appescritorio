@@ -216,13 +216,13 @@ export const Recetas = () => {
                       !plato.id
                         ? <button
                           type='button'
-                          className='col-md-6 btn btn-success '
+                          className='btn btn-success mx-3'
                           onClick={savePlato}>
-                          Guardar
+                          Añadir
                         </button>
                         : <button
                           type='button'
-                          className='col-md-6 btn btn-dark  '
+                          className='btn-dark mx-3 '
                           onClick={() => updatePlato(plato.id)}>
                           Actualizar
                         </button>
@@ -275,7 +275,6 @@ export const Recetas = () => {
             </table>
           </div>
         </div>
-
 
       </Layout_Cocina>
       <Footer />
