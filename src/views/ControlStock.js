@@ -1,32 +1,20 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useContext } from 'react'
 import { Footer, Layout_Bodega } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import Fondo1080 from "../assets/img/Bodega_720x120.jpg"
 import DataTable from 'react-data-table-component'
 import 'style-components'
+import restaurantContext from '../context/restaurantContext'
 
 export const ControlStock = () => {
 
-    const [productos, setProductos] = useState([])
+    const {productos, getProductos} = useContext(restaurantContext)    
     const { isLoading, makeHttpRequest } = useHttpRequest()
 
+    
 
-    const getProductos = () => {
-        makeHttpRequest({
-            operation: '/producto/',
-            data: null,
-            method: 'GET',
-            callback: ({ ok, data }) => {
-                if (!ok) {
-                    alert(JSON.stringify(data))
-                    return
-                }
-                console.log(data, 'Listado de productos recibido')
-                setProductos(data)
-            }
-        })
-    }
 
+ 
     useEffect(() => {
         getProductos()
     }, [])
@@ -53,18 +41,18 @@ export const ControlStock = () => {
             selector: row => row.expiration_date
         },
         {
-            name: 'Valor',
-            selector: row => row.value
-        },
-        {
             name: 'Marca',
             selector: row => row.brand
         },
         {
             name: 'Alerta',
-            selector: ''
+            selector: row => [
+                (row.stock <= 30) ? 'Pedir' : ''
+            ]
         },
     ]
+
+  
 
     return (
 
@@ -75,11 +63,11 @@ export const ControlStock = () => {
                 <div className="card-header text-center my-4">
                     <h2>Control de Stock</h2>
                 </div>
-                <hr></hr>
+                <hr></hr>               
                 <div className="card-body">
                     <DataTable
                         columns={columns}
-                        data={productos}
+                        data={productos.data}
                         pagination
                     />
                 </div>
