@@ -1,8 +1,9 @@
-import React, { useEffect, useState, useContext } from 'react'
+import React, { useEffect, useState, useContext, useRef } from 'react'
 import { Layout_Admin } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import restaurantContext from '../context/restaurantContext'
 import Fondo1080 from "../assets/img/720x120.jpg"
+import { Modal } from "../components/ui/Modal";
 
 const DEFAULT_STATE = {
     id: '',
@@ -10,7 +11,7 @@ const DEFAULT_STATE = {
     mesa: '',
     user: '',
     date: '',
-    time:'',
+    time: '',
 }
 
 export const Reservas = () => {
@@ -83,6 +84,7 @@ export const Reservas = () => {
     }
 
     const setReservaDataIntoForm = (reserva) => {
+        openModalImperative();
         setReserva(reserva)
     }
 
@@ -113,80 +115,91 @@ export const Reservas = () => {
         getReservas()
     }, [])
 
+    const btnAddModal = useRef();
+    const openModalImperative = () => {
+        console.log(btnAddModal.current);
+        btnAddModal.current.click();
+    };
+
     return (
         <Layout_Admin>
             <div>
                 <img src={Fondo1080} className="card-img" height={140} />
             </div>
-            <div className='card my-3 mx-4 justify-center'>
-                <div className='card-header text-center'>
-                    <h2>Detalle Reserva
-                    </h2>
-                </div>
-                <div className='card-body'>
-                    <form className='container' style={{ width: 400 }}>
-                        <div className="row row-cols-2 mb-2">
-                            <div className="col mb-3">
-                                <label for="user" class="form-label">Mesa a reservar</label>
-                                <select
-                                    type='text'
-                                    name='mesa'
-                                    className='form-control'
-                                    value={reserva.mesa}
-                                    onChange={handleChange}
-                                >
-                                    <option value='' disabled selected>Número mesa</option>
-                                    {mesas.data.map(mesa => (
-                                        <option value={mesa.id}>{mesa.number_name}</option>
-                                    ))}
-                                </select>
+            <div className="card my-3 mx-4 justify-center">
+                <div className="card-header d-flex justify-content-between">
+                    <h2> Lista de Reservas</h2>
+                    <Modal
+                        modalTitle={"Agregar reserva"}
+                        renderButton={() => (
+                            <div ref={btnAddModal}>
+                                <i class="fa-solid fa-plus" />
                             </div>
-                            <div className="col mb-3">
-                                <label for="user" class="form-label">Usuario reserva</label>
-                                <select
-                                    type='text'
-                                    name='user'
-                                    className='form-control'
-                                    value={reserva.user}
-                                    onChange={handleChange}
-                                >
-                                    <option value='' disabled selected>Usuario reserva</option>
-                                    {users.data.map(user => (
-                                        <option value={user.id}>{user.email}</option>
-                                    ))}
-                                </select>
-                            </div>
-                        </div>
-                        <div className="row row-cols-2 mb-2">
-                        <div className="col mb-3">
-                                <label for="user" class="form-label">Fecha a reservar</label>
-                                <input
-                                    type='date'
-                                    name='date'
-                                    className='form-control'
-                                    value={reserva.date}
-                                    onChange={handleChange}
-                                >
+                        )}
+                        renderContent={() => (
+                            <form className='container' style={{ width: 400 }}>
+                                <div className="row row-cols-2 mb-2">
+                                    <div className="col mb-3">
+                                        <label for="user" class="form-label">Mesa a reservar</label>
+                                        <select
+                                            type='text'
+                                            name='mesa'
+                                            className='form-control'
+                                            value={reserva.mesa}
+                                            onChange={handleChange}
+                                        >
+                                            <option value='' disabled selected>Número mesa</option>
+                                            {mesas.data.map(mesa => (
+                                                <option value={mesa.id}>{mesa.number_name}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className="col mb-3">
+                                        <label for="user" class="form-label">Usuario reserva</label>
+                                        <select
+                                            type='text'
+                                            name='user'
+                                            className='form-control'
+                                            value={reserva.user}
+                                            onChange={handleChange}
+                                        >
+                                            <option value='' disabled selected>Usuario reserva</option>
+                                            {users.data.map(user => (
+                                                <option value={user.id}>{user.email}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                </div>
+                                <div className="row row-cols-2 mb-2">
+                                    <div className="col mb-3">
+                                        <label for="user" class="form-label">Fecha a reservar</label>
+                                        <input
+                                            type='date'
+                                            name='date'
+                                            className='form-control'
+                                            value={reserva.date}
+                                            onChange={handleChange}
+                                        >
 
-                                </input>
-                            </div>
-                            <div className="col mb-3">
-                                <label for="user" class="form-label">Hora a reservar</label>
-                                <input
-                                    type='time'
-                                    name='time'
-                                    className='form-control'
-                                    value={reserva.time}
-                                    onChange={handleChange}
-                                >
+                                        </input>
+                                    </div>
+                                    <div className="col mb-3">
+                                        <label for="user" class="form-label">Hora a reservar</label>
+                                        <input
+                                            type='time'
+                                            name='time'
+                                            className='form-control'
+                                            value={reserva.time}
+                                            onChange={handleChange}
+                                        >
 
-                                </input>
-                            </div>
-                            
+                                        </input>
+                                    </div>
 
-                        </div>
 
-                        {/* <div className="col mb-3">
+                                </div>
+
+                                {/* <div className="col mb-3">
                             <label for="user" class="form-label">Fecha reserva</label>
                             <input
                                 type='datetime-local'
@@ -197,54 +210,51 @@ export const Reservas = () => {
                                 onChange={handleChange}>
                             </input>
                         </div> */}
-                        <div className="col mb-3">
-                            <label for="user" class="form-label">Estado Reserva</label>
-                            <select
-                                type='text'
-                                name='status'
-                                className='form-control mb-2'
-                                placeholder='Estado'
-                                value={reserva.status}
-                                onChange={handleChange}>
-                                    <option disabled selected>Estado</option>
-                                    <option value={'Reservado'}>Reservado</option>
-                                    <option value={'Cancelado'}>Cancelado</option>
-                            </select>
-                        </div>
+                                <div className="col mb-3">
+                                    <label for="user" class="form-label">Estado Reserva</label>
+                                    <select
+                                        type='text'
+                                        name='status'
+                                        className='form-control mb-2'
+                                        placeholder='Estado'
+                                        value={reserva.status}
+                                        onChange={handleChange}>
+                                        <option disabled selected>Estado</option>
+                                        <option value={'Reservado'}>Reservado</option>
+                                        <option value={'Cancelado'}>Cancelado</option>
+                                    </select>
+                                </div>
 
 
 
-                        <div className='col-md-12 text-center my-3 ' >
-                            {
-                                !reserva.id
-                                    ? <button
+                                <div className='col-md-12 text-center my-3 ' >
+                                    {
+                                        !reserva.id
+                                            ? <button
+                                                type='button'
+                                                className='btn btn-success mx-3'
+                                                onClick={saveReserva}>
+                                                Guardar
+                                            </button>
+                                            : <button
+                                                type='button'
+                                                className='btn btn-dark mx-3 '
+                                                onClick={() => updateReserva(reserva.id)}>
+                                                Actualizar
+                                            </button>
+                                    }
+                                    <button
                                         type='button'
-                                        className='btn btn-success mx-3'
-                                        onClick={saveReserva}>
-                                        Guardar
+                                        className='btn btn-light mx-3'
+                                        onClick={resetForm}>
+                                        Limpiar
                                     </button>
-                                    : <button
-                                        type='button'
-                                        className='btn btn-dark mx-3 '
-                                        onClick={() => updateReserva(reserva.id)}>
-                                        Actualizar
-                                    </button>
-                            }
-                            <button
-                                type='button'
-                                className='btn btn-light mx-3'
-                                onClick={resetForm}>
-                                Limpiar
-                            </button>
-                        </div>
-                    </form>
+                                </div>
+                            </form>
+                        )}
+                    />
                 </div>
-            </div>
-            <hr className='mt-4 m-4'></hr>
-            <div className='card my-3 mx-4 justify-center'>
-                <div className='card-header text-center'>
-                    <h2>Listado de Reservas</h2>
-                </div>
+
                 <div className='card-body text-center'>
                     <table className='table'>
                         <thead>
@@ -295,5 +305,5 @@ export const Reservas = () => {
                 </div>
             </div>
         </Layout_Admin>
-    )
-}
+    );
+};

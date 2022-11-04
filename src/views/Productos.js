@@ -1,7 +1,8 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState, useEffect, useRef } from 'react'
 import { Layout_Admin } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import Fondo1080 from "../assets/img/720x120.jpg"
+import { Modal } from '../components/ui/Modal'
 
 const DEFAULT_STATE = {
   id: '',
@@ -61,8 +62,9 @@ export const Productos = () => {
       }
     })
   }
-  
+
   const setProductoDataIntoForm = (producto) => {
+    openModalImperative()
     setProducto(producto)
   }
 
@@ -76,7 +78,7 @@ export const Productos = () => {
       method: 'PUT',
       callback: ({ ok, data }) => {
         if (!ok) {
-            alert(JSON.stringify(data))
+          alert(JSON.stringify(data))
           return
         }
         console.log(data, 'Producto se ha actualizado correctamente')
@@ -97,8 +99,8 @@ export const Productos = () => {
       method: 'DELETE',
       callback: ({ ok, data }) => {
         if (!ok) {
-            alert(JSON.stringify(data))
-        return
+          alert(JSON.stringify(data))
+          return
         }
         console.log(data, 'Producto se ha eliminado correctamente')
         getProductos()
@@ -112,14 +114,18 @@ export const Productos = () => {
       available: e.target.checked
     })
   }
-  
+
   const resetForm = () => setProducto({ ...DEFAULT_STATE })
-  
+
   useEffect(() => {
     getProductos()
   }, [])
 
-
+  const btnAddModal = useRef()
+  const openModalImperative = () => {
+    console.log(btnAddModal.current)
+    btnAddModal.current.click()
+  }
 
   return (
     <Layout_Admin>
@@ -127,111 +133,122 @@ export const Productos = () => {
         <img src={Fondo1080} className="card-img" height={140} />
       </div>
       <div className="card my-3 mx-4 justify-center">
-          <div className="card-header text-center">
-          <h2>Detalle de Productos</h2>
+        <div className="card-header d-flex justify-content-between">
+          <h2> Lista de Productos</h2>
+          <Modal modalTitle={"Agregar producto"}
+            renderButton={() => (
+              <div ref={btnAddModal}>
+                <i class="fa-solid fa-plus" />
+              </div>
+            )}
+            renderContent={() => (
+              <form className='container' style={{ width: 400 }}>
+                <div className="row row-cols-3 mb-1">
+                  <div className="col">
+                    <label for="number_name" class="form-label">ID Producto</label>
+                    <input
+                      type='text'
+                      name='id'
+                      className='form-control mb-1'
+                      placeholder='ID Producto'
+                      readOnly={true}
+                      value={producto.id}
+                      onChange={handleChange}>
+                    </input>
+                  </div>
+                  <div className="col">
+                    <label for="number_name" class="form-label">Stock</label>
+                    <input
+                      type='number'
+                      name='stock'
+                      className='form-control mb-1'
+                      value={producto.stock}
+                      placeholder='Stock'
+                      onChange={handleChange} />
+                  </div>
+                  <div className="col">
+                    <label for="number_name" class="form-label">Valor</label>
+                    <input
+                      type='number'
+                      name='value'
+                      className='form-control mb-1'
+                      value={producto.value}
+                      placeholder='Valor'
+                      onChange={handleChange} />
+                  </div>
+                </div>
+                <div className="row row-cols-2 mb-1">
+                  <div className="col">
+                    <label for="number_name" class="form-label">Fecha Ingreso</label>
+                    <input
+                      type='date'
+                      className='form-control mb-1'
+                      value={producto.entry_date}
+                      name='entry_date'
+                      placeholder='Fecha de Ingreso'
+                      onChange={handleChange} />
+                  </div>
+                  <div className="col">
+                    <label for="number_name" class="form-label">Fecha Expiración</label>
+                    <input
+                      type='date'
+                      className='form-control mb-1'
+                      value={producto.expiration_date}
+                      name='expiration_date'
+                      placeholder='Fecha de Expiración'
+                      onChange={handleChange} />
+                  </div>
+                </div>
+                <div className="col">
+                  <label for="number_name" class="form-label">Nombre</label>
+                  <input
+                    type='text'
+                    name='name'
+                    className='form-control mb-1'
+                    value={producto.name}
+                    placeholder='Nombre'
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className="col">
+                  <label for="number_name" class="form-label">Marca</label>
+                  <input
+                    type='text'
+                    name='brand'
+                    className='form-control mb-1'
+                    value={producto.brand}
+                    placeholder='Marca'
+                    onChange={handleChange}
+                  />
+                </div>
+                <div className='col-md-12 text-center my-3 ' >
+                  {
+                    !producto.id
+                      ? <button
+                        type='button'
+                        className='col-md-6 btn btn-success '
+                        onClick={saveProducto}>
+                        Guardar
+                      </button>
+                      : <button
+                        type='button'
+                        className='col-md-6 btn btn-dark  '
+                        onClick={() => updateProducto(producto.id)}>
+                        Actualizar
+                      </button>
+                  }
+                  <button
+                    type='button'
+                    className='col-md-6 btn btn-light '
+                    onClick={resetForm}>
+                    Limpiar
+                  </button>
+                </div>
+              </form>
+            )}
+          />
         </div>
 
-        <div className="card-body">
-          <form>
-            {/* <div className="form-check">
-              <input
-                className="form-check-input"
-                type="checkbox"
-                checked={producto.state}
-                onChange={handleCheck}
-              />
-              <label className="form-check-label" for="flexCheckDefault">
-                Activo
-              </label>
-            </div> */}
-            <input 
-                type='text' 
-                name='id' 
-                className='form-control mb-2'
-                placeholder='ID Producto'
-                readOnly={true}
-                value={producto.id}
-                onChange={handleChange}>
-              </input>
-            <input 
-              type='text' 
-              name='name' 
-              className='form-control mb-2' 
-              value={producto.name} 
-              placeholder='Nombre' 
-              onChange={handleChange}
-            />
-            <input 
-              type='number' 
-              name='stock' 
-              className='form-control mb-2' 
-              value={producto.stock} 
-              placeholder='Stock' 
-              onChange={handleChange}
-            />
-            <input 
-              type='date' 
-              className='form-control mb-2'
-               value={producto.entry_date} 
-               name='entry_date' 
-               placeholder='Fecha de Ingreso' 
-               onChange={handleChange} 
-            /> 
-            <input 
-              type='date' 
-              className='form-control mb-2' 
-              value={producto.expiration_date} 
-              name='expiration_date' 
-              placeholder='Fecha de Expiración' 
-              onChange={handleChange} 
-            />
-            <input 
-              type='number' 
-              name='value' 
-              className='form-control mb-2' 
-              value={producto.value} 
-              placeholder='Valor' 
-              onChange={handleChange}
-            />
-            <input 
-              type='text' 
-              name='brand' 
-              className='form-control mb-2' 
-              value={producto.brand} 
-              placeholder='Marca' 
-              onChange={handleChange} 
-            />
-            <div className='col-md-12 text-center my-3 ' >
-                {            
-                !producto.id
-                  ? <button 
-                    type='button' 
-                    className='col-md-2 btn btn-success mx-3' 
-                    onClick={saveProducto}>
-                      Guardar
-                  </button>
-                  : <button 
-                    type='button' 
-                    className='col-md-2 btn btn-dark mx-3 '  
-                    onClick={() => updateProducto(producto.id)}>
-                      Actualizar
-                  </button>
-                } 
-              <button 
-                type='button' 
-                className='col-md-2 btn btn-light mx-3'  
-                onClick={resetForm}>
-                  Limpiar
-              </button>
-            </div>
-          </form>
-        </div>
-      </div>
-      <hr className='mt-4 m-4'></hr>
-        <div className="card my-3 mx-4 justify-center">
-          <div className="card-header text-center">
-          <h2>Lista de Productos</h2>
-        </div>
         <div className="card-body text-center">
           <table className="table">
             <thead>
@@ -258,24 +275,24 @@ export const Productos = () => {
                   <td>{producto.value}</td>
                   <td>{producto.brand}</td>
                   <td>
-                    <button 
-                      type='button' 
-                      className='btn btn-warning btn-xs' 
+                    <button
+                      type='button'
+                      className='btn btn-warning btn-xs'
                       onClick={() => setProductoDataIntoForm(producto)}>
-                        <i 
-                          className="fa-solid fa-pen-to-square" 
-                          style={{ color: '#ffffff' }}>
-                        </i>
-                      </button>
+                      <i
+                        className="fa-solid fa-pen-to-square"
+                        style={{ color: '#ffffff' }}>
+                      </i>
+                    </button>
                   </td>
                   <td>
-                    <button 
-                      type='button' 
-                      className='btn btn-danger btn-xs' 
+                    <button
+                      type='button'
+                      className='btn btn-danger btn-xs'
                       onClick={() => deleteProducto(producto.id)}>
-                        <i 
-                          className="fa-solid fa-trash">
-                        </i>
+                      <i
+                        className="fa-solid fa-trash">
+                      </i>
                     </button>
                   </td>
                 </tr>

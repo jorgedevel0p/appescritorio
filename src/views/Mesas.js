@@ -1,8 +1,9 @@
-import React, { useState, useContext } from 'react'
+import React, { useState, useContext, useRef } from 'react'
 import { Layout_Admin } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import restaurantContext from '../context/restaurantContext'
 import Fondo1080 from "../assets/img/720x120.jpg"
+import { Modal } from '../components/ui/Modal'
 
 const DEFAULT_STATE = {
   id: '',
@@ -44,6 +45,7 @@ export const Mesas = () => {
     })
   }
   const setMesaDataIntoForm = (mesa) => {
+    openModalImperative()
     setMesa(mesa)
   }
 
@@ -96,6 +98,12 @@ export const Mesas = () => {
 
   const resetForm = () => setMesa({ ...DEFAULT_STATE })
 
+  const btnAddModal = useRef()
+  const openModalImperative = () => {
+    console.log(btnAddModal.current)
+    btnAddModal.current.click()
+  }
+
   return (
     <>
       <Layout_Admin>
@@ -106,12 +114,15 @@ export const Mesas = () => {
             height={140} />
         </div>
         <div className="card my-3 mx-4 justify-center">
-          <div className="card-header">
-            <h2 className='text-center'>
-              Detalle Mesas
-            </h2>
-          </div>
-          <div className="card-body">
+          <div className="card-header d-flex justify-content-between">
+          <h2> Lista de Mesas</h2>                    
+            <Modal  modalTitle={"Agregar mesa"}
+            renderButton={() => (
+              <div ref={btnAddModal}>
+                <i class="fa-solid fa-plus" />
+              </div>
+            )}
+            renderContent={() => (
             <form className='container' style={{ width: 400 }}>
               <div className="row row-cols-2 mb-2">
                 <div className="col">
@@ -185,15 +196,10 @@ export const Mesas = () => {
                 </button>
               </div>
             </form>
-          </div>
+          )}
+          />
         </div>
-        <hr className='mt-4 m-4'></hr>
-        <div className="card my-3 mx-4 justify-center">
-          <div className="card-header text-center">
-            <h2>
-              Listado Mesas
-            </h2>
-          </div>
+        
           <div className="card-body text-center">
             <table className="table">
               <thead>

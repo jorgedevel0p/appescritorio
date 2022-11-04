@@ -1,75 +1,78 @@
-import React, { useState, useContext, useRef } from 'react'
-import { Link } from 'react-router-dom'
-import { useHttpRequest } from '../hooks/useHttpRequest'
-import { Layout_Admin } from '../components/index'
-import restaurantContext from '../context/restaurantContext'
-import { Modal } from '../components/ui/Modal'
-import Fondo1080 from '../assets/img/720x120.jpg'
+import React, { useState, useContext, useRef } from "react";
+import { Link } from "react-router-dom";
+import { useHttpRequest } from "../hooks/useHttpRequest";
+import { Layout_Admin } from "../components/index";
+import restaurantContext from "../context/restaurantContext";
+import { Modal } from "../components/ui/Modal";
+import Fondo1080 from "../assets/img/720x120.jpg";
 
 const DEFAULT_STATE = {
-  id: '',
-  username: '',
-  name: '',
-  last_name: '',
-  email: '',
-  type: '',
-  password: '',
-}
+  id: "",
+  username: "",
+  name: "",
+  last_name: "",
+  email: "",
+  type: "",
+  password: "",
+};
 
 export const Users = () => {
-  const { users, getUsers } = useContext(restaurantContext)
-  const { isLoading, error, makeHttpRequest } = useHttpRequest()
-  const [form, setForm] = useState(DEFAULT_STATE)
+  const { users, getUsers } = useContext(restaurantContext);
+  const { isLoading, error, makeHttpRequest } = useHttpRequest();
+  const [form, setForm] = useState(DEFAULT_STATE);
 
   const handleChange = (e) => {
     setForm({
       ...form,
-      [e.target.name]: e.target.value
-    })
-  }
+      [e.target.name]: e.target.value,
+    });
+  };
 
   const saveUser = () => {
-    console.log(form)
+    console.log(form);
     makeHttpRequest({
-      operation: '/user/',
+      operation: "/user/",
       data: form,
-      method: 'POST',
+      method: "POST",
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          return
+          alert(JSON.stringify(data));
+          return;
         }
-        console.log(data, 'Ha guardado Usuario correctamente')
-        getUsers()
-        resetForm()
-      }
-    })
-  }
+        console.log(data, "Ha guardado Usuario correctamente");
+        getUsers();
+        resetForm();
+      },
+    });
+  };
 
   const updateUser = (id) => {
-    if (confirm("¿Desea actualizar la información de este usuario?") === false) {
-      return
+    if (
+      confirm("¿Desea actualizar la información de este usuario?") === false
+    ) {
+      return;
     }
     makeHttpRequest({
       operation: `/user/${id}`,
       data: form,
-      method: 'PUT',
+      method: "PUT",
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          return
+          alert(JSON.stringify(data));
+          return;
         }
-        console.log(data, 'Usuario se ha actualizado correctamente')
-        getUsers()
-        resetForm()
-      }
-    })
-  }
+        console.log(data, "Usuario se ha actualizado correctamente");
+        getUsers();
+        resetForm();
+      },
+    });
+  };
 
   const setUserDataIntoForm = (usuario) => {
-    console.log(usuario, 'usuario')
-    openModalImperative()
-    const { id, username, name, last_name, email, type, /* password */ } = usuario
+    console.log(usuario, "usuario");
+    openModalImperative();
+    const { id, username, name, last_name, email, type /* password */ } =
+      usuario;
     setForm({
       id,
       username,
@@ -77,97 +80,96 @@ export const Users = () => {
       last_name,
       email,
       type,
-    })
-  }
+    });
+  };
 
   const deleteUser = (id) => {
     if (confirm("¿Desea eliminar este usuario?") === false) {
-      return
+      return;
     }
     makeHttpRequest({
       operation: `/user/${id}`,
       data: null,
-      method: 'DELETE',
+      method: "DELETE",
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          return
+          alert(JSON.stringify(data));
+          return;
         }
-        console.log(data, 'Usuario se ha eliminado correctamente')
-        getUsers()
-      }
-    })
-  }
+        console.log(data, "Usuario se ha eliminado correctamente");
+        getUsers();
+      },
+    });
+  };
 
-  const resetForm = () => [
-    setForm({ ...DEFAULT_STATE })
-  ]
+  const resetForm = () => [setForm({ ...DEFAULT_STATE })];
 
-  const btnAddModal = useRef()
+  const btnAddModal = useRef();
   const openModalImperative = () => {
-    console.log(btnAddModal.current)
-    btnAddModal.current.click()
-  }
+    console.log(btnAddModal.current);
+    btnAddModal.current.click();
+  };
 
   return (
     <Layout_Admin>
       <div>
-        <img
-          src={Fondo1080}
-          className="card-img"
-          height={140}
-        />
+        <img src={Fondo1080} className="card-img" height={140} />
       </div>
 
       <div className="card my-3 mx-4 justify-center">
         <div className="card-header d-flex justify-content-between">
           <h2> Lista de Usuarios</h2>
           <Modal
-            modalTitle={'Agregar usuario'}
+            modalTitle={"Agregar usuario"}
             renderButton={() => (
-              <div ref={btnAddModal}><i class="fa-solid fa-plus" /></div>
+              <div ref={btnAddModal}>
+                <i class="fa-solid fa-plus" />
+              </div>
             )}
             renderContent={() => (
-              <form className='container' style={{ width: 400 }}>
+              <form className="container" style={{ width: 400 }}>
                 <input
-                  type='text'
-                  className='form-control mb-2'
+                  type="text"
+                  className="form-control mb-2"
                   value={form.username}
-                  name='username'
-                  placeholder='Username'
+                  name="username"
+                  placeholder="Username"
                   onChange={handleChange}
                 />
                 <input
-                  type='text'
-                  className='form-control mb-2'
+                  type="text"
+                  className="form-control mb-2"
                   value={form.name}
-                  name='name'
-                  placeholder='Nombre'
+                  name="name"
+                  placeholder="Nombre"
                   onChange={handleChange}
                 />
                 <input
-                  type='text'
-                  className='form-control mb-2'
+                  type="text"
+                  className="form-control mb-2"
                   value={form.last_name}
-                  name='last_name'
-                  placeholder='Apellido'
+                  name="last_name"
+                  placeholder="Apellido"
                   onChange={handleChange}
                 />
                 <input
-                  type='email'
-                  className='form-control mb-2'
+                  type="email"
+                  className="form-control mb-2"
                   value={form.email}
-                  name='email'
-                  placeholder='e-mail'
+                  name="email"
+                  placeholder="e-mail"
                   onChange={handleChange}
                 />
                 <select
                   name="type"
-                  className='form-select mb-2'
+                  className="form-select mb-2"
                   id="cars"
                   value={form.type}
-                  onChange={handleChange}>
-                  <option value='' disabled selected>Tipo de Usuario</option>
+                  onChange={handleChange}
+                >
+                  <option value="" disabled selected>
+                    Tipo de Usuario
+                  </option>
                   <option value="Admin">Admin</option>
                   <option value="Finanzas">Finanzas</option>
                   <option value="Cocina">Cocina</option>
@@ -175,33 +177,36 @@ export const Users = () => {
                   <option value="Cliente">Cliente</option>
                 </select>
                 <input
-                  type='password'
-                  className='form-control mb-2'
+                  type="password"
+                  className="form-control mb-2"
                   value={form.password}
-                  name='password'
-                  placeholder='Nueva password'
+                  name="password"
+                  placeholder="Nueva password"
                   onChange={handleChange}
                 />
-                <div className='col-md-12 text-center my-3 ' >
-                  {
-                    !form.id
-                      ? <button
-                        type='button'
-                        className='btn btn-success mx-3'
-                        onClick={saveUser}>
-                        Guardar
-                      </button>
-                      : <button
-                        type='button'
-                        className='btn btn-dark mx-3 '
-                        onClick={() => updateUser(form.id)}>
-                        Actualizar
-                      </button>
-                  }
+                <div className="col-md-12 text-center my-3 ">
+                  {!form.id ? (
+                    <button
+                      type="button"
+                      className="btn btn-success mx-3"
+                      onClick={saveUser}
+                    >
+                      Guardar
+                    </button>
+                  ) : (
+                    <button
+                      type="button"
+                      className="btn btn-dark mx-3 "
+                      onClick={() => updateUser(form.id)}
+                    >
+                      Actualizar
+                    </button>
+                  )}
                   <button
-                    type='button'
-                    className='btn btn-light mx-3'
-                    onClick={resetForm}>
+                    type="button"
+                    className="btn btn-light mx-3"
+                    onClick={resetForm}
+                  >
                     Limpiar
                   </button>
                 </div>
@@ -224,7 +229,7 @@ export const Users = () => {
               </tr>
             </thead>
             <tbody className="table-group-divider">
-              {users.data.map(usuario => (
+              {users.data.map((usuario) => (
                 <tr>
                   <td>{usuario.id}</td>
                   <td>{usuario.username}</td>
@@ -234,24 +239,23 @@ export const Users = () => {
                   <td>{usuario.type}</td>
                   <td>
                     <button
-                      type='button'
-                      className='btn btn-warning btn-xs m-1'
-                      onClick={() => setUserDataIntoForm(usuario)}>
+                      type="button"
+                      className="btn btn-warning btn-xs m-1"
+                      onClick={() => setUserDataIntoForm(usuario)}
+                    >
                       <i
                         className="fa-solid fa-pen-to-square"
-                        style={{ color: '#ffffff' }}>
-                      </i>
+                        style={{ color: "#ffffff" }}
+                      ></i>
                     </button>
                   </td>
                   <td>
                     <button
-                      type='button'
-                      className='btn btn-danger btn-xs'
-                      onClick={() => deleteUser(usuario.id)}>
-                      <i
-                        className="fa-solid fa-trash"
-                      >
-                      </i>
+                      type="button"
+                      className="btn btn-danger btn-xs"
+                      onClick={() => deleteUser(usuario.id)}
+                    >
+                      <i className="fa-solid fa-trash"></i>
                     </button>
                   </td>
                 </tr>
@@ -261,5 +265,5 @@ export const Users = () => {
         </div>
       </div>
     </Layout_Admin>
-  )
-}
+  );
+};
