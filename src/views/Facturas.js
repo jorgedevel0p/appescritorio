@@ -1,20 +1,21 @@
-import React, { useState, useEffect, useContext } from 'react'
+import React, { useState, useEffect, useContext, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import { Layout_Admin, Navbar, Footer } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import Fondo1080 from "../assets/img/720x120.jpg"
 import restaurantContext from '../context/restaurantContext'
+import { Modal } from '../components/ui/Modal'
 
 const DEFAULT_STATE = {
-    id:'',
-    date:'',
-    pedido_proveedor:'',
-    proveedor:'',
+  id: '',
+  date: '',
+  pedido_proveedor: '',
+  proveedor: '',
 }
 
 export const Facturas = () => {
   const { proveedores, getProveedoresById } = useContext(restaurantContext)
-    
+
 
   const [factura, setFactura] = useState(DEFAULT_STATE)
   const [facturas, setFacturas] = useState([])
@@ -64,6 +65,7 @@ export const Facturas = () => {
   }
   const setFacturaDataIntoForm = (factura) => {
     setFactura(factura)
+    openModalImperative()
   }
 
   const updateFactura = (id) => {
@@ -76,7 +78,7 @@ export const Facturas = () => {
       method: 'PUT',
       callback: ({ ok, data }) => {
         if (!ok) {
-            alert(JSON.stringify(data))
+          alert(JSON.stringify(data))
           return
         }
         console.log(data, 'Factura se ha actualizado correctamente')
@@ -97,8 +99,8 @@ export const Facturas = () => {
       method: 'DELETE',
       callback: ({ ok, data }) => {
         if (!ok) {
-            alert(JSON.stringify(data))
-        return
+          alert(JSON.stringify(data))
+          return
         }
         console.log(data, 'Factura se ha eliminado correctamente')
         getFacturas()
@@ -112,146 +114,151 @@ export const Facturas = () => {
       available: e.target.checked
     })
   }
-  
+
   const resetForm = () => setFactura({ ...DEFAULT_STATE })
-  
+
   useEffect(() => {
     getFacturas()
   }, [])
 
+  const btnAddModal = useRef()
+  const openModalImperative = () => {
+    console.log(btnAddModal.current)
+    btnAddModal.current.click()
+  }
 
-    return(
-        <Layout_Admin>
-            <div>
-                <img src={Fondo1080} 
-                    className="card-img" 
-                    height={140} />
-            </div>
-            <div className='card my-3 mx-4 justify-center'>
-                <div className='card-header text-center'>
-                    <h2>Detalle de Factura                        
-                    </h2>
-                </div>
-                <div className='card-body'>                    
-                    <input 
-                        type='text' 
-                        name='id' 
-                        className='form-control mb-2'
-                        placeholder='ID Factura'
-                        readOnly={true}
-                        value={factura.id}
-                        onChange={handleChange}>
-                    </input>
-                    <input
-                        type='date'
-                        name='date'
-                        className='form-control mb-2'
-                        placeholder='Fecha'
-                        value={factura.date}
-                        onChange={handleChange}>                            
-                    </input>
-                    <input 
-                        type='number' 
-                        name='pedido_proveedor' 
-                        className='form-control mb-2'
-                        placeholder='Pedido Proveedor ID'
-                        value={factura.pedido_proveedor}
-                        onChange={handleChange}>
-                    </input>
-                    
-                    <div className="col mb-3">
-                                <label for="user" class="form-label">Proveedor</label>
-                                <select
-                                    type='text'
-                                    name='proveedor'
-                                    className='form-control'
-                                    value={factura.proveedor}
-                                    onChange={handleChange}
-                                >
-                                    <option value='' disabled selected>Proveedor</option>
-                                    {proveedores.data.map(prov => (
-                                        <option value={prov.id}>{prov.name}</option>
-                                    ))}
-                                </select>
-                            </div>  
-                    <div className='col-md-12 text-center my-3 ' >
-                        {
-                        !factura.id
-                            ? <button 
-                                type='button' 
-                                className='col-md-2 btn btn-success' 
-                                onClick={saveFactura}>
-                                Guardar
-                            </button>
-                            : <button 
-                                type='button' 
-                                className='col-md-2 btn btn-dark' 
-                                onClick={() => updateFactura(factura.id)}>
-                                Actualizar
-                            </button>
-                        }
-                        <button 
-                        type='button' 
-                        className='col-md-2 btn btn-light mx-3' 
-                        onClick={resetForm}>
-                            Limpiar
-                        </button>
-                    </div>                       
-                    
-                </div>
-            </div>
-            <hr className='mt-4 m-4'></hr>
-            <div className='card my-3 mx-4 justify-center'>
-                <div  className='card-header text-center'>
-                    <h2>Listado de Facturas</h2>
-                </div>
-                <div className='card-body text-center'>
-                    <table className='table'>
-                        <thead>
-                            <tr>
-                                <th scope='col'>ID</th>
-                                <th scope='col'>Fecha</th>
-                                <th scope='col'>ID Pedido Proveedor</th>
-                                <th scope='col'>Proveedor</th>
-                                <th scope='col'>Editar</th>
-                                <th scope='col'>Eliminar</th>
-                            </tr>
-                        </thead><tbody className="table-group-divider">
-                            {facturas.map(factura => (
-                                <tr>
-                                    <th scope="row">{factura.id}</th>
-                                    <td>{factura.date}</td>
-                                    <td>{factura.pedido_proveedor}</td>
-                                    <td>{getProveedoresById(factura.proveedor).name}</td>
-                                    <td>
-                                        <button 
-                                            type='button' 
-                                            className='btn btn-warning btn-xs' 
-                                            onClick={() => setFacturaDataIntoForm(factura)}>
-                                            <i 
-                                                className="fa-solid fa-pen-to-square" 
-                                                style={{ color: '#ffffff' }}>
-                                            </i>
-                                        </button>
-                                    </td>
-                                    <td>
-                                        <button 
-                                            type='button' 
-                                            className='btn btn-danger btn-xs' 
-                                            onClick={() => deleteFactura(factura.id)}>
-                                            <i 
-                                                className="fa-solid fa-trash">
-                                            </i>
-                                        </button>
-                                    </td>
-                                </tr>
-                            ))}
-                        </tbody>
-                    </table>
+  return (
+    <Layout_Admin>
+      <div>
+        <img src={Fondo1080}
+          className="card-img"
+          height={140} />
+      </div>
+      <div className="card my-3 mx-4 justify-center">
+        <div className="card-header d-flex justify-content-between">
+          <h2>Detalle de Factura</h2>
+          <Modal
+            modalTitle={'Agregar usuario'}
+            renderButton={() => (
+              <div ref={btnAddModal}><i class="fa-solid fa-plus" /></div>
+            )}
+            renderContent={() => (
+              <form className='container' style={{ width: 400 }}>
+                <input
+                  type='text'
+                  name='id'
+                  className='form-control mb-2'
+                  placeholder='ID Factura'
+                  readOnly={true}
+                  value={factura.id}
+                  onChange={handleChange}>
+                </input>
+                <input
+                  type='date'
+                  name='date'
+                  className='form-control mb-2'
+                  placeholder='Fecha'
+                  value={factura.date}
+                  onChange={handleChange}>
+                </input>
+                <input
+                  type='number'
+                  name='pedido_proveedor'
+                  className='form-control mb-2'
+                  placeholder='Pedido Proveedor ID'
+                  value={factura.pedido_proveedor}
+                  onChange={handleChange}>
+                </input>
 
+                <div className="col mb-3">
+                  <label for="user" class="form-label">Proveedor</label>
+                  <select
+                    type='text'
+                    name='proveedor'
+                    className='form-control'
+                    value={factura.proveedor}
+                    onChange={handleChange}
+                  >
+                    <option value='' disabled selected>Proveedor</option>
+                    {proveedores.data.map(prov => (
+                      <option value={prov.id}>{prov.name}</option>
+                    ))}
+                  </select>
                 </div>
-            </div>
+                <div className='col-md-12 text-center my-3 ' >
+                  {
+                    !factura.id
+                      ? <button
+                        type='button'
+                        className='col-md-2 btn btn-success'
+                        onClick={saveFactura}>
+                        Guardar
+                      </button>
+                      : <button
+                        type='button'
+                        className='col-md-2 btn btn-dark'
+                        onClick={() => updateFactura(factura.id)}>
+                        Actualizar
+                      </button>
+                  }
+                  <button
+                    type='button'
+                    className='col-md-2 btn btn-light mx-3'
+                    onClick={resetForm}>
+                    Limpiar
+                  </button>
+                </div>
+              </form>
+            )}
 
-        </Layout_Admin>
-    )
+            />
+        </div>
+
+        <div className='card-body'>
+          <table className='table'>
+            <thead>
+              <tr>
+                <th scope='col'>ID</th>
+                <th scope='col'>Fecha</th>
+                <th scope='col'>ID Pedido Proveedor</th>
+                <th scope='col'>Proveedor</th>
+                <th scope='col'>Editar</th>
+                <th scope='col'>Eliminar</th>
+              </tr>
+            </thead><tbody className="table-group-divider">
+              {facturas.map(factura => (
+                <tr>
+                  <th scope="row">{factura.id}</th>
+                  <td>{factura.date}</td>
+                  <td>{factura.pedido_proveedor}</td>
+                  <td>{getProveedoresById(factura.proveedor).name}</td>
+                  <td>
+                    <button
+                      type='button'
+                      className='btn btn-warning btn-xs'
+                      onClick={() => setFacturaDataIntoForm(factura)}>
+                      <i
+                        className="fa-solid fa-pen-to-square"
+                        style={{ color: '#ffffff' }}>
+                      </i>
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      type='button'
+                      className='btn btn-danger btn-xs'
+                      onClick={() => deleteFactura(factura.id)}>
+                      <i
+                        className="fa-solid fa-trash">
+                      </i>
+                    </button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </Layout_Admin>
+  )
 }

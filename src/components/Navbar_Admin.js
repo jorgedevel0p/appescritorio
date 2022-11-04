@@ -29,7 +29,6 @@ export const Navbar_Admin = () => {
         <RouteLink route={'/Facturas'} title='Facturas' />
         <RouteLink route={'/MovimientoCaja'} title='MovimientoCaja' />
         <RouteLink route={'/Boletas'} title='Boletas' />
-        <RouteLink route={'/Boletas'} title='Facturas' />
         <RouteLink route={'/'} title='Cerrar Sesión' />
       </ul>
 
