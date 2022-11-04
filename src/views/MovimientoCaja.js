@@ -180,7 +180,7 @@ export const MovimientoCaja = () => {
                 </input>
                 <input
                   type='number'
-                  name='factura_id'
+                  name='factura'
                   className='form-control mb-2'
                   placeholder='ID Factura'
                   value={movimientoCaja.factura}
@@ -213,54 +213,54 @@ export const MovimientoCaja = () => {
             )}
           />
         </div>
-          <div className='card-body'>
-            <table className='table'>
-              <thead>
+        <div className='card-body'>
+          <table className='table'>
+            <thead>
+              <tr>
+                <th scope='col'>ID</th>
+                <th scope='col'>Fecha</th>
+                <th scope='col'>Saldo Inicial</th>
+                <th scope='col'>ID Boleta</th>
+                <th scope='col'>ID Factura</th>
+                <th scope='col'>Editar</th>
+                <th scope='col'>Eliminar</th>
+              </tr>
+            </thead>
+            <tbody className="table-group-divider">
+              {movimientosCaja.map(movimientoCaja => (
                 <tr>
-                  <th scope='col'>ID</th>
-                  <th scope='col'>Fecha</th>
-                  <th scope='col'>Saldo Inicial</th>
-                  <th scope='col'>ID Boleta</th>
-                  <th scope='col'>ID Factura</th>
-                  <th scope='col'>Editar</th>
-                  <th scope='col'>Eliminar</th>
+                  <th scope="row">{movimientoCaja.id}</th>
+                  <td>{movimientoCaja.date_mov}</td>
+                  <td>{movimientoCaja.initial_balance}</td>
+                  <td>{movimientoCaja.boleta}</td>
+                  <td>{movimientoCaja.factura}</td>
+                  <td>
+                    <button
+                      type='button'
+                      className='btn btn-warning btn-xs'
+                      onClick={() => setMovimientoCajaDataIntoForm(movimientoCaja)}>
+                      <i
+                        className="fa-solid fa-pen-to-square"
+                        style={{ color: '#ffffff' }}>
+                      </i>
+                    </button>
+                  </td>
+                  <td>
+                    <button
+                      type='button'
+                      className='btn btn-danger btn-xs'
+                      onClick={() => deleteMovimientoCaja(movimientoCaja.id)}>
+                      <i
+                        className="fa-solid fa-trash">
+                      </i>
+                    </button>
+                  </td>
                 </tr>
-              </thead>
-              <tbody className="table-group-divider">
-                {movimientosCaja.map(movimientoCaja => (
-                  <tr>
-                    <th scope="row">{movimientoCaja.id}</th>
-                    <td>{movimientoCaja.date_mov}</td>
-                    <td>{movimientoCaja.initial_balance}</td>
-                    <td>{movimientoCaja.boleta}</td>
-                    <td>{movimientoCaja.factura}</td>
-                    <td>
-                      <button
-                        type='button'
-                        className='btn btn-warning btn-xs'
-                        onClick={() => setMovimientoCajaDataIntoForm(movimientoCaja)}>
-                        <i
-                          className="fa-solid fa-pen-to-square"
-                          style={{ color: '#ffffff' }}>
-                        </i>
-                      </button>
-                    </td>
-                    <td>
-                      <button
-                        type='button'
-                        className='btn btn-danger btn-xs'
-                        onClick={() => deleteMovimientoCaja(movimientoCaja.id)}>
-                        <i
-                          className="fa-solid fa-trash">
-                        </i>
-                      </button>
-                    </td>
-                  </tr>
-                ))}
-              </tbody>
-            </table>
-          </div>
+              ))}
+            </tbody>
+          </table>
         </div>
+      </div>
 
     </Layout_Admin>
   )
