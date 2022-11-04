@@ -10,7 +10,10 @@ import {
   GET_MESAS_SUCCESS,
   GET_PRODUCTOS_SUCCESS,
   GET_PROVEEDORES_SUCCESS,
-  GET_PLATOS_SUCCESS
+  GET_PLATOS_SUCCESS,
+  GET_BOLETAS_SUCCESS,
+  GET_FACTURAS_SUCCESS,
+  GET_PEDIDOSPROV_SUCCESS
 
 } from './types'
 // import { stat } from 'original-fs'
@@ -96,6 +99,19 @@ const RestaurantState = (props) => {
     getResourcesByName('plato').then(res => dispatch({ type: GET_PLATOS_SUCCESS, payload: res }))
   }
 
+  function getBoletas(){
+    getResourcesByName('boleta').then(res => dispatch({ type: GET_BOLETAS_SUCCESS, payload: res }))
+  }
+
+  function getFacturas(){
+    getResourcesByName('factura').then(res => dispatch({ type: GET_FACTURAS_SUCCESS, payload: res }))
+  }
+
+  function getPedidosProv(){
+    getResourcesByName('pedido_proveedor').then(res => dispatch({ type: GET_PEDIDOSPROV_SUCCESS, payload: res }))
+  }
+
+
   useEffect(() => {
     
     getUsers()
@@ -103,6 +119,9 @@ const RestaurantState = (props) => {
     getProductos()
     getProveedores(),
     getPlatos()
+    getBoletas(),
+    getFacturas(),
+    getPedidosProv()
 
   }, [])
 
@@ -116,11 +135,17 @@ const RestaurantState = (props) => {
         productos: state.productos,
         proveedores: state.proveedores,
         platos: state.platos,
+        boletas: state.boletas,
+        facturas: state.facturas,
+        pedidos_proveedor: state.pedidos_proveedor,
         getUsers,
         getMesas,
         getProductos,
         getProveedores,
         getPlatos,
+        getBoletas,
+        getFacturas,
+        getPedidosProv,
         getPlatosById,
         getProductosById,
         getProveedoresById,
