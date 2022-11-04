@@ -15,6 +15,8 @@ export const TableroCocina = () => {
                     className="card-img"
                     height={140} />
             </div>
+            <h2 className='text-center my-4'>Pedido Pendientes</h2>
+            <hr></hr>
             
 
             </Layout_Cocina>
