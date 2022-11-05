@@ -5,6 +5,7 @@ import { Layout_Admin } from "../components/index";
 import restaurantContext from "../context/restaurantContext";
 import { Modal } from "../components/ui/Modal";
 import Fondo1080 from "../assets/img/720x120.jpg";
+import { AlertConfirm } from "../utils/Alert";
 
 const DEFAULT_STATE = {
   id: "",
@@ -29,43 +30,61 @@ export const Users = () => {
   };
 
   const saveUser = () => {
-    console.log(form);
-    makeHttpRequest({
-      operation: "/user/",
-      data: form,
-      method: "POST",
-      callback: ({ ok, data }) => {
-        if (!ok) {
-          alert(JSON.stringify(data));
-          return;
-        }
-        console.log(data, "Ha guardado Usuario correctamente");
-        getUsers();
-        resetForm();
-      },
-    });
+
+    const guardarUsuarioFn = () => {
+      return new Promise((resolve, reject) => {
+        makeHttpRequest({
+          operation: "/user/",
+          data: form,
+          method: "POST",
+          callback: (respuestaApi) => {
+            if (!respuestaApi.ok) {
+              reject(respuestaApi)
+            }else{
+              closeModal()
+              getUsers()
+              resetForm()
+              resolve(respuestaApi)
+            }
+          },
+        })
+      })
+    }
+
+    AlertConfirm({ 
+      text: "¿Desea guardar a este nuevo usuario?",
+      fnToExecute: guardarUsuarioFn 
+    })
+
   };
 
   const updateUser = (id) => {
-    if (
-      confirm("¿Desea actualizar la información de este usuario?") === false
-    ) {
-      return;
+
+    const actualizarUsuarioFn = () => {
+      return new Promise((resolve, reject) => {
+        makeHttpRequest({
+          operation: `/user/${id}`,
+          data: form,
+          method: "PUT",
+          callback: (respuestaApi) => {
+            if (!respuestaApi.ok) {
+              reject(respuestaApi)
+            }else{
+              closeModal()
+              getUsers()
+              resetForm()
+              resolve(respuestaApi)
+            }
+          },
+        })
+      })
     }
-    makeHttpRequest({
-      operation: `/user/${id}`,
-      data: form,
-      method: "PUT",
-      callback: ({ ok, data }) => {
-        if (!ok) {
-          alert(JSON.stringify(data));
-          return;
-        }
-        console.log(data, "Usuario se ha actualizado correctamente");
-        getUsers();
-        resetForm();
-      },
-    });
+
+    AlertConfirm({ 
+      text: "¿Desea actualizar la información de este usuario?",
+      fnToExecute: actualizarUsuarioFn 
+    })
+
   };
 
   const setUserDataIntoForm = (usuario) => {
@@ -84,22 +103,29 @@ export const Users = () => {
   };
 
   const deleteUser = (id) => {
-    if (confirm("¿Desea eliminar este usuario?") === false) {
-      return;
+
+    const eliminarUsuarioFn = () => {
+      return new Promise((resolve, reject) => {
+        makeHttpRequest({
+          operation: `/user/${id}`,
+          data: null,
+          method: "DELETE",
+          callback: (respuestaApi) => {
+            if (!respuestaApi.ok) {
+              reject(respuestaApi)
+            }else{
+              getUsers()
+              resolve(respuestaApi)
+            }
+          },
+        })
+      })
     }
-    makeHttpRequest({
-      operation: `/user/${id}`,
-      data: null,
-      method: "DELETE",
-      callback: ({ ok, data }) => {
-        if (!ok) {
-          alert(JSON.stringify(data));
-          return;
-        }
-        console.log(data, "Usuario se ha eliminado correctamente");
-        getUsers();
-      },
-    });
+
+    AlertConfirm({ 
+      text: "¿Desea guardar a este nuevo usuario?",
+      fnToExecute: eliminarUsuarioFn 
+    })
   };
 
   const resetForm = () => [setForm({ ...DEFAULT_STATE })];
@@ -109,6 +135,10 @@ export const Users = () => {
     console.log(btnAddModal.current);
     btnAddModal.current.click();
   };
+
+  const closeModal = () => {
+    document.getElementById('closeModalForReact')?.click()
+  }
 
   return (
     <Layout_Admin>
