@@ -17,19 +17,22 @@ export const Navbar_Admin = () => {
         <RouteLink route={'/Home'} title='Home' icon='fa-solid fa-table' />
         <RouteLink route={'/Users'} title='Usuarios' icon='fa-solid fa-user' />
         <RouteLink route={'/Mesas'} title='Mesas' icon='fa-solid fa-table' />
-        <RouteLink route={'/Reservas'} title='Reservas' />
-        <RouteLink route={'/Ordenes'} title='Ordenes' />
-        <RouteLink route={'/DetalleOrden'} title='DetalleOrden' />
-        <RouteLink route={'/Platos'} title='Platos' />
+        <RouteLink route={'/Reservas'} title='Reservas' icon='fa-regular fa-calendar-check' />
+        <RouteLink route={'/Ordenes'} title='Ordenes' icon='fa-solid fa-arrow-up-wide-short'/>
+        <RouteLink route={'/DetalleOrden'} title='DetalleOrden'icon='fa-solid fa-circle-info' />
+        <RouteLink route={'/Platos'} title='Platos' icon='fa-solid fa-utensils'/>
         {/* <RouteLink route={'/Ingredientes'} title='Ingredientes' /> */}
-        <RouteLink route={'/Productos'} title='Productos' />
-        <RouteLink route={'/Proveedores'} title='Proveedores' />
-        <RouteLink route={'/PedidoProveedor'} title='PedidoProveedor' />
-        <RouteLink route={'/DetallePedidos'} title='DetallePedidos' />
-        <RouteLink route={'/Facturas'} title='Facturas' />
-        <RouteLink route={'/MovimientoCaja'} title='MovimientoCaja' />
-        <RouteLink route={'/Boletas'} title='Boletas' />
-        <RouteLink route={'/'} title='Cerrar Sesión' />
+        <RouteLink route={'/Productos'} title='Productos' icon='fa-solid fa-cart-shopping' />
+        <RouteLink route={'/Proveedores'} title='Proveedores' icon='fa-solid fa-truck-field-un'/>
+        <RouteLink route={'/PedidoProveedor'} title='PedidoProveedor'icon='fa-solid fa-cart-shopping' />
+        <RouteLink route={'/DetallePedidos'} title='DetallePedidos' icon='fa-solid fa-list-check'/>
+        <RouteLink route={'/Facturas'} title='Facturas' icon='fa-solid fa-file-invoice'/>
+        <RouteLink route={'/MovimientoCaja'} title='MovimientoCaja' icon='fa-solid fa-cash-register'/>
+        <RouteLink route={'/Boletas'} title='Boletas' icon='fa-solid fa-ticket'/>
+        <RouteLink route={'/ResumenDatos'} title='ResumenDatos' />
+        <RouteLink route={'/'} title='Cerrar Sesión' icon='fa-solid fa-right-from-bracket'/>
+        
+        
       </ul>
 
       <hr />

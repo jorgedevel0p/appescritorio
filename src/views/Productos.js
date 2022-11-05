@@ -127,6 +127,10 @@ export const Productos = () => {
     btnAddModal.current.click()
   }
 
+  console.log(typeof getProductos,'get')
+  console.log(typeof producto,'prod')
+  console.log(typeof saveProducto,'save')
+
   return (
     <Layout_Admin>
       <div>

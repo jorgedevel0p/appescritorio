@@ -20,7 +20,9 @@ import {
     GET_FACTURAS_LOADING,
     GET_FACTURAS_SUCCESS,
     GET_FACTURAS_ERROR,
-    GET_PEDIDOSPROV_SUCCESS
+    GET_PEDIDOSPROV_SUCCESS,
+    GET_DETALLEORDS_SUCCESS,
+    GET_ORDENES_SUCCESS
 
 } from './types'
 
@@ -222,6 +224,38 @@ export default (state, action) => {
                 ...state,
                 pedidos_proveedor: {
                     ...state.pedidos_proveedor,
+                    data: action.payload,
+                    fetchingStatus: {
+                        loading: false,
+                        success: true,
+                        error: false,
+                        errorInfo: null
+                    }
+                }
+            }
+        }
+
+        case GET_DETALLEORDS_SUCCESS: {
+            return {
+                ...state,
+                detalle_ordenes: {
+                    ...state.detalle_ordenes,
+                    data: action.payload,
+                    fetchingStatus: {
+                        loading: false,
+                        success: true,
+                        error: false,
+                        errorInfo: null
+                    }
+                }
+            }
+        }
+
+        case GET_ORDENES_SUCCESS: {
+            return {
+                ...state,
+                ordenes: {
+                    ...state.ordenes,
                     data: action.payload,
                     fetchingStatus: {
                         loading: false,

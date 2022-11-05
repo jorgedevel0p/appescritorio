@@ -11,7 +11,7 @@ export const Login = () => {
   const { isLoading, error, makeHttpRequest } = useHttpRequest()
 
   const ROUTES_DEPEND_ON_TYPE = {
-    Cliente: '/clientes',
+    Cliente: '/',
     Admin: '/home',
     Bodega: '/bodegas',
     Finanzas: '/finanzas',
@@ -68,6 +68,9 @@ export const Login = () => {
 
   return (
     <>
+    <nav class="navbar navbar-light bg-light">
+  <span class="navbar-brand mx-4 h1">Siglo XXI</span>
+</nav>
           
       <main className="py-5 px-4">
         <div className="container mt-5">
@@ -108,11 +111,11 @@ export const Login = () => {
 
                 {/* <p className="text-center">O</p> */}
 
-                <div className="form-group mt-4 text-center">
+                {/* <div className="form-group mt-4 text-center">
                   <Link to='/Registro'>
                     <a href="#" className="btn btn-success btn-block ">Registrarse</a>
                   </Link>
-                </div>
+                </div> */}
 
               </div>
             </div>
