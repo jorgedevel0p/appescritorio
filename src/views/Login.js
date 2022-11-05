@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom"
 import { Navbar } from '../components/Navbar_Admin'
 import { Footer } from '../components/Footer'
 import { useHttpRequest } from '../hooks/useHttpRequest'
+import { AlertInfo } from '../utils/Alert'
 
 
 
@@ -50,7 +51,7 @@ export const Login = () => {
       callback: (respuestaApi) => {
         const { ok, data } = respuestaApi
         if(!ok) {
-          alert(JSON.stringify(data))
+          AlertInfo({ icon: 'error', text: data, title: 'Error!' })
           return
         }
         localStorage.setItem('type_user', data.type)
