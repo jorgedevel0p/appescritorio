@@ -29,8 +29,6 @@ import { PedidoBodega } from "./views/PedidoBodega";
 import { Profile } from "./views/Profile";
 import { Recetas } from "./views/Recetas";
 import { TableroCocina } from "./views/TableroCocina";
-import { ReservaWeb } from "./views/ReservaWeb";
-import { ReservasCliente } from "./views/ReservasCliente";
 import { Inicio } from "./views/Inicio";
 import { Nosotros } from "./views/Nosotros";
 import { Carta } from "./views/Carta";
@@ -71,8 +69,6 @@ function App() {
         <Route path="/profile" element={<Profile/>}/>
         <Route path="/recetas" element={<Recetas/>}/>
         <Route path="/tableroCocina" element={<TableroCocina/>}/>
-        <Route path="/reservaWeb" element = {<ReservaWeb/>}/>
-        <Route path="/reservasCliente" element = {<ReservasCliente/>}/>
         <Route path="/inicio" element={<Inicio/>}/>
         <Route path="/nosotros" element={<Nosotros/>}/>
         <Route path="/carta" element={<Carta/>}/>

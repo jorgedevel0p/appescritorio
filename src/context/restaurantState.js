@@ -82,7 +82,7 @@ const RestaurantState = (props) => {
   }
 
   function getUsers(){
-    getResourcesByName('user').then(res => dispatch({ type: GET_USERS_SUCCESS, payload: res }))
+    getResourcesByName('user').then(res => dispatch({ type: GET_USERS_SUCCESS, payload: res }, console.log({res})))
   }
 
   function getMesas(){

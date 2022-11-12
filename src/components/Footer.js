@@ -15,13 +15,7 @@ export const Footer = () => {
                                 <div className="btn-group">
                                     <a href="/">
                                         <button type="button" className="btn btn-dark text-white ">Pagina Principal</button>
-                                    </a>
-                                    <a href="/">
-                                        <button type="button" className="btn btn-dark text-white mx-4">Contacto</button>
-                                    </a>
-                                    <a href="/">
-                                        <button type="button" className="btn btn-dark text-white ">Sobre nosotros</button>
-                                    </a>
+                                    </a>                                    
                                 </div>
                             </div>
                         </div>
