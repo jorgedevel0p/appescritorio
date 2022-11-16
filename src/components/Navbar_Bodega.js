@@ -24,7 +24,7 @@ export const Navbar_Bodega = () => {
                 <li>
                     <Link to='/controlStock'>
                         <a href="#" className="nav-link text-white">
-                            <i className="fa-solid fa-home m-2" style={{ color: '#ffffff' }}></i>
+                            <i className="fa-solid fa-box m-2" style={{ color: '#ffffff' }}></i>
                             Stock de Productos
                         </a>
                     </Link>
@@ -32,7 +32,7 @@ export const Navbar_Bodega = () => {
                 <li className="nav-item">
                     <Link to='/pedidoBodega'>
                         <a href="#" className="nav-link text-white" aria-current="page">
-                            <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
+                            <i className="fa-sharp fa-solid fa-clipboard-check m-2" style={{ color: '#ffffff' }}></i>
                             Pedido Proveedores
                         </a>
                     </Link>

@@ -14,7 +14,7 @@ export const Navbar_Admin = () => {
       </Link>
       <hr />
       <ul className="nav nav-pills flex-column mb-auto activate">
-        <RouteLink route={'/Home'} title='Home' icon='fa-solid fa-table' />
+        <RouteLink route={'/Home'} title='Home' icon='fa-solid fa-home' />
         <RouteLink route={'/Users'} title='Usuarios' icon='fa-solid fa-user' />
         <RouteLink route={'/Mesas'} title='Mesas' icon='fa-solid fa-table' />
         <RouteLink route={'/Reservas'} title='Reservas' icon='fa-regular fa-calendar-check' />
@@ -29,7 +29,7 @@ export const Navbar_Admin = () => {
         <RouteLink route={'/Facturas'} title='Facturas' icon='fa-solid fa-file-invoice'/>
         <RouteLink route={'/MovimientoCaja'} title='MovimientoCaja' icon='fa-solid fa-cash-register'/>
         <RouteLink route={'/Boletas'} title='Boletas' icon='fa-solid fa-ticket'/>
-        <RouteLink route={'/ResumenDatos'} title='ResumenDatos' />
+        <RouteLink route={'/ResumenDatos'} title='ResumenDatos' icon='fa-solid fa-chart-simple'/>
         <RouteLink route={'/'} title='Cerrar Sesión' icon='fa-solid fa-right-from-bracket'/>
         
         

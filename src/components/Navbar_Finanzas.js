@@ -24,7 +24,7 @@ export const Navbar_Finanzas = () => {
         <li>
           <Link to='/Ingresos'>
             <a href="#" className="nav-link text-white">
-              <i className="fa-solid fa-home m-2" style={{ color: '#ffffff' }}></i>
+              <i className="fa-solid fa-money-bill-trend-up m-2" style={{ color: '#ffffff' }}></i>
               Ingresos
             </a>
           </Link>
@@ -32,7 +32,7 @@ export const Navbar_Finanzas = () => {
         <li className="nav-item">
           <Link to='/Egresos'>
             <a href="#" className="nav-link text-white" aria-current="page">
-              <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
+              <i className="fa-solid fa-wallet m-2" style={{ color: '#ffffff' }}></i>
               Egresos
             </a>
           </Link>
@@ -40,7 +40,7 @@ export const Navbar_Finanzas = () => {
         <li>
           <Link to='/Utilidades'>
             <a href="#" className="nav-link text-white" aria-current="page">
-              <i className="fa-solid fa-utensils m-2" style={{ color: '#ffffff' }}></i>
+              <i className="fa-solid fa-sack-dollar m-2" style={{ color: '#ffffff' }}></i>
               Utilidades
             </a>
           </Link>

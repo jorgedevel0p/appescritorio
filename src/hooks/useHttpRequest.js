@@ -26,7 +26,7 @@ export const useHttpRequest = () => {
   
       .then(res => {
         if (!res.ok || res.status !== STATUS_CODE_OK) {
-          return res.text().then(text => { throw new Error(text) })
+          return res.text().then(text => { throw new Error('Username y/o contraseña incorrecta. Intenta nuevamente!',text) })
         } else {
           return res.json()
         }

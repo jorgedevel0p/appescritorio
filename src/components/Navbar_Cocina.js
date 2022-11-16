@@ -24,7 +24,7 @@ export const Navbar_Cocina = () => {
                 <li>
                     <Link to='/Recetas'>
                         <a href="#" className="nav-link text-white ">
-                            <i className="fa-solid fa-home m-2" style={{ color: '#ffffff' }}></i>
+                            <i className="fa-solid fa-table  m-2" style={{ color: '#ffffff' }}></i>
                             Recetas
                         </a>
                     </Link>
@@ -32,7 +32,7 @@ export const Navbar_Cocina = () => {
                 <li className="nav-item">
                     <Link to='/TableroCocina'>
                         <a href="#" className="nav-link text-white" aria-current="page">
-                            <i className="fa-regular fa-user m-2" style={{ color: '#ffffff' }}></i>
+                            <i className="fa-solid fa-utensils  m-2" style={{ color: '#ffffff' }}></i>
                             Tablero
                         </a>
                     </Link>
