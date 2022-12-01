@@ -14,6 +14,7 @@ const DEFAULT_STATE = {
   recipe: '',
   value: '',
   type_dish: '',
+  score: '',
   image_plato: '',
 }
 
@@ -47,6 +48,9 @@ export const Recetas = () => {
   }
 
   const savePlato = () => {
+    if (confirm("¿Desea guardar la información de esta receta?") === false) {
+      return
+    }
     console.log(plato)
     makeHttpRequest({
       operation: '/plato/',
@@ -65,7 +69,7 @@ export const Recetas = () => {
   }
 
   const updatePlato = (id) => {
-    if (confirm("¿Desea actualizar la información de este plato?") === false) {
+    if (confirm("¿Desea actualizar la información de esta receta?") === false) {
       return
     }
     makeHttpRequest({
