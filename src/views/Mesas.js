@@ -5,6 +5,7 @@ import restaurantContext from '../context/restaurantContext'
 import Fondo1080 from "../assets/img/720x120.jpg"
 import { Modal } from '../components/ui/Modal'
 
+
 const DEFAULT_STATE = {
   id: '',
   number_name: '',
@@ -26,6 +27,9 @@ export const Mesas = () => {
   }
 
   const saveMesa = () => {
+    if (confirm("¿Desea crear esta mesa?") === false) {
+      return
+    }
     let mesaToSave = { ...mesa }
     mesaToSave.available = (mesa.available > 0) // if 1 = true, if 0 = false
 
@@ -115,91 +119,91 @@ export const Mesas = () => {
         </div>
         <div className="card my-3 mx-4 justify-center">
           <div className="card-header d-flex justify-content-between">
-          <h2> Lista de Mesas</h2>                    
-            <Modal  modalTitle={"Agregar mesa"}
-            renderButton={() => (
-              <div ref={btnAddModal}>
-                <i class="fa-solid fa-plus" />
-              </div>
-            )}
-            renderContent={() => (
-            <form className='container' style={{ width: 400 }}>
-              <div className="row row-cols-2 mb-2">
-                <div className="col">
-                  <label for="number_name" class="form-label">Número de Mesa</label>
-                  <input
-                    type='text'
-                    name='number_name'
-                    className='form-control'
-                    value={mesa.number_name}
-                    onChange={handleChange}
-                  />
+            <h2> Lista de Mesas</h2>
+            <Modal modalTitle={"Detalle mesa"}
+              renderButton={() => (
+                <div ref={btnAddModal}>
+                  <i class="fa-solid fa-plus" />
                 </div>
-                <div className="col">
-                  <label for="number_name" class="form-label">Capacidad</label>
-                  <input
-                    type='number'
-                    name='capacity'
-                    className='form-control'
-                    value={mesa.capacity}
-                    min="1"
-                    onChange={handleChange} />
-                </div>
-              </div>
-              <div className="mb-3">
-                <label for="user" class="form-label">Usuario asignado</label>
-                <select
-                  type='text'
-                  name='user'
-                  className='form-control'
-                  value={mesa.user}
-                  onChange={handleChange}
-                >
-                  <option value='' disabled selected>Usuario reserva</option>
-                  {users.data.map(user => (
-                    <option value={user.id}>{user.email}</option>
-                  ))}
-                </select>
-              </div>
+              )}
+              renderContent={() => (
+                <form className='container' style={{ width: 400 }}>
+                  <div className="row row-cols-2 mb-2">
+                    <div className="col">
+                      <label for="number_name" class="form-label">Número de Mesa</label>
+                      <input
+                        type='text'
+                        name='number_name'
+                        className='form-control'
+                        value={mesa.number_name}
+                        onChange={handleChange}
+                      />
+                    </div>
+                    <div className="col">
+                      <label for="number_name" class="form-label">Capacidad</label>
+                      <input
+                        type='number'
+                        name='capacity'
+                        className='form-control'
+                        value={mesa.capacity}
+                        min="1"
+                        onChange={handleChange} />
+                    </div>
+                  </div>
+                  <div className="mb-3">
+                    <label for="user" class="form-label">Usuario asignado</label>
+                    <select
+                      type='text'
+                      name='user'
+                      className='form-control'
+                      value={mesa.user}
+                      onChange={handleChange}
+                    >
+                      <option value='' disabled selected>Usuario reserva</option>
+                      {users.data.map(user => (
+                        <option value={user.id}>{user.email}</option>
+                      ))}
+                    </select>
+                  </div>
 
-              <div class="form-check" onClick={handleCheck}>
-                <input
-                  className="form-check-input"
-                  type="checkbox"
-                  checked={mesa.available}
-                />
-                <label className="form-check-label" for="flexCheckDefault">
-                  Mesa disponible ?
-                </label>
-              </div>
-              <div className='col-md-12 text-center my-3 ' >
-                {
-                  !mesa.id
-                    ? <button
+                  <div class="form-check" onClick={handleCheck}>
+                    <input
+                      className="form-check-input"
+                      type="checkbox"
+                      checked={mesa.available}
+                    />
+                    <label className="form-check-label" for="flexCheckDefault">
+                      Mesa disponible ?
+                    </label>
+                  </div>
+                  <div className='col-md-12 text-center my-3 ' >
+                    {
+                      !mesa.id
+                        ? <button
+                          type='button'
+                          className='col-md-6 btn btn-success '
+                          onClick={saveMesa}>
+                          Guardar
+                        </button>
+                        : <button
+                          type='button'
+                          className='col-md-6 btn btn-dark  '
+                          onClick={() => updateMesa(mesa.id)}>
+                          Actualizar
+                        </button>
+                    }
+                    <button
                       type='button'
-                      className='btn btn-success'
-                      onClick={saveMesa}>
-                      Guardar
+                      className='col-md-6 btn btn-light '
+                      onClick={resetForm}>
+                      Limpiar
                     </button>
-                    : <button
-                      type='button'
-                      className='btn btn-dark'
-                      onClick={() => updateMesa(mesa.id)}>
-                      Actualizar
-                    </button>
-                }
-                <button
-                  type='button'
-                  className='btn btn-light mx-3'
-                  onClick={resetForm}>
-                  Limpiar
-                </button>
-              </div>
-            </form>
-          )}
-          />
-        </div>
-        
+                  </div>
+                </form>
+              )}
+            />
+          </div>
+
           <div className="card-body text-center">
             <table className="table">
               <thead>
@@ -207,7 +211,7 @@ export const Mesas = () => {
                   <th scope="col">Capacidad</th>
                   <th scope="col">N° Mesa</th>
                   <th scope="col">Disponibilidad</th>
-                  <th scope="col">ID Usuario</th>
+                  <th scope="col">Usuario</th>
                   <th scope="col">Editar</th>
                   <th scope="col">Eliminar</th>
                 </tr>

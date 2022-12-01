@@ -172,7 +172,7 @@ export const PedidoBodega = () => {
                         className='form-control mb-2'
                         value={pedidoProv.state}
                         onChange={handleChange}>
-                        <option disabled selected>Estado</option>
+                        <option value='' disabled selected>Estado</option>
                         <option value="Pagado">Pagado</option>
                         <option value="Pendiente">Pendiente</option>
                         <option value="Cancelado">Cancelado</option>

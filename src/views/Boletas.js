@@ -22,7 +22,7 @@ export const Boletas = () => {
     const [boleta, setBoleta] = useState(DEFAULT_STATE)
     const [boletas, setBoletas] = useState([])
     const { isLoading, makeHttpRequest } = useHttpRequest()
-    const { mesas, users, getUserById } = useContext(restaurantContext)
+    const { mesas, ordenes, users, getUserById } = useContext(restaurantContext)
 
     const handleChange = (e) => {
         setBoleta({
@@ -48,6 +48,9 @@ export const Boletas = () => {
     }
 
     const saveBoleta = () => {
+        if (confirm("¿Desea guardar la información de esta boleta?") === false) {
+            return
+        }
         console.log(' llega', boleta)
         makeHttpRequest({
             operation: '/boleta/',
@@ -134,84 +137,102 @@ export const Boletas = () => {
                 <div className="card-header d-flex justify-content-between">
                     <h2>Lista de Boletas</h2>
                     <Modal
-                        modalTitle={'Agregar usuario'}
+                        modalTitle={'Detalle boleta'}
                         renderButton={() => (
                             <div ref={btnAddModal}><i class="fa-solid fa-plus" /></div>
                         )}
                         renderContent={() => (
                             <form className='container' style={{ width: 400 }}>
-                                <input
-                                    type='text'
-                                    name='id'
-                                    className='form-control mb-2'
-                                    placeholder='ID Boleta'
-                                    readOnly={true}
-                                    value={boleta.id}
-                                    onChange={handleChange}>
-                                </input>
-                                <input
-                                    type='number'
-                                    name='value'
-                                    className='form-control mb-2'
-                                    placeholder='Valor Boleta'
-                                    value={boleta.value}
-                                    onChange={handleChange}>
-                                </input>
-                                <input
-                                    type='number'
-                                    name='tip'
-                                    className='form-control mb-2'
-                                    placeholder='Propina'
-                                    value={boleta.tip}
-                                    onChange={handleChange}>
-                                </input>
-                                <select
-                                    type='text'
-                                    name='payment_method'
-                                    className='form-control mb-2'
-                                    value={boleta.payment_method}
-                                    onChange={handleChange}>
-                                    <option disabled selected>Método de Pago</option>
-                                    <option value="Efectivo">Efectivo</option>
-                                    <option value="Credito">Crédito</option>
-                                    <option value="Debito">Débito</option>
-                                </select>
-                                <input
-                                    type='date'
-                                    name='date'
-                                    className='form-control mb-2'
-                                    placeholder='Fecha'
-                                    value={boleta.date}
-                                    onChange={handleChange}>
-                                </input>
-                                <input
-                                    type='time'
-                                    name='time'
-                                    className='form-control mb-2'
-                                    placeholder='Hora'
-                                    value={boleta.time}
-                                    onChange={handleChange}>
-                                </input>
+                                <div className="row row-cols-2 mb-2">
+                                    <div className="col">
 
+                                        <input
+                                            type='text'
+                                            name='id'
+                                            className=' form-control mb-2'
+                                            placeholder='ID Boleta'
+                                            readOnly={true}
+                                            value={boleta.id}
+                                            onChange={handleChange}>
+                                        </input></div>
+                                    <div className="col">
+                                        <select
+                                            type='text'
+                                            name='orden'
+                                            className='col form-control mb-2'
+                                            value={boleta.orden}
+                                            onChange={handleChange}
+                                        >
+                                            <option value='' disabled selected>ID Orden</option>
+                                            {ordenes.data.map(ord => (
+                                                <option value={ord.id}>{ord.id}</option>
+                                            ))}
+                                        </select>
+                                    </div>
+                                    <div className="col">
+                                        <input
+                                            type='number'
+                                            name='value'
+                                            className='form-control mb-2'
+                                            placeholder='Valor Boleta'
+                                            value={boleta.value}
+                                            onChange={handleChange}>
+                                        </input>
+                                    </div>
+                                    <div className="col">
+                                        <input
+                                            type='number'
+                                            name='tip'
+                                            className='form-control mb-2'
+                                            placeholder='Propina'
+                                            value={boleta.tip}
+                                            onChange={handleChange}>
+                                        </input>
+                                    </div>
+                                    <div className="col">
+                                        <input
+                                            type='date'
+                                            name='date'
+                                            className='form-control mb-2'
+                                            placeholder='Fecha'
+                                            value={boleta.date}
+                                            onChange={handleChange}>
+                                        </input>
+                                    </div>
+                                    <div className="col">
+                                        <input
+                                            type='time'
+                                            name='time'
+                                            className='form-control mb-2'
+                                            placeholder='Hora'
+                                            value={boleta.time}
+                                            onChange={handleChange}>
+                                        </input>
+                                    </div>
+                                </div>
                                 <select
                                     type='text'
                                     name='state'
                                     className='form-control mb-2'
                                     value={boleta.state}
                                     onChange={handleChange}>
-                                    <option disabled selected>Estado</option>
+                                    <option value='' disabled selected>Estado</option>
                                     <option value="Efectivo">Pagado</option>
                                     <option value="Credito">Pendiente</option>
                                     <option value="Debito">Cancelado</option>
                                 </select>
-                                <input
-                                    type='number'
-                                    name='orden'
+
+                                <select
+                                    type='text'
+                                    name='payment_method'
                                     className='form-control mb-2'
-                                    placeholder='ID Orden'
-                                    value={boleta.orden}
+                                    value={boleta.payment_method}
                                     onChange={handleChange}>
-                                </input>
+                                    <option value='' disabled selected>Método de Pago</option>
+                                    <option value="Efectivo">Efectivo</option>
+                                    <option value="Credito">Crédito</option>
+                                    <option value="Debito">Débito</option>
+                                </select>
 
                                 <select
                                     type='text'
@@ -231,20 +252,20 @@ export const Boletas = () => {
                                         !boleta.id
                                             ? <button
                                                 type='button'
-                                                className='col-md-2 btn btn-success mx-3'
+                                                className='col-md-6 btn btn-success '
                                                 onClick={saveBoleta}>
                                                 Guardar
                                             </button>
                                             : <button
                                                 type='button'
-                                                className='col-md-2 btn btn-dark mx-3 '
+                                                className='col-md-6 btn btn-dark  '
                                                 onClick={() => updateBoleta(boleta.id)}>
                                                 Actualizar
                                             </button>
                                     }
                                     <button
                                         type='button'
-                                        className='col-md-2 btn btn-light mx-3'
+                                        className='col-md-6 btn btn-light '
                                         onClick={resetForm}>
                                         Limpiar
                                     </button>
@@ -282,7 +303,7 @@ export const Boletas = () => {
                                     <td>{bol.state}</td>
                                     <td>{bol.orden}</td>
                                     <td>{getUserById(bol.user).email}</td>
-                                    <td>{bol.user}</td>
+                                    
                                     <td>
                                         <button
                                             type='button'

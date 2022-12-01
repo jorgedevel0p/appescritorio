@@ -44,6 +44,9 @@ export const Productos = () => {
   }
 
   const saveProducto = () => {
+    if (confirm("¿Desea guardar este producto?") === false) {
+      return
+    }
     console.log(' llega')
     let productoToSave = { ...producto }
 
@@ -139,7 +142,7 @@ export const Productos = () => {
       <div className="card my-3 mx-4 justify-center">
         <div className="card-header d-flex justify-content-between">
           <h2> Lista de Productos</h2>
-          <Modal modalTitle={"Agregar producto"}
+          <Modal modalTitle={"Detalle producto"}
             renderButton={() => (
               <div ref={btnAddModal}>
                 <i class="fa-solid fa-plus" />

@@ -45,6 +45,9 @@ export const Facturas = () => {
   }
 
   const saveFactura = () => {
+    if (confirm("¿Desea guardar la información de esta factura?") === false) {
+      return
+    }
     console.log(' llega')
     let facturaToSave = { ...factura }
 
@@ -136,9 +139,9 @@ export const Facturas = () => {
       </div>
       <div className="card my-3 mx-4 justify-center">
         <div className="card-header d-flex justify-content-between">
-          <h2>Detalle de Factura</h2>
+          <h2>Listado de Factura</h2>
           <Modal
-            modalTitle={'Agregar usuario'}
+            modalTitle={'Detalle factura'}
             renderButton={() => (
               <div ref={btnAddModal}><i class="fa-solid fa-plus" /></div>
             )}
@@ -190,20 +193,20 @@ export const Facturas = () => {
                     !factura.id
                       ? <button
                         type='button'
-                        className='col-md-2 btn btn-success'
+                        className='col-md-6 btn btn-success'
                         onClick={saveFactura}>
                         Guardar
                       </button>
                       : <button
                         type='button'
-                        className='col-md-2 btn btn-dark'
+                        className='col-md-6 btn btn-dark'
                         onClick={() => updateFactura(factura.id)}>
                         Actualizar
                       </button>
                   }
                   <button
                     type='button'
-                    className='col-md-2 btn btn-light mx-3'
+                    className='col-md-6 btn btn-light'
                     onClick={resetForm}>
                     Limpiar
                   </button>

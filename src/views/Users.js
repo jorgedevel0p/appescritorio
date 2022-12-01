@@ -59,7 +59,7 @@ export const Users = () => {
   };
 
   const updateUser = (id) => {
-
+    
     const actualizarUsuarioFn = () => {
       return new Promise((resolve, reject) => {
         makeHttpRequest({
@@ -123,12 +123,12 @@ export const Users = () => {
     }
 
     AlertConfirm({ 
-      text: "¿Desea guardar a este nuevo usuario?",
+      text: "¿Desea eliminar este usuario?",
       fnToExecute: eliminarUsuarioFn 
     })
   };
 
-  const resetForm = () => [setForm({ ...DEFAULT_STATE })];
+  const resetForm = () => setForm({ ...DEFAULT_STATE });
 
   const btnAddModal = useRef();
   const openModalImperative = () => {
@@ -150,7 +150,7 @@ export const Users = () => {
         <div className="card-header d-flex justify-content-between">
           <h2> Lista de Usuarios</h2>
           <Modal
-            modalTitle={"Agregar usuario"}
+            modalTitle={"Detalle usuario"}
             renderButton={() => (
               <div ref={btnAddModal}>
                 <i class="fa-solid fa-plus" />
@@ -158,6 +158,7 @@ export const Users = () => {
             )}
             renderContent={() => (
               <form className="container" style={{ width: 400 }}>
+                <div className="row row-cols-3 mb-1">
                 <input
                   type="text"
                   className="form-control mb-2"
@@ -218,7 +219,7 @@ export const Users = () => {
                   {!form.id ? (
                     <button
                       type="button"
-                      className="btn btn-success mx-3"
+                      className='col-md-6 btn btn-success '
                       onClick={saveUser}
                     >
                       Guardar
@@ -226,7 +227,7 @@ export const Users = () => {
                   ) : (
                     <button
                       type="button"
-                      className="btn btn-dark mx-3 "
+                      className='col-md-6 btn btn-dark  '
                       onClick={() => updateUser(form.id)}
                     >
                       Actualizar
@@ -234,11 +235,12 @@ export const Users = () => {
                   )}
                   <button
                     type="button"
-                    className="btn btn-light mx-3"
+                    className='col-md-6 btn btn-light '
                     onClick={resetForm}
                   >
                     Limpiar
                   </button>
+                </div>
                 </div>
               </form>
             )}

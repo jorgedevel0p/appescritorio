@@ -1,9 +1,10 @@
-import React, { useState, useEffect, useRef } from 'react'
+import React, { useState, useEffect, useRef, useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { Layout_Admin, Navbar, Footer } from '../components/index'
 import { useHttpRequest } from '../hooks/useHttpRequest'
 import Fondo1080 from "../assets/img/720x120.jpg"
 import { Modal } from '../components/ui/Modal'
+import restaurantContext from '../context/restaurantContext'
 
 const DEFAULT_STATE = {
   id: '',
@@ -14,7 +15,7 @@ const DEFAULT_STATE = {
 }
 
 export const MovimientoCaja = () => {
-
+  const { boletas, facturas } = useContext(restaurantContext)
   const [movimientoCaja, setMovimientoCaja] = useState(DEFAULT_STATE)
   const [movimientosCaja, setMovimientosCaja] = useState([])
   const { isLoading, makeHttpRequest } = useHttpRequest()
@@ -43,6 +44,9 @@ export const MovimientoCaja = () => {
   }
 
   const saveMovimientoCaja = () => {
+    if (confirm("¿Desea guardar la información de este movimiento caja?") === false) {
+      return
+    }
     console.log(' llega')
     let movimientoCajaToSave = { ...movimientoCaja }
 
@@ -67,7 +71,7 @@ export const MovimientoCaja = () => {
   }
 
   const updateMovimientoCaja = (id) => {
-    if (confirm("¿Desea actualizar la información de esta movimiento caja?") === false) {
+    if (confirm("¿Desea actualizar la información de este movimiento caja?") === false) {
       return
     }
     makeHttpRequest({
@@ -87,7 +91,7 @@ export const MovimientoCaja = () => {
   }
 
   const deleteMovimientoCaja = (id) => {
-    if (confirm("¿Desea eliminar esta movimiento caja?") === false) {
+    if (confirm("¿Desea eliminar este movimiento caja?") === false) {
       return
     }
 
@@ -136,10 +140,10 @@ export const MovimientoCaja = () => {
       </div>
       <div className="card my-3 mx-4 justify-center">
         <div className="card-header d-flex justify-content-between">
-          <h2>Detalle de Movimiento Caja</h2>
+          <h2>Movimientos Cajas</h2>
 
           <Modal
-            modalTitle={'Agregar Caja'}
+            modalTitle={'Detalle Movimiento Caja'}
             renderButton={() => (
               <div ref={btnAddModal}><i class="fa-solid fa-plus" /></div>
             )}
@@ -170,41 +174,51 @@ export const MovimientoCaja = () => {
                   value={movimientoCaja.initial_balance}
                   onChange={handleChange}>
                 </input>
-                <input
-                  type='number'
+
+                <select
+                  type='text'
                   name='boleta'
                   className='form-control mb-2'
-                  placeholder='ID Boleta'
                   value={movimientoCaja.boleta}
-                  onChange={handleChange}>
-                </input>
-                <input
-                  type='number'
+                  onChange={handleChange}
+                >
+                  <option value='' disabled selected>ID Boleta</option>
+                  {boletas.data.map(bol => (
+                    <option value={bol.id}>{bol.id}</option>
+                  ))}
+                </select>
+                <select
+                  type='text'
                   name='factura'
                   className='form-control mb-2'
-                  placeholder='ID Factura'
                   value={movimientoCaja.factura}
-                  onChange={handleChange}>
-                </input>
+                  onChange={handleChange}
+                >
+                  <option value='' disabled selected>ID Factura</option>
+                  {facturas.data.map(fac => (
+                    <option value={fac.id}>{fac.id}</option>
+                  ))}
+                </select>
+
                 <div className='col-md-12 text-center my-3 ' >
                   {
                     !movimientoCaja.id
                       ? <button
                         type='button'
-                        className='col-md-2 btn btn-success'
+                        className='col-md-6 btn btn-success'
                         onClick={saveMovimientoCaja}>
                         Guardar
                       </button>
                       : <button
                         type='button'
-                        className='col-md-2 btn btn-dark'
+                        className='col-md-6 btn btn-dark'
                         onClick={() => updateMovimientoCaja(movimientoCaja.id)}>
                         Actualizar
                       </button>
                   }
                   <button
                     type='button'
-                    className='col-md-2 btn btn-light mx-3'
+                    className='col-md-6 btn btn-light'
                     onClick={resetForm}>
                     Limpiar
                   </button>

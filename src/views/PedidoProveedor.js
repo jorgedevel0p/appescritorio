@@ -45,6 +45,9 @@ export const PedidoProveedor = () => {
   }
 
   const savePedidoProv = () => {
+    if (confirm("¿Desea guardar la información de este pedido proveedor?") === false) {
+      return
+    }
     console.log(' llega')
     let pedidoProvToSave = { ...pedidoProv }
 
@@ -138,9 +141,9 @@ export const PedidoProveedor = () => {
       </div>
       <div className="card my-3 mx-4 justify-center">
         <div className="card-header d-flex justify-content-between">
-          <h2>Pedidos a Proveedores</h2>
+          <h2>Lista de Pedidos a Proveedores</h2>
           <Modal
-            modalTitle={'Agregar Detalle Pedido Proveedor'}
+            modalTitle={'Datos Pedido Proveedor'}
             renderButton={() => (
               <div ref={btnAddModal}><i class="fa-solid fa-plus" /></div>
             )}
@@ -185,7 +188,7 @@ export const PedidoProveedor = () => {
                   className='form-control mb-2'
                   value={pedidoProv.state}
                   onChange={handleChange}>
-                  <option disabled selected>Estado</option>
+                  <option value='' disabled selected>Estado</option>
                   <option value="Pagado">Pagado</option>
                   <option value="Pendiente">Pendiente</option>
                   <option value="Cancelado">Cancelado</option>
@@ -210,20 +213,20 @@ export const PedidoProveedor = () => {
                     !pedidoProv.id
                       ? <button
                         type='button'
-                        className='col-md-2 btn btn-success'
+                        className='col-md-6 btn btn-success '
                         onClick={savePedidoProv}>
                         Guardar
                       </button>
                       : <button
                         type='button'
-                        className='col-md-2 btn btn-dark'
+                        className='col-md-6 btn btn-dark  '
                         onClick={() => updatePedidoProv(pedidoProv.id)}>
                         Actualizar
                       </button>
                   }
                   <button
                     type='button'
-                    className='col-md-2 btn btn-light mx-3'
+                    className='col-md-6 btn btn-light '
                     onClick={resetForm}>
                     Limpiar
                   </button>

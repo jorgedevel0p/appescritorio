@@ -15,7 +15,7 @@ const DEFAULT_STATE = {
 };
 
 export const DetalleOrden = () => {
-  const { productos, platos, getProductosById, getPlatosById } =
+  const { productos, platos, ordenes, getProductosById, getPlatosById } =
     useContext(restaurantContext);
   const [detalleOrden, setDetalleOrden] = useState(DEFAULT_STATE);
   const [detalleOrdenes, setDetalleOrdenes] = useState([]);
@@ -45,6 +45,9 @@ export const DetalleOrden = () => {
   };
 
   const saveDetalleOrden = () => {
+    if (confirm("¿Desea crear este detalle orden?") === false) {
+      return;
+    }
     console.log(" llega");
     let detalleOrdenToSave = { ...detalleOrden };
 
@@ -138,7 +141,7 @@ export const DetalleOrden = () => {
         <div className="card-header d-flex justify-content-between">
           <h2> Lista de Orden detallada</h2>
           <Modal
-            modalTitle={"Agregar detalle orden"}
+            modalTitle={"Datos detalle orden"}
             renderButton={() => (
               <div ref={btnAddModal}>
                 <i class="fa-solid fa-plus" />
@@ -159,7 +162,8 @@ export const DetalleOrden = () => {
                       value={detalleOrden.id}
                       onChange={handleChange}></input>
                   </div>
-                  <div className="col">
+                 
+                  {/* <div className="col">
                     <label for="number_name" class="form-label">ID Orden</label>
                     <input
                       type="number"
@@ -169,7 +173,27 @@ export const DetalleOrden = () => {
                       value={detalleOrden.orden}
                       onChange={handleChange}
                     ></input>
-                  </div>
+                  </div> */}
+                  <div className="col mb-1">
+                  <label for="user" class="form-label">
+                    ID Orden
+                  </label>
+                  <select
+                    type="text"
+                    name="orden"
+                    className="form-control"
+                    value={detalleOrden.orden}
+                    onChange={handleChange}
+                  >
+                    <option value="" disabled selected>
+                      ID Orden
+                    </option>
+                    {ordenes.data.map((orden) => (
+                      <option value={orden.id}>{orden.id}</option>
+                    ))}
+                  </select>
+                </div>
+
                 </div>
                 <div className="col mb-1">
                   <label for="user" class="form-label">Cantidad</label>

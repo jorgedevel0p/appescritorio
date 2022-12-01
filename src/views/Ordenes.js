@@ -4,6 +4,7 @@ import { useHttpRequest } from '../hooks/useHttpRequest'
 import Fondo1080 from "../assets/img/720x120.jpg"
 import restaurantContext from '../context/restaurantContext'
 import { Modal } from "../components/ui/Modal";
+import { AlertConfirm } from "../utils/Alert";
 
 const DEFAULT_STATE = {
   id: '',
@@ -46,6 +47,9 @@ export const Ordenes = () => {
   }
 
   const saveOrden = () => {
+    if (confirm("¿Desea crear esta orden?") === false) {
+      return
+    }
     console.log(orden)
     makeHttpRequest({
       operation: '/orden/',
@@ -67,6 +71,7 @@ export const Ordenes = () => {
     if (confirm("¿Desea actualizar la información de esta orden?") === false) {
       return
     }
+    
     makeHttpRequest({
       operation: `/orden/${id}`,
       data: orden,
@@ -81,6 +86,9 @@ export const Ordenes = () => {
         resetForm()
       }
     })
+    
+
+    
   }
 
   const setOrdenDataIntoForm = (orden) => {
@@ -89,7 +97,7 @@ export const Ordenes = () => {
   }
 
   const deleteOrden = (id) => {
-    if (confirm("¿Desea eliminar el orden?") === false) {
+    if (confirm("¿Desea eliminar la orden?") === false) {
       return
     }
     makeHttpRequest({
@@ -130,7 +138,7 @@ export const Ordenes = () => {
         <div className="card-header d-flex justify-content-between">
           <h2> Lista de Ordenes</h2>
           <Modal
-            modalTitle={"Agregar Orden"}
+            modalTitle={"Datos Orden"}
             renderButton={() => (
               <div ref={btnAddModal}>
                 <i class="fa-solid fa-plus" />
@@ -138,7 +146,7 @@ export const Ordenes = () => {
             )}
             renderContent={() => (
               <form className="container" style={{ width: 400 }}>
-                <div>
+                {/* <div>
                   <label for="user" class="form-label">ID Orden</label>
                   <input
                     type='text'
@@ -148,7 +156,7 @@ export const Ordenes = () => {
                     readOnly={true}
                     value={orden.id}
                     onChange={handleChange}>
-                  </input></div>
+                  </input></div> */}
 
                 <div className="row row-cols-3 ">
                   <div className="col mb-2">
@@ -203,7 +211,7 @@ export const Ordenes = () => {
                     className='form-control mb-2'
                     value={orden.state}
                     onChange={handleChange}>
-                    <option disabled selected>Estado</option>
+                    <option value="" disabled selected>Estado</option>
                     <option value={1}>Activa</option>
                     <option value={0}>Cerrada</option>
                   </select>

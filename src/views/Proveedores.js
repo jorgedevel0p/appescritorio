@@ -44,6 +44,9 @@ export const Proveedores = () => {
   }
 
   const saveProveedor = () => {
+    if (confirm("¿Desea guardar la información de este proveedor?") === false) {
+      return
+    }
     console.log(proveedor)
     makeHttpRequest({
       operation: '/proveedor/',
@@ -130,9 +133,9 @@ export const Proveedores = () => {
       </div>
       <div className='card my-3 mx-4 justify-center'>
         <div className='card-header d-flex justify-content-between'>
-          <h2>Agregar Proveedor</h2>
+          <h2>Lista de Proveedores</h2>
           <Modal
-            modalTitle={'Agregar Proveedor'}
+            modalTitle={'Detalle Proveedor'}
             renderButton={() => (
               <div ref={btnAddModal}><i class="fa-solid fa-plus" /></div>
             )}
@@ -177,7 +180,7 @@ export const Proveedores = () => {
                   className='form-control mb-2'
                   value={proveedor.state}
                   onChange={handleChange}>
-                  <option disabled selected>Estado</option>
+                  <option value='' disabled selected>Estado</option>
                   <option value={0}>Inactivo</option>
                   <option value={1}>Activo</option>
                 </select>
@@ -186,20 +189,20 @@ export const Proveedores = () => {
                     !proveedor.id
                       ? <button
                         type='button'
-                        className='btn btn-success mx-3'
+                        className='col-md-6 btn btn-success '
                         onClick={saveProveedor}>
                         Guardar
                       </button>
                       : <button
                         type='button'
-                        className='btn btn-dark mx-3'
+                        className='col-md-6 btn btn-dark  '
                         onClick={() => updateProveedor(proveedor.id)}>
                         Actualizar
                       </button>
                   }
                   <button
                     type='button'
-                    className='btn btn-dark mx-3'
+                    className='col-md-6 btn btn-light '
                     onClick={resetForm}>
                     Limpiar
                   </button>
@@ -224,7 +227,7 @@ export const Proveedores = () => {
             <tbody className="table-group-divider">
               {proveedores.map(proveedor => (
                 <tr>
-                  <td>{proveedor.id}</td>
+                  <th scope='row'>{proveedor.id}</th>
                   <td>{proveedor.name}</td>
                   <td>{proveedor.email}</td>
                   <td>{proveedor.phone}</td>

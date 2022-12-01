@@ -45,6 +45,9 @@ export const Platos = () => {
   }
 
   const savePlato = () => {
+    if (confirm("¿Desea guardar este plato?") === false) {
+      return
+    }
     console.log(plato)
     makeHttpRequest({
       operation: '/plato/',
@@ -129,7 +132,7 @@ export const Platos = () => {
         <div className="card my-3 mx-4 justify-center">
           <div className="card-header d-flex justify-content-between">
             <h2> Lista de Platos</h2>
-            <Modal modalTitle={"Agregar plato"}
+            <Modal modalTitle={"Detalle plato"}
               renderButton={() => (
                 <div ref={btnAddModal}>
                   <i class="fa-solid fa-plus" />
@@ -169,7 +172,7 @@ export const Platos = () => {
                         className='form-control mb-2'
                         value={plato.type_dish}
                         onChange={handleChange}>
-                        <option disabled selected>Tipo de Plato</option>
+                        <option value="" disabled selected>Tipo de Plato</option>
                         <option value="Entrada">Entrada</option>
                         <option value="Fondo">Fondo</option>
                         <option value="Postre">Postre</option>
@@ -183,7 +186,7 @@ export const Platos = () => {
                         className='form-control mb-2'
                         value={plato.score}
                         onChange={handleChange}>
-                        <option disabled selected>Dificultad</option>
+                        <option value="" disabled selected>Dificultad</option>
                         <option value={'1'}>1</option>
                         <option value={'2'}>2</option>
                         <option value={'3'}>3</option>

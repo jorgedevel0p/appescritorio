@@ -44,6 +44,9 @@ export const DetallePedidos = () => {
   }
 
   const saveDetallePedido = () => {
+    if (confirm("¿Desea guardar la información de este detalle pedido?") === false) {
+      return
+    }
     console.log(' llega')
     let detallePedidoToSave = { ...detallePedido }
 
@@ -68,7 +71,7 @@ export const DetallePedidos = () => {
   }
 
   const updateDetallePedido = (id) => {
-    if (confirm("¿Desea actualizar la información de esta detalle pedido?") === false) {
+    if (confirm("¿Desea actualizar la información de este detalle pedido?") === false) {
       return
     }
     makeHttpRequest({
@@ -88,7 +91,7 @@ export const DetallePedidos = () => {
   }
 
   const deleteDetallePedido = (id) => {
-    if (confirm("¿Desea eliminar esta detalle pedido?") === false) {
+    if (confirm("¿Desea eliminar este detalle pedido?") === false) {
       return
     }
 
@@ -136,9 +139,9 @@ export const DetallePedidos = () => {
 
       <div className="card my-3 mx-4 justify-center">
         <div className="card-header d-flex justify-content-between">
-          <h2>Detalle Pedido Proveedor</h2>
+          <h2>Lista de Pedidos Proveedor Detallados</h2>
           <Modal
-            modalTitle={'Agregar Detalle Pedido Proveedo'}
+            modalTitle={'Datos Detalle Pedido Proveedo'}
             renderButton={() => (
               <div ref={btnAddModal}><i class="fa-solid fa-plus" /></div>
             )}
@@ -184,7 +187,7 @@ export const DetallePedidos = () => {
                   value={detallePedido.producto}
                   onChange={handleChange}
                 >
-                  <option disabled selected>Producto</option>
+                  <option value='' disabled selected>Producto</option>
                   {productos.data.map(prod => (
                     <option value={prod.id}>{prod.name}</option>
                   ))}
@@ -207,7 +210,7 @@ export const DetallePedidos = () => {
                   }
                   <button
                     type='button'
-                    className='col-md-2 btn btn-light mx-3'
+                    className="btn btn-light mx-3"
                     onClick={resetForm}>
                     Limpiar
                   </button>

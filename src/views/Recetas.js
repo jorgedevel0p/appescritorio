@@ -114,7 +114,7 @@ export const Recetas = () => {
         <div className="card my-3 mx-4 justify-center">
           <div className="card-header d-flex justify-content-between">
             <h2> Recetas</h2>
-            <Modal modalTitle={"Agregar receta"}
+            <Modal modalTitle={"Detalle receta"}
               renderButton={() => (
                 <div ref={btnAddModal}>
                   <i class="fa-solid fa-plus" />
@@ -145,7 +145,7 @@ export const Recetas = () => {
                         placeholder='Valor'
                         value={plato.value}
                         onChange={handleChange}>
-                          <option disabled selected>Valor por defecto</option>
+                          <option value='' disabled selected>Valor por defecto</option>
                         <option value={'0'}>0</option>
                         <option value={'0'}>0</option>
                       </select>
@@ -158,7 +158,7 @@ export const Recetas = () => {
                         className='form-control mb-2'
                         value={plato.type_dish}
                         onChange={handleChange}>
-                        <option disabled selected>Tipo de Plato</option>
+                        <option value='' disabled selected>Tipo de Plato</option>
                         <option value="Entrada">Entrada</option>
                         <option value="Fondo">Fondo</option>
                         <option value="Postre">Postre</option>
@@ -172,7 +172,7 @@ export const Recetas = () => {
                         className='form-control mb-2'
                         value={plato.score}
                         onChange={handleChange}>
-                        <option disabled selected>Dificultad</option>
+                        <option value='' disabled selected>Dificultad</option>
                         <option value={'1'}>1</option>
                         <option value={'2'}>2</option>
                         <option value={'3'}>3</option>
@@ -216,13 +216,13 @@ export const Recetas = () => {
                       !plato.id
                         ? <button
                           type='button'
-                          className='btn btn-success mx-3'
+                          className='col-md-6 btn btn-success '
                           onClick={savePlato}>
                           Añadir
                         </button>
                         : <button
                           type='button'
-                          className='btn-dark mx-3 '
+                          className='col-md-6 btn btn-dark  '
                           onClick={() => updatePlato(plato.id)}>
                           Actualizar
                         </button>

@@ -46,6 +46,9 @@ export const Reservas = () => {
     }
 
     const saveReserva = () => {
+        if (confirm("¿Desea crear una nueva reserva?") === false) {
+            return
+        }
         console.log(reserva)
         makeHttpRequest({
             operation: '/reserva/',
@@ -130,7 +133,7 @@ export const Reservas = () => {
                 <div className="card-header d-flex justify-content-between">
                     <h2> Lista de Reservas</h2>
                     <Modal
-                        modalTitle={"Agregar reserva"}
+                        modalTitle={"Detalle reserva"}
                         renderButton={() => (
                             <div ref={btnAddModal}>
                                 <i class="fa-solid fa-plus" />
@@ -219,7 +222,7 @@ export const Reservas = () => {
                                         placeholder='Estado'
                                         value={reserva.status}
                                         onChange={handleChange}>
-                                        <option disabled selected>Estado</option>
+                                        <option value='' disabled selected>Estado</option>
                                         <option value={'Reservado'}>Reservado</option>
                                         <option value={'Cancelado'}>Cancelado</option>
                                     </select>
@@ -232,20 +235,20 @@ export const Reservas = () => {
                                         !reserva.id
                                             ? <button
                                                 type='button'
-                                                className='btn btn-success mx-3'
+                                                className='col-md-6 btn btn-success '
                                                 onClick={saveReserva}>
                                                 Guardar
                                             </button>
                                             : <button
                                                 type='button'
-                                                className='btn btn-dark mx-3 '
+                                                className='col-md-6 btn btn-dark  '
                                                 onClick={() => updateReserva(reserva.id)}>
                                                 Actualizar
                                             </button>
                                     }
                                     <button
                                         type='button'
-                                        className='btn btn-light mx-3'
+                                        className='col-md-6 btn btn-light '
                                         onClick={resetForm}>
                                         Limpiar
                                     </button>
