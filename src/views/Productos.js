@@ -57,6 +57,7 @@ export const Productos = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha guardado correctamente')
           return
         }
         console.log(data, 'Ha guardado el producto correctamente')
@@ -82,6 +83,7 @@ export const Productos = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha actualizado correctamente')
           return
         }
         console.log(data, 'Producto se ha actualizado correctamente')
@@ -103,6 +105,7 @@ export const Productos = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha eliminado correctamente')
           return
         }
         console.log(data, 'Producto se ha eliminado correctamente')
@@ -130,9 +133,6 @@ export const Productos = () => {
     btnAddModal.current.click()
   }
 
-  console.log(typeof getProductos,'get')
-  console.log(typeof producto,'prod')
-  console.log(typeof saveProducto,'save')
 
   return (
     <Layout_Admin>

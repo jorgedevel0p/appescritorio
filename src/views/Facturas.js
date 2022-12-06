@@ -58,6 +58,7 @@ export const Facturas = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha guardado correctamente')
           return
         }
         console.log(data, 'Ha guardado la factura correctamente')
@@ -82,6 +83,7 @@ export const Facturas = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha actualizado correctamente')
           return
         }
         console.log(data, 'Factura se ha actualizado correctamente')
@@ -103,6 +105,7 @@ export const Facturas = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha eliminado correctamente')
           return
         }
         console.log(data, 'Factura se ha eliminado correctamente')

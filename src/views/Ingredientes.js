@@ -52,6 +52,7 @@ export const Ingredientes = () => {
         callback: ({ ok, data }) => {
           if (!ok) {
             alert(JSON.stringify(data))
+            console.log(data, 'ERROR. NO se ha guardado correctamente')
             return
           }
           console.log(data, 'Ha guardado el ingrediente correctamente')
@@ -75,6 +76,7 @@ export const Ingredientes = () => {
         callback: ({ ok, data }) => {
           if (!ok) {
               alert(JSON.stringify(data))
+              console.log(data, 'ERROR. NO se ha actualizado correctamente')
             return
           }
           console.log(data, 'Ingrediente se ha actualizado correctamente')
@@ -96,6 +98,7 @@ export const Ingredientes = () => {
         callback: ({ ok, data }) => {
           if (!ok) {
               alert(JSON.stringify(data))
+              console.log(data, 'ERROR. NO se ha eliminado correctamente')
           return
           }
           console.log(data, 'Ingrediente se ha eliminado correctamente')

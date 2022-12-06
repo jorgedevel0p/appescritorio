@@ -58,6 +58,7 @@ export const Ordenes = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha guardado correctamente')
           return
         }
         console.log(data, 'Ha guardado Orden correctamente')
@@ -79,6 +80,7 @@ export const Ordenes = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha actualizado correctamente')
           return
         }
         console.log(data, 'Orden se ha actualizado correctamente')
@@ -107,9 +109,10 @@ export const Ordenes = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha eliminado correctamente')
           return
         }
-        console.log(dato, 'Se ha eliminado la orden correctamente')
+        console.log(data, 'Se ha eliminado la orden correctamente')
         getOrdenes()
       }
     })

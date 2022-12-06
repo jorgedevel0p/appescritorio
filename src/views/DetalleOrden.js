@@ -58,6 +58,7 @@ export const DetalleOrden = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data));
+          console.log(data, 'ERROR. NO se ha guardado correctamente')
           return;
         }
         console.log(data, "Ha guardado el detalle orden correctamente");
@@ -85,6 +86,7 @@ export const DetalleOrden = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data));
+          console.log(data, 'ERROR. NO se ha actualizado correctamente')
           return;
         }
         console.log(data, "Detalle Orden se ha actualizado correctamente");
@@ -106,6 +108,7 @@ export const DetalleOrden = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data));
+          console.log(data, 'ERROR. NO se ha eliminado correctamente')
           return;
         }
         console.log(data, "Detalle Orden se ha eliminado correctamente");

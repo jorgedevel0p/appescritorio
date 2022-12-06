@@ -47,9 +47,7 @@ export const DetallePedidos = () => {
     if (confirm("¿Desea guardar la información de este detalle pedido?") === false) {
       return
     }
-    console.log(' llega')
-    let detallePedidoToSave = { ...detallePedido }
-
+    
     makeHttpRequest({
       operation: '/detalle_pedido/',
       data: detallePedido,
@@ -57,6 +55,7 @@ export const DetallePedidos = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha guardado correctamente')
           return
         }
         console.log(data, 'Ha guardado la detalle pedido correctamente')
@@ -81,6 +80,7 @@ export const DetallePedidos = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha actualizado correctamente')
           return
         }
         console.log(data, 'Detalle Pedido se ha actualizado correctamente')
@@ -102,6 +102,7 @@ export const DetallePedidos = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha eliminado correctamente')
           return
         }
         console.log(data, 'Detalle Pedido se ha eliminado correctamente')

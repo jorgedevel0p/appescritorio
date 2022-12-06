@@ -40,6 +40,7 @@ export const Mesas = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha guardado correctamente')
           return
         }
         console.log(data, 'Ha guardado la mesa correctamente')
@@ -64,6 +65,7 @@ export const Mesas = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha actualizado correctamente')
           return
         }
         console.log(data, 'Mesa se ha actualizado correctamente')
@@ -85,6 +87,7 @@ export const Mesas = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha eliminado correctamente')
           return
         }
         console.log(data, 'Mesa se ha eliminado correctamente')

@@ -59,6 +59,7 @@ export const Boletas = () => {
             callback: ({ ok, data }) => {
                 if (!ok) {
                     alert(JSON.stringify(data))
+                    console.log(data, 'ERROR. NO se ha guaradado correctamente')
                     return
                 }
                 console.log(data, 'Ha guardado la Boleta correctamente')
@@ -79,6 +80,7 @@ export const Boletas = () => {
             callback: ({ ok, data }) => {
                 if (!ok) {
                     alert(JSON.stringify(data))
+                    console.log(data, 'ERROR. NO se ha actualizado correctamente')
                     return
                 }
                 console.log(data, 'Boleta se ha actualizado correctamente')
@@ -104,6 +106,7 @@ export const Boletas = () => {
             callback: (ok, data) => {
                 if (!ok) {
                     alert(JSON.stringify(data))
+                    console.log(data, 'ERROR. NO se ha elimniado correctamente')
                     return
                 }
                 console.log(data, 'Boleta se ha eliminado correctamente')
@@ -217,9 +220,9 @@ export const Boletas = () => {
                                     value={boleta.state}
                                     onChange={handleChange}>
                                     <option value='' disabled selected>Estado</option>
-                                    <option value="Efectivo">Pagado</option>
-                                    <option value="Credito">Pendiente</option>
-                                    <option value="Debito">Cancelado</option>
+                                    <option value="Pagado">Pagado</option>
+                                    <option value="Pendiente">Pendiente</option>
+                                    <option value="Cancelado">Cancelado</option>
                                 </select>
 
                                 <select

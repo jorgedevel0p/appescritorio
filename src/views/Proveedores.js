@@ -55,6 +55,7 @@ export const Proveedores = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha guardado correctamente')
           return
         }
         console.log(data, 'Ha guardado Proveedor correctamente')
@@ -75,6 +76,7 @@ export const Proveedores = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha actualizado correctamente')
           return
         }
         console.log(data, 'Proveedor se ha actualizado correctamente')
@@ -100,9 +102,10 @@ export const Proveedores = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR, NO se ha eliminado correctamente')
           return
         }
-        console.log(dato, 'Se ha eliminado el proveedor correctamente')
+        console.log(data, 'Se ha eliminado el proveedor correctamente')
         getProveedores()
       }
     })

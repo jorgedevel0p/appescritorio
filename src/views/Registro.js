@@ -45,7 +45,8 @@ export const Registro = () => {
         method: 'POST', 
         callback: ({ ok, data }) => {
           if (!ok) { 
-            alert(JSON.stringify(data))            
+            alert(JSON.stringify(data))      
+            console.log(data, 'ERROR. NO se ha guardado correctamente')      
             return
           }
           console.log(data, 'Ha guardado Usuario correctamente')

@@ -58,6 +58,7 @@ export const PedidoProveedor = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha guardado correctamente')
           return
         }
         console.log(data, 'Ha guardado el pedido proveedor correctamente')
@@ -82,6 +83,7 @@ export const PedidoProveedor = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha actualizado correctamente')
           return
         }
         console.log(data, 'Pedido proveedor se ha actualizado correctamente')
@@ -103,6 +105,7 @@ export const PedidoProveedor = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha eliminado correctamente')
           return
         }
         console.log(data, 'Pedido proveedor se ha eliminado correctamente')

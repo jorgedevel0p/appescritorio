@@ -11,14 +11,13 @@ const DEFAULT_STATE = {
   recipe: '',
   value: '',
   type_dish: '',
-  image_plato: '',
-  score: '',
+  image_plato: 'url',
+  score: ''
 }
 
 export const Platos = () => {
   const [plato, setPlato] = useState(DEFAULT_STATE)
   const [platos, setPlatos] = useState([])
-  const [form, setForm] = useState(DEFAULT_STATE)
   const { isLoading, makeHttpRequest } = useHttpRequest()
 
   const handleChange = (e) => {
@@ -45,24 +44,34 @@ export const Platos = () => {
   }
 
   const savePlato = () => {
-    if (confirm("¿Desea guardar este plato?") === false) {
-      return
+    if (confirm("¿Desea guardar este plato") === false) {
+      return;
     }
-    console.log(plato)
+    console.log(" llega" );
+    console.log(typeof plato.id, ' id')
+    console.log(typeof plato.description, ' desc')
+    console.log(typeof plato.image_plato, ' url' )
+    console.log(typeof plato.score, ' score')
+    console.log(typeof plato.recipe, ' recipe')
+    console.log(typeof plato.name, ' name')
+    console.log(typeof plato.value, ' value')
+    console.log(typeof plato.type_dish, ' type')
+
     makeHttpRequest({
-      operation: '/plato/',
+      operation: "/plato/",
       data: plato,
-      method: 'POST',
+      method: "POST",
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          return
+          alert(JSON.stringify(data));
+          console.log(data, 'ERROR. NO se ha guardado correctamente')
+          return;
         }
-        console.log(data, 'Ha guardado Plato correctamente')
-        getPlatos()
-        resetForm()
-      }
-    })
+        console.log(data, "Ha guardado el plato correctamente");
+        resetForm();
+        getPlatos();
+      },
+    });
   }
 
   const updatePlato = (id) => {
@@ -76,6 +85,7 @@ export const Platos = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR, NO se ha actualizado correctamente')
           return
         }
         console.log(data, 'Plato se ha actualizado correctamente')
@@ -101,9 +111,10 @@ export const Platos = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR, NO se ha eliminado correctamente')
           return
         }
-        console.log(dato, 'Se ha eliminado el plato correctamente')
+        console.log(data, 'Se ha eliminado el plato correctamente')
         getPlatos()
       }
     })
@@ -119,7 +130,7 @@ export const Platos = () => {
 
   const btnAddModal = useRef()
   const openModalImperative = () => {
-    console.log(btnAddModal.current)
+   
     btnAddModal.current.click()
   }
 
@@ -142,7 +153,7 @@ export const Platos = () => {
                 <form className='container' style={{ width: 400 }}>
                   <div className="row row-cols-2 mb-2">
                     <div className="col">
-                      <label for="number_name" class="form-label">ID Plato</label>
+                      <label for="plato" class="form-label">ID Plato</label>
                       <input
                         type='text'
                         name='id'
@@ -154,18 +165,17 @@ export const Platos = () => {
                       </input>
                     </div>
                     <div className="col">
-                      <label for="number_name" class="form-label">Valor Plato</label>
-                      <input
-                        type='number'
-                        name='value'
-                        className='form-control mb-2'
-                        placeholder='Valor'
-                        value={plato.value}
-                        onChange={handleChange}>
-                      </input>
-                    </div>
+                    <label for="number_name" class="form-label">Valor</label>
+                    <input
+                      type='number'
+                      name='value'
+                      className='form-control mb-1'
+                      value={plato.value}
+                      placeholder='Valor'
+                      onChange={handleChange} />
+                  </div>
                     <div className="col">
-                      <label for="number_name" class="form-label">Tipo Plato</label>
+                      <label for="plato" class="form-label">Tipo Plato</label>
                       <select
                         type='text'
                         name='type_dish'
@@ -179,7 +189,7 @@ export const Platos = () => {
                       </select>
                     </div>
                     <div className="col">
-                      <label for="number_name" class="form-label">Dificultad</label>
+                      <label for="plato" class="form-label">Dificultad</label>
                       <select
                         type='number'
                         name='score'
@@ -187,9 +197,9 @@ export const Platos = () => {
                         value={plato.score}
                         onChange={handleChange}>
                         <option value="" disabled selected>Dificultad</option>
-                        <option value={'1'}>1</option>
-                        <option value={'2'}>2</option>
-                        <option value={'3'}>3</option>
+                        <option value='1'>1</option>
+                        <option value='2'>2</option>
+                        <option value='3'>3</option>
                       </select>
                     </div>
                   </div>

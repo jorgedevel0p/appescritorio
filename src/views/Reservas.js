@@ -4,6 +4,7 @@ import { useHttpRequest } from '../hooks/useHttpRequest'
 import restaurantContext from '../context/restaurantContext'
 import Fondo1080 from "../assets/img/720x120.jpg"
 import { Modal } from "../components/ui/Modal";
+import { DateTime } from 'luxon'
 
 const DEFAULT_STATE = {
     id: '',
@@ -12,6 +13,7 @@ const DEFAULT_STATE = {
     user: '',
     date: '',
     time: '',
+    date_reserva: DateTime.now()
 }
 
 export const Reservas = () => {
@@ -22,7 +24,7 @@ export const Reservas = () => {
     const { isLoading, makeHttpRequest } = useHttpRequest()
 
     const handleChange = (e) => {
-        console.log(e.target.value, 'xxx')
+        console.log(e.target.value)
         setReserva({
             ...reserva,
             [e.target.name]: e.target.value
@@ -49,6 +51,7 @@ export const Reservas = () => {
         if (confirm("¿Desea crear una nueva reserva?") === false) {
             return
         }
+        
         console.log(reserva)
         makeHttpRequest({
             operation: '/reserva/',

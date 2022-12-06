@@ -57,6 +57,7 @@ export const MovimientoCaja = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha guardado correctamente')
           return
         }
         console.log(data, 'Ha guardado la movimiento caja correctamente')
@@ -81,6 +82,7 @@ export const MovimientoCaja = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha actualizado correctamente')
           return
         }
         console.log(data, 'MovimientoCaja se ha actualizado correctamente')
@@ -102,6 +104,7 @@ export const MovimientoCaja = () => {
       callback: ({ ok, data }) => {
         if (!ok) {
           alert(JSON.stringify(data))
+          console.log(data, 'ERROR. NO se ha eliminado correctamente')
           return
         }
         console.log(data, 'MovimientoCaja se ha eliminado correctamente')
