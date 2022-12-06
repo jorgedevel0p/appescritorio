@@ -28,6 +28,6 @@ export const Inicio = () => {
 
 
 
-            <Footer/>
+          
         </>
     )}

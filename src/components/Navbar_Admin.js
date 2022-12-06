@@ -5,7 +5,7 @@ import { RouteLink } from './RouteLink'
 export const Navbar_Admin = () => {
 
   return (
-    <div className="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style={{ width: 280, height: '100%' }}>
+    <div className="d-flex flex-column flex-shrink-0 p-3 text-bg-dark" style={{ width: 280,  }}>
       <Link to="/home">
         <a href="/" className="d-flex align-items-center mb-3 mb-md-0 me-md-auto text-white text-decoration-none">
           <svg className="bi pe-none me-2" width="40" height="32"></svg>
@@ -35,7 +35,7 @@ export const Navbar_Admin = () => {
         
       </ul>
 
-      <hr />
+      {/* <hr />
 
       <div className="dropdown">
         <div href="#" className="d-flex align-items-center text-white text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
@@ -53,7 +53,7 @@ export const Navbar_Admin = () => {
           <li><hr className="dropdown-divider" /></li>
           <li>Sign out</li>
         </ul>
-      </div>
+      </div> */}
 
     </div>
 

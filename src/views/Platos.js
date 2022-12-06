@@ -11,7 +11,7 @@ const DEFAULT_STATE = {
   recipe: '',
   value: '',
   type_dish: '',
-  image_plato: 'url',
+  image_plato: '',
   score: ''
 }
 
@@ -47,15 +47,6 @@ export const Platos = () => {
     if (confirm("¿Desea guardar este plato") === false) {
       return;
     }
-    console.log(" llega" );
-    console.log(typeof plato.id, ' id')
-    console.log(typeof plato.description, ' desc')
-    console.log(typeof plato.image_plato, ' url' )
-    console.log(typeof plato.score, ' score')
-    console.log(typeof plato.recipe, ' recipe')
-    console.log(typeof plato.name, ' name')
-    console.log(typeof plato.value, ' value')
-    console.log(typeof plato.type_dish, ' type')
 
     makeHttpRequest({
       operation: "/plato/",

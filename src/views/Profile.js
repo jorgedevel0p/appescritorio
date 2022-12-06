@@ -51,7 +51,7 @@ export const Profile = () => {
             </div>
 
 
-            <Footer/>
+      
         </>
     )
 

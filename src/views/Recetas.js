@@ -283,7 +283,7 @@ export const Recetas = () => {
         </div>
 
       </Layout_Cocina>
-      <Footer />
+    
     </>
   )
 

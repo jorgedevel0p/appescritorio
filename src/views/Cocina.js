@@ -55,7 +55,7 @@ export const Cocinas = () => {
                     </div>
                 </form>
             </Layout_Cocina>
-            <Footer />
+           
         </>
     )
 

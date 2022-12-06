@@ -127,7 +127,7 @@ export const Login = () => {
           </div>
         </div>
       </main>
-      <Footer />
+     
     </>
 
 

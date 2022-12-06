@@ -61,7 +61,7 @@ export const Carta = () => {
                 </table>
             </div>
 
-            <Footer />
+            
 
 
         </>

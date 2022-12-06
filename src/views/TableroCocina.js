@@ -21,7 +21,7 @@ export const TableroCocina = () => {
 
             </Layout_Cocina>
             
-            <Footer />
+          
         </>
     )
 

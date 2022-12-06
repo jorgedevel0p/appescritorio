@@ -41,7 +41,7 @@ export const Clientes = () => {
                 </form>
 
             </Layout_Cliente>
-            <Footer />
+          
         </>
     )
 }
