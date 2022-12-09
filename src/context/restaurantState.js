@@ -2,6 +2,60 @@ import React, { useEffect, useReducer } from 'react'
 import restaurantReducer from './restaurantReducer'
 import RestaurantContext from './restaurantContext'
 import { useHttpRequest } from '../hooks/useHttpRequest'
+import { agregarProductosOrdenes, filtrarOrdenesDelDia } from '../utils/MapearOrdenes'
+
+/* const DUMMY_PEDIDOS_DATA = [
+  {
+      "id": 1,
+      "boletas": [
+          {
+              "id": 1
+          }
+      ],
+      "detalle_ordenes": [
+          {
+              "id": 1,
+              "plato": 1,
+              "producto": 3,
+              "number_dish": 1
+          },
+          {
+            "id": 2,
+            "plato": 1,
+            "producto": 3,
+            "number_dish": 1
+        }
+      ],
+      "start_time": "19:00:00",
+      "end_time": "20:00:00",
+      "mesa": 1,
+      "date": "2022-12-08T15:00:00Z",
+      "number_people": 4,
+      "state": true
+  },
+  {
+      "id": 4,
+      "boletas": [
+          {
+              "id": 4
+          }
+      ],
+      "detalle_ordenes": [
+          {
+              "id": 4,
+              "plato": 3,
+              "producto": 5,
+              "number_dish": 4
+          }
+      ],
+      "start_time": "15:00:00",
+      "end_time": "16:00:00",
+      "mesa": 4,
+      "date": "2022-12-08T15:00:00Z",
+      "number_people": 5,
+      "state": true
+  },
+] */
 
 import {
   GET_USERS_LOADING,
@@ -15,8 +69,10 @@ import {
   GET_FACTURAS_SUCCESS,
   GET_PEDIDOSPROV_SUCCESS,
   GET_DETALLEORDS_SUCCESS,
-  GET_ORDENES_SUCCESS
 
+  GET_ORDENES_LOADING,
+  GET_ORDENES_SUCCESS,
+  GET_ORDENES_ERROR
 } from './types'
 // import { stat } from 'original-fs'
 
@@ -41,6 +97,10 @@ const INITIAL_STATE = {
     fetchingStatus
   },
   platos: {
+    data: [],
+    fetchingStatus
+  },
+  ordenes: {
     data: [],
     fetchingStatus
   }
@@ -116,9 +176,13 @@ const RestaurantState = (props) => {
   function getDetalleOrds(){
     getResourcesByName('detalle_orden').then(res => dispatch({ type: GET_DETALLEORDS_SUCCESS, payload: res }))
   }
-
-  function getOrdenes(){
-    getResourcesByName('orden').then(res => dispatch({ type: GET_ORDENES_SUCCESS, payload: res }))
+  
+  function getOrdenesClientes(){
+    getResourcesByName('orden').then(res => {
+      const ordenesDelDia = filtrarOrdenesDelDia(res/* DUMMY_PEDIDOS_DATA */)
+      const ordenesConProductos = agregarProductosOrdenes(ordenesDelDia, state.productos.data)
+      dispatch({ type: GET_ORDENES_SUCCESS, payload: ordenesConProductos })
+    })
   }
 
 
@@ -133,8 +197,9 @@ const RestaurantState = (props) => {
     getFacturas(),
     getPedidosProv(),
     getDetalleOrds(),
-    getOrdenes()
 
+    getPedidosProv()
+    // getOrdenesClientes()
   }, [])
 
 
@@ -161,11 +226,11 @@ const RestaurantState = (props) => {
         getFacturas,
         getPedidosProv,
         getDetalleOrds,
-        getOrdenes,
         getPlatosById,
         getProductosById,
         getProveedoresById,
-        getUserById
+        getUserById,
+        getOrdenesClientes
       }}
     >
       {props.children}
