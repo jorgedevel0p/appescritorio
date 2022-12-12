@@ -6,13 +6,13 @@ import restaurantContext from '../context/restaurantContext'
 const SECONDS_TO_REFRESH = 30000 // 30 secs
 
 export const TableroCocina = () => {
-  const { ordenes, getOrdenesClientes } = useContext(restaurantContext)
+  const { ordenes, getOrdenesClientes, getPlatosById } = useContext(restaurantContext)
 
   useEffect(() => {
     getOrdenesClientes()
 
     // descomentar esta linea para que la cocina refresque el tablero cada 30 segundos
-    // setInterval(getOrdenesClientes, SECONDS_TO_REFRESH)
+    setInterval(getOrdenesClientes, SECONDS_TO_REFRESH)
   }, [])
 
   return (
@@ -37,9 +37,17 @@ export const TableroCocina = () => {
                   <div className="card-body">
                     <h5 className="card-title text-center">Mesa {orden.mesa}</h5>
 
+                    {/* <ul className="list-group list-group-flush">
+                      {orden && orden.detalle_ordenes.map(detalle => (
+                        <li className="list-group-item">prod{detalle?.productoInfo?.name}</li>
+                        
+                      ))}
+
+                    </ul> */}
                     <ul className="list-group list-group-flush">
                       {orden && orden.detalle_ordenes.map(detalle => (
-                        <li className="list-group-item">{detalle?.productoInfo?.name}</li>
+                        <li className="list-group-item">{getPlatosById(detalle.plato).name}</li>
+                        
                       ))}
 
                     </ul>
