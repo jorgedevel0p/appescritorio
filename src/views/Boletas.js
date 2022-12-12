@@ -22,7 +22,7 @@ export const Boletas = () => {
     const [boleta, setBoleta] = useState(DEFAULT_STATE)
     const [boletas, setBoletas] = useState([])
     const { isLoading, makeHttpRequest } = useHttpRequest()
-    const { mesas, ordenes, users, getUserById } = useContext(restaurantContext)
+    const { mesas, users, getUserById } = useContext(restaurantContext)
 
     const handleChange = (e) => {
         setBoleta({
@@ -158,7 +158,7 @@ export const Boletas = () => {
                                             value={boleta.id}
                                             onChange={handleChange}>
                                         </input></div>
-                                    <div className="col">
+                                    {/* <div className="col">
                                         <select
                                             type='text'
                                             name='orden'
@@ -171,6 +171,21 @@ export const Boletas = () => {
                                                 <option value={ord.id}>{ord.id}</option>
                                             ))}
                                         </select>
+
+                                    </div> */}
+
+                                    <div>
+                                        <div className="col">
+                                            <input
+                                                type='text'
+                                                name='orden'
+                                                className=' form-control mb-2'
+                                                placeholder='ID Orden'
+                                                readOnly={false}
+                                                value={boleta.orden}
+                                                onChange={handleChange}>
+                                            </input>
+                                        </div>
                                     </div>
                                     <div className="col">
                                         <input
@@ -306,7 +321,7 @@ export const Boletas = () => {
                                     <td>{bol.state}</td>
                                     <td>{bol.orden}</td>
                                     <td>{getUserById(bol.user).email}</td>
-                                    
+
                                     <td>
                                         <button
                                             type='button'

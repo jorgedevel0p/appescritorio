@@ -166,7 +166,9 @@ export const DetalleOrden = () => {
                       onChange={handleChange}></input>
                   </div>
                  
-                  {/* <div className="col">
+                  
+                  <div className="col mb-1">
+                  <div className="col">
                     <label for="number_name" class="form-label">ID Orden</label>
                     <input
                       type="number"
@@ -176,12 +178,9 @@ export const DetalleOrden = () => {
                       value={detalleOrden.orden}
                       onChange={handleChange}
                     ></input>
-                  </div> */}
-                  <div className="col mb-1">
-                  <label for="user" class="form-label">
-                    ID Orden
-                  </label>
-                  <select
+                  </div>
+
+                  {/* <select
                     type="text"
                     name="orden"
                     className="form-control"
@@ -194,7 +193,7 @@ export const DetalleOrden = () => {
                     {ordenes.data.map((orden) => (
                       <option value={orden.id}>{orden.id}</option>
                     ))}
-                  </select>
+                  </select> */}
                 </div>
 
                 </div>
