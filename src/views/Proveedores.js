@@ -54,11 +54,12 @@ export const Proveedores = () => {
       method: 'POST',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha guardado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha guardado correctamente. Verifique los datos ingresados.')
           return
         }
-        console.log(data, 'Ha guardado Proveedor correctamente')
+        alert('Ha guardado Proveedor correctamente')
+        console.log(JSON.stringify(data))
         getProveedores()
         resetForm()
       }
@@ -75,11 +76,12 @@ export const Proveedores = () => {
       method: 'PUT',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha actualizado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha actualizado correctamente.Verifique los datos ingresados.')
           return
         }
-        console.log(data, 'Proveedor se ha actualizado correctamente')
+        alert('Proveedor se ha actualizado correctamente')
+        console.log(JSON.stringify(data))
         getProveedores()
         resetForm()
       }
@@ -101,11 +103,12 @@ export const Proveedores = () => {
       method: 'DELETE',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR, NO se ha eliminado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha eliminado correctamente. Intente más tarde nuevamente.')
           return
         }
-        console.log(data, 'Se ha eliminado el proveedor correctamente')
+        alert('Se ha eliminado el proveedor correctamente')
+        console.log(JSON.stringify(data))
         getProveedores()
       }
     })

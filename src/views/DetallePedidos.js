@@ -54,11 +54,12 @@ export const DetallePedidos = () => {
       method: 'POST',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha guardado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha guardado correctamente. Verifique los datos ingresados.')
           return
         }
-        console.log(data, 'Ha guardado la detalle pedido correctamente')
+        alert('Ha guardado la información de este detalle pedido correctamente')
+        console.log(JSON.stringify(data))
         resetForm()
         getDetallePedidos()
       }
@@ -79,11 +80,12 @@ export const DetallePedidos = () => {
       method: 'PUT',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha actualizado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha actualizado correctamente. Verifique los datos ingresados.')
           return
         }
-        console.log(data, 'Detalle Pedido se ha actualizado correctamente')
+        alert('Detalle Pedido se ha actualizado correctamente.')
+        console.log(JSON.stringify(data))
         getDetallePedidos()
         resetForm()
       }
@@ -101,11 +103,12 @@ export const DetallePedidos = () => {
       method: 'DELETE',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha eliminado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha eliminado correctamente. Intente más tarde nuevamente.')
           return
         }
-        console.log(data, 'Detalle Pedido se ha eliminado correctamente')
+        alert('Detalle Pedido se ha eliminado correctamente')
+        console.log(JSON.stringify(data))
         getDetallePedidos()
       }
     })

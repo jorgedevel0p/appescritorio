@@ -57,11 +57,12 @@ export const PedidoProveedor = () => {
       method: 'POST',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha guardado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha guardado correctamente. Verifique los datos ingresados.')
           return
         }
-        console.log(data, 'Ha guardado el pedido proveedor correctamente')
+        alert('Ha guardado el pedido proveedor correctamente')
+        console.log(JSON.stringify(data))
         resetForm()
         getPedidosProv()
       }
@@ -82,11 +83,12 @@ export const PedidoProveedor = () => {
       method: 'PUT',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha actualizado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha actualizado correctamente. Verifique los datos ingresados.')
           return
         }
-        console.log(data, 'Pedido proveedor se ha actualizado correctamente')
+        alert('Pedido proveedor se ha actualizado correctamente')
+        console.log(JSON.stringify(data))
         getPedidosProv()
         resetForm()
       }
@@ -104,11 +106,12 @@ export const PedidoProveedor = () => {
       method: 'DELETE',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha eliminado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha eliminado correctamente. Intente más tarde nuevamente.')
           return
         }
-        console.log(data, 'Pedido proveedor se ha eliminado correctamente')
+        alert('Pedido proveedor se ha eliminado correctamente')
+        console.log(JSON.stringify(data))
         getPedidosProv()
       }
     })

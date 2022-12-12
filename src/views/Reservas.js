@@ -59,10 +59,12 @@ export const Reservas = () => {
             method: 'POST',
             callback: ({ ok, data }) => {
                 if (!ok) {
-                    alert(JSON.stringify(data))
+                    alert('Error, no se ha guardado correctamente. Verifique los datos ingresados')
+                    console.log(JSON.stringify(data))
                     return
                 }
-                console.log(data, 'Ha guardado Reserva correctamente')
+                alert('Ha guardado Reserva correctamente')
+                console.log(JSON.stringify(data))
                 getReservas()
                 resetForm()
             }
@@ -79,10 +81,12 @@ export const Reservas = () => {
             method: 'PUT',
             callback: ({ ok, data }) => {
                 if (!ok) {
-                    alert(JSON.stringify(data))
+                    alert('Error, no se ha actualizado correctamente. Verifique los datos de ingresados')
+                    console.log(JSON.stringify(data))
                     return
                 }
-                console.log(data, 'Reserva se ha actualizado correctamente')
+                alert('Reserva se ha actualizado correctamente')
+                console.log(JSON.stringify(data))
                 getReservas()
                 resetForm()
             }
@@ -104,10 +108,12 @@ export const Reservas = () => {
             method: 'DELETE',
             callback: ({ ok, data }) => {
                 if (!ok) {
-                    alert(JSON.stringify(data))
+                    console.log(JSON.stringify(data))
+                    alert('Error, no se ha eliminado. Intente más tarde.')
                     return
                 }
-                console.log(data, 'Se ha eliminado la reserva correctamente')
+                console.log(JSON.stringify(data))
+                alert('Se ha eliminado la reserva correctamente')
                 getReservas()
             }
         })

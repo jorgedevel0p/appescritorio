@@ -56,11 +56,12 @@ export const MovimientoCaja = () => {
       method: 'POST',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha guardado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha guardado correctamente. Verifique los datos ingresados')
           return
         }
-        console.log(data, 'Ha guardado la movimiento caja correctamente')
+        alert('Ha guardado la movimiento caja correctamente')
+        console.log(JSON.stringify(data))
         resetForm()
         getMovimientosCaja()
       }
@@ -81,11 +82,12 @@ export const MovimientoCaja = () => {
       method: 'PUT',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha actualizado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha actualizado correctamente. Verifique los datos ingresados.')
           return
         }
-        console.log(data, 'MovimientoCaja se ha actualizado correctamente')
+        alert('MovimientoCaja se ha actualizado correctamente')
+        console.log(JSON.stringify(data))
         getMovimientosCaja()
         resetForm()
       }
@@ -103,11 +105,12 @@ export const MovimientoCaja = () => {
       method: 'DELETE',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha eliminado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha eliminado correctamente. Intente más tarde nuevamente.')
           return
         }
-        console.log(data, 'MovimientoCaja se ha eliminado correctamente')
+        alert('MovimientoCaja se ha eliminado correctamente')
+        console.log(JSON.stringify(data))
         getMovimientosCaja()
       }
     })

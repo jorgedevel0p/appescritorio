@@ -56,11 +56,12 @@ export const Productos = () => {
       method: 'POST',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha guardado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha guardado correctamente. Verifique los datos ingresados')
           return
         }
-        console.log(data, 'Ha guardado el producto correctamente')
+        alert('Ha guardado el producto correctamente')
+        console.log(JSON.stringify(data))
         resetForm()
         getProductos()
       }
@@ -82,11 +83,12 @@ export const Productos = () => {
       method: 'PUT',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha actualizado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha actualizado correctamente. Verifique los datos ingresados.')
           return
         }
-        console.log(data, 'Producto se ha actualizado correctamente')
+        alert('Producto se ha actualizado correctamente')
+        console.log(JSON.stringify(data))
         getProductos()
         resetForm()
       }
@@ -104,11 +106,12 @@ export const Productos = () => {
       method: 'DELETE',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha eliminado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha eliminado correctamente. Intente más tarde nuevamente.')
           return
         }
-        console.log(data, 'Producto se ha eliminado correctamente')
+        alert('Producto se ha eliminado correctamente')
+        console.log(JSON.stringify(data))
         getProductos()
       }
     })

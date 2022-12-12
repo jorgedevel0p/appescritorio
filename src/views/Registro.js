@@ -45,11 +45,12 @@ export const Registro = () => {
         method: 'POST', 
         callback: ({ ok, data }) => {
           if (!ok) { 
-            alert(JSON.stringify(data))      
-            console.log(data, 'ERROR. NO se ha guardado correctamente')      
+            console.log(JSON.stringify(data))     
+            alert('Error. No se ha guardado correctamente. Verifique los datos ingresados.')      
             return
           }
-          console.log(data, 'Ha guardado Usuario correctamente')
+          alert('Ha guardado Usuario correctamente')
+          console.log(JSON.stringify(data))
           
           const routeToNavigate = ROUTES_DEPEND_ON_TYPE[form.type]
         console.log(routeToNavigate)

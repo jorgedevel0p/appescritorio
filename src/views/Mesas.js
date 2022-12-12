@@ -39,11 +39,12 @@ export const Mesas = () => {
       method: 'POST',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha guardado correctamente')
+          alert('Error, no se ha guardado. Verifique los datos ingresados.')
+          console.log(JSON.stringify(data))
           return
         }
-        console.log(data, 'Ha guardado la mesa correctamente')
+        alert('Ha guardado la mesa correctamente')
+        console.log(JSON.stringify(data))
         resetForm()
         getMesas()
       }
@@ -64,11 +65,12 @@ export const Mesas = () => {
       method: 'PUT',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha actualizado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha actualizado correctamente. Verifique los datos ingresados.')
           return
         }
-        console.log(data, 'Mesa se ha actualizado correctamente')
+        alert('Mesa se ha actualizado correctamente')
+        console.log(JSON.stringify(data))
         getMesas()
         resetForm()
       }
@@ -86,11 +88,12 @@ export const Mesas = () => {
       method: 'DELETE',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha eliminado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha eliminado correctamente.')
           return
         }
-        console.log(data, 'Mesa se ha eliminado correctamente')
+        alert('Mesa se ha eliminado correctamente')
+        console.log(JSON.stringify(data))
         getMesas()
       }
     })

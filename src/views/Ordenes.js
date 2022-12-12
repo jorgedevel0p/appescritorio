@@ -56,12 +56,13 @@ export const Ordenes = () => {
       data: orden,
       method: 'POST',
       callback: ({ ok, data }) => {
-        if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha guardado correctamente')
+        if (!ok) {          
+          alert('Error. No se ha guardado correctamente. Verifique los datos ingresados')
+          console.log(JSON.stringify(data))
           return
         }
-        console.log(data, 'Ha guardado Orden correctamente')
+        alert('Ha guardado Orden correctamente')
+        console.log(JSON.stringify(data))
         getOrdenes()
         resetForm()
       }
@@ -79,11 +80,12 @@ export const Ordenes = () => {
       method: 'PUT',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha actualizado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha actualizado correctamente. Verifique los datos ingresados')
           return
         }
-        console.log(data, 'Orden se ha actualizado correctamente')
+        alert('Orden se ha actualizado correctamente')
+        console.log(JSON.stringify(data))
         getOrdenes()
         resetForm()
       }
@@ -108,11 +110,12 @@ export const Ordenes = () => {
       method: 'DELETE',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha eliminado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha eliminado correctamente. Intente más tarde nuevamente.')
           return
         }
-        console.log(data, 'Se ha eliminado la orden correctamente')
+        alert('Se ha eliminado la orden correctamente')
+        console.log(JSON.stringify(data))
         getOrdenes()
       }
     })

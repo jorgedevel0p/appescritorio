@@ -58,11 +58,12 @@ export const Recetas = () => {
       method: 'POST',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha guardado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha guardado correctamente. Verifique los datos ingresados.')
           return
         }
-        console.log(data, 'Ha guardado Plato correctamente')
+        alert('Receta se ha guardado correctamente')
+        console.log(JSON.stringify(data))
         getPlatos()
         resetForm()
       }
@@ -79,11 +80,12 @@ export const Recetas = () => {
       method: 'PUT',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR. NO se ha actualizado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha actualizado correctamente. Verifique los datos ingresados.')
           return
         }
-        console.log(data, 'Plato se ha actualizado correctamente')
+        alert('Receta se ha actualizado correctamente')
+        console.log(JSON.stringify(data))
         getPlatos()
         resetForm()
       }

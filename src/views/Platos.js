@@ -54,11 +54,12 @@ export const Platos = () => {
       method: "POST",
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data));
-          console.log(data, 'ERROR. NO se ha guardado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. Nr se ha guardado correctamente. Verifique los datos ingresados.')
           return;
         }
-        console.log(data, "Ha guardado el plato correctamente");
+        alert("Ha guardado el plato correctamente");
+        console.log(JSON.stringify(data))
         resetForm();
         getPlatos();
       },
@@ -75,11 +76,12 @@ export const Platos = () => {
       method: 'PUT',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR, NO se ha actualizado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error. No se ha actualizado correctamente. Verifique los datos ingresados.')
           return
         }
-        console.log(data, 'Plato se ha actualizado correctamente')
+        alert('Plato se ha actualizado correctamente')
+        console.log(JSON.stringify(data))
         getPlatos()
         resetForm()
       }
@@ -101,11 +103,12 @@ export const Platos = () => {
       method: 'DELETE',
       callback: ({ ok, data }) => {
         if (!ok) {
-          alert(JSON.stringify(data))
-          console.log(data, 'ERROR, NO se ha eliminado correctamente')
+          console.log(JSON.stringify(data))
+          alert('Error, No se ha eliminado correctamente. Intente más tarde nuevamente.')
           return
         }
-        console.log(data, 'Se ha eliminado el plato correctamente')
+        alert('Se ha eliminado el plato correctamente')
+        console.log(JSON.stringify(data))
         getPlatos()
       }
     })
