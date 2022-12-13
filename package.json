@@ -5,8 +5,8 @@
   "main": "public/electron.js",
   "homepage": "./",
   "author": {
-    "name": "Chris Villarroel",
-    "email": "chrisdeveloper3001@gmail.com"
+    "name": "Alejandro Rojas",
+    "email": "ale.rojasg@duocuc.cl"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.2.1",
@@ -32,7 +32,7 @@
     "build": "react-scripts build",
     "dev": "concurrently -k \"npm start\" \"npm:electron\"",
     "electron": "wait-on tcp:3000 && electron .",
-    "generate-win": "npm run build && cd .. && npx electron-packager ./electron-react-template myTestApp3 --platform=win32 --arch=x64 && cd electron-react-template"
+    "generate-win": "npm run build && cd .. && npx electron-packager ./appescritorio appescritorio --platform=win32 --arch=x64 && cd appescritorio"
   },
   "devDependencies": {
     "concurrently": "^7.3.0",

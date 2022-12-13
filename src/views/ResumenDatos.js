@@ -7,16 +7,33 @@ import DataTable from 'react-data-table-component'
 import 'style-components'
 
 export const ResumenDatos = () => {
-  const { productos, boletas, getUserById, getPlatosById, users, platos, detalle_ordenes, ordenes } =
+  const { productos, boletas, getUserById, getPlatosById, platos, detalle_ordenes, ordenes } =
     useContext(restaurantContext);
   const { isLoading, makeHttpRequest } = useHttpRequest();
-  const [user, setUser] = useState([]);
+  const [users, setUsers] = useState([]);
 
   //Stock 
   const listaConFiltro = productos.data.filter((prod) => prod.stock < 30);
 
   //Usuario
+
+  const getUsers = () => {
+    makeHttpRequest({
+      operation: '/user/',
+      data: null,
+      method: 'GET',
+      callback: ({ ok, data }) => {
+        if (!ok) {
+          alert(JSON.stringify(data))
+          return
+        }
+        setUsers(data)
+        console.log(data, 'Listado de Usuarios recibido')
+      }
+    })
+  }
   const userCompras = boletas.data.map((bol) => bol.user);
+  console.log(userCompras)
   const listaCount = {};
   userCompras.map(function (elemento) {
     if (listaCount[elemento]) {
@@ -35,9 +52,12 @@ export const ResumenDatos = () => {
   const moda = listaModa[listaModa.length - 1];
   const cantUser = moda[1];
   const listaCliente = [moda];
-  const idUser = parseInt(moda[0] - 1);
-  console.log(users.data[idUser]["username"], "tipo");
+  const idUser = parseInt(moda[0] );
 
+  console.log('id user data', users)
+  console.log('id user ', idUser)
+
+  console.log('id user ', users)
   // PLATO 
   const eliminaDuplicados = (arr) => {
     return arr.filter((valor, indice) => {
@@ -56,7 +76,9 @@ export const ResumenDatos = () => {
     console.log(idp)
   }
 
-
+  useEffect(() => {
+    getUsers()
+  }, [])
 
 
   // // const detalleO = detalle_ordenes.data.filter((dt) => (dt.plato == (idPlato)))
@@ -121,8 +143,7 @@ export const ResumenDatos = () => {
                 <div className="alert alert-secondary">Cliente frecuente</div>
                 <table className="table">
                   <tbody className="table">
-                    <td>{users.data[idUser]["username"]}</td>
-                    <td>{users.data[idUser]["email"]}</td>
+                <td>{getUserById(idUser).username} {getUserById(idUser).email}</td>
                   </tbody>
                 </table>
               </div>

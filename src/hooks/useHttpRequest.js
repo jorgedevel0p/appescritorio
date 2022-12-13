@@ -1,4 +1,4 @@
-const API_SIGLO_XXI_URL = 'http://localhost:8000/api'
+const API_SIGLO_XXI_URL = 'https://django-server-production-5539.up.railway.app/api'
 const STATUS_CODE_OK = 200
 
 export const useHttpRequest = () => {
